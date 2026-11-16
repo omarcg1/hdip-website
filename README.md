@@ -14,9 +14,26 @@ Nothing is edited in code any more.
 python3 tools/dashboard.py      # http://127.0.0.1:4620
 ```
 
-Edit a field, **Save**, then **Publish** — publishing reruns `build.py` and
-rewrites all 58 pages. The published site stays static: the panel runs on your
-machine, not on the public site.
+The site is at `/`, the panel at `/admin`. Edit a field, **Save**, then
+**Publish** — publishing reruns `build.py` and rewrites all 58 pages.
+
+### Password
+
+Credentials live in `data/admin.local.json`, which is gitignored and never
+committed. Only the hash is used to authenticate.
+
+To change the password, type a new one into the file's `password` field and
+restart; the hash is re-derived from it. Or, to store no plaintext at all:
+
+```bash
+python3 tools/dashboard.py --set-password
+```
+
+Delete the file and restart to be issued a fresh random password.
+
+`/admin` is bound to localhost. HTTP Basic sends the password in clear text,
+so put TLS in front of it before binding anywhere else — the server warns if
+you do.
 
 The panel covers every field on every page — copy in both languages, the
 figures per year, which photo heads each page, and the order of the hero

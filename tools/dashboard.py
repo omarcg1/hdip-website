@@ -575,28 +575,73 @@ def hash_password(password, salt=None):
     return {"salt": salt, "hash": dk.hex(), "rounds": PBKDF2_ROUNDS}
 
 
-def ensure_credentials():
-    """Create credentials on first run and print where to read them.
+NOTE = ("Credentials for the control panel at /admin. Gitignored — never "
+        "commit this file. To change the password, type a new one into "
+        "\"password\" and restart: the hash is re-derived from it on startup. "
+        "Delete the file and restart to be issued a fresh random one.")
 
-    The generated password is written once to a gitignored file. It is never
-    echoed into the server log, because logs get pasted into chats and issues.
+
+def write_credentials(rec):
+    os.makedirs(os.path.dirname(AUTH_FILE), exist_ok=True)
+    tmp = AUTH_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(rec, f, indent=1)
+    os.replace(tmp, AUTH_FILE)
+    os.chmod(AUTH_FILE, 0o600)
+
+
+def ensure_credentials():
+    """Load credentials, creating them on first run.
+
+    Editing "password" in the file is the supported way to change it: the
+    hash is re-derived whenever the two disagree. Checking the hash while
+    ignoring an edited password would lock the owner out of their own panel
+    with no visible reason, which is a worse failure than any it prevents.
+
+    The password is never echoed into the server log — logs get pasted into
+    chats and issues.
     """
     if os.path.isfile(AUTH_FILE):
         with open(AUTH_FILE, encoding="utf-8") as f:
-            return json.load(f)
+            rec = json.load(f)
+        plain = rec.get("password")
+        if plain:
+            dk = hashlib.pbkdf2_hmac("sha256", plain.encode("utf-8"),
+                                     rec["salt"].encode("ascii"),
+                                     rec.get("rounds", PBKDF2_ROUNDS))
+            if not hmac.compare_digest(dk.hex(), rec.get("hash", "")):
+                rec.update(hash_password(plain))
+                rec["_note"] = NOTE
+                write_credentials(rec)
+                print("  Password changed in data/admin.local.json — hash updated.")
+        return rec
+
     user = os.environ.get("HDIP_ADMIN_USER", "hdip")
     password = os.environ.get("HDIP_ADMIN_PASSWORD") or secrets.token_urlsafe(18)
-    rec = {"_note": "Credentials for the control panel at /admin. "
-                    "Gitignored — never commit this file. Delete it and "
-                    "restart to issue a new password.",
-           "user": user, "password": password, **hash_password(password)}
-    os.makedirs(os.path.dirname(AUTH_FILE), exist_ok=True)
-    with open(AUTH_FILE, "w", encoding="utf-8") as f:
-        json.dump(rec, f, indent=1)
-    os.chmod(AUTH_FILE, 0o600)
+    rec = {"_note": NOTE, "user": user, "password": password,
+           **hash_password(password)}
+    write_credentials(rec)
     print(f"\n  Control panel credentials written to {AUTH_FILE}")
     print("  (open that file for the password; it is not printed here)\n")
     return rec
+
+
+def set_password_interactively():
+    """`--set-password`: prompt without echo, store the hash only."""
+    import getpass
+    rec = ensure_credentials()
+    user = input(f"user [{rec['user']}]: ").strip() or rec["user"]
+    first = getpass.getpass("new password: ")
+    if len(first) < 10:
+        print("  Too short — use at least 10 characters.")
+        return 1
+    if first != getpass.getpass("repeat: "):
+        print("  They did not match; nothing changed.")
+        return 1
+    new = {"_note": NOTE, "user": user, **hash_password(first)}
+    write_credentials(new)
+    print(f"  Updated {AUTH_FILE} — hash only, the password is not stored.")
+    return 0
 
 
 CREDS = None
@@ -799,6 +844,8 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     global CREDS
+    if "--set-password" in sys.argv:
+        return set_password_interactively()
     CREDS = ensure_credentials()
 
     if HOST not in ("127.0.0.1", "localhost", "::1"):
@@ -817,4 +864,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main() or 0)
