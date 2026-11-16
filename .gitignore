@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 venv/
 .venv/
+
+# Control panel credentials — never commit
+data/admin.local.json

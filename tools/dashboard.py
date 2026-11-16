@@ -27,7 +27,14 @@ sys.path.insert(0, ROOT)
 import store  # noqa: E402
 
 IMG_DIR = os.path.join(ROOT, "assets", "img")
-PORT = int(os.environ.get("HDIP_DASH_PORT", "4620"))
+PORT = int(os.environ.get("HDIP_PORT", "4610"))
+HOST = os.environ.get("HDIP_HOST", "127.0.0.1")
+
+# The panel is mounted inside the site's own origin, so one address serves
+# both: / is the site, /admin is the control panel. When the site is deployed
+# as static files, /admin is simply not among them and cannot ship by accident.
+PREFIX = "/admin"
+AUTH_FILE = os.path.join(ROOT, "data", "admin.local.json")
 
 # ---------------------------------------------------------------------------
 # How the 30 content keys map onto the pages an editor actually thinks about.
@@ -101,7 +108,7 @@ def thumb(slug):
         return ""
     w = m["widths"][0]
     ext = m.get("ext", "jpg")
-    return f"/img/{slug}-{w}.{ext}"
+    return f"{PREFIX}/img/{slug}-{w}.{ext}"
 
 
 def unused_paths():
@@ -383,17 +390,17 @@ def page(title, body, flash=None, bar=None):
         kind, msg = flash
         note = f'<div class="flash flash--{kind}">{esc(msg)}</div>'
     barhtml = f'<div class="bar"><div class="in">{bar}</div></div>' if bar else ""
-    return f"""<!doctype html>
+    doc = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} — HDIP control panel</title><style>{CSS}</style></head>
 <body>
 <header class="top"><div class="in">
-  <a class="brand" href="/">hdip control panel</a>
+  <a class="brand" href="{PREFIX}">hdip control panel</a>
   <nav>
-    <a class="btn" href="/">Content</a>
-    <a class="btn" href="/images">Photos</a>
-    <a class="btn" href="http://127.0.0.1:4610/" target="_blank" rel="noopener">View site</a>
+    <a class="btn" href="{PREFIX}">Content</a>
+    <a class="btn" href="{PREFIX}/images">Photos</a>
+    <a class="btn" href="/" target="_blank" rel="noopener">View site</a>
   </nav>
 </div></header>
 <main class="wrap">{note}{body}</main>
@@ -401,13 +408,17 @@ def page(title, body, flash=None, bar=None):
 <script>window.__thumbs={thumbs};</script>
 <script>{JS}</script>
 </body></html>"""
+    # Views are built from a mix of f-strings and plain strings, so resolve the
+    # mount point once on the finished document rather than per literal — a
+    # missed f prefix would otherwise ship "{PREFIX}" into an href.
+    return doc.replace("{PREFIX}", PREFIX)
 
 
 def view_index(flash=None):
     cards = []
     for name, where, items in GROUPS:
         links = "".join(
-            f'<a href="/edit?k={urllib.parse.quote(k)}">'
+            f'<a href="{PREFIX}/edit?k={urllib.parse.quote(k)}">'
             f'<b>{esc(lbl)}</b><span>{esc(k.split(".")[1])}</span></a>'
             for k, lbl in items)
         cards.append(f'<div class="gcard"><h2>{esc(name)}</h2>'
@@ -417,7 +428,7 @@ def view_index(flash=None):
             "<p class=\"sub\">Every field on the site. Edit, save, then publish "
             "to rewrite the pages.</p>"
             f'<div class="groups">{"".join(cards)}</div>')
-    bar = ('<form method="post" action="/publish" style="display:contents">'
+    bar = ('<form method="post" action="{PREFIX}/publish" style="display:contents">'
            '<button class="btn btn--p" type="submit">Publish to the site</button></form>'
            '<span class="state">Publishing rebuilds all 58 pages</span>')
     return page("Content", body, flash, bar)
@@ -429,17 +440,17 @@ def view_edit(key, flash=None):
     label, group = LABELS[key]
     data = store.load()
     value = get_at(data, parse_path(key))
-    body = (f'<p class="sub" style="margin:0 0 4px"><a href="/">← Content</a> · {esc(group)}</p>'
+    body = (f'<p class="sub" style="margin:0 0 4px"><a href="{PREFIX}">← Content</a> · {esc(group)}</p>'
             f'<h1>{esc(label)}</h1>'
             f'<p class="sub">{esc(key)}</p>'
-            f'<form class="edit" method="post" action="/save">'
+            f'<form class="edit" method="post" action="{PREFIX}/save">'
             f'<input type="hidden" name="__key" value="{esc(key)}">'
             f'{render(key, value, None)}'
             f'</form>')
     bar = ('<button class="btn btn--p" form="" '
            'onclick="document.querySelector(\'form.edit\').requestSubmit();return false;">'
            'Save</button>'
-           '<a class="btn" href="/">Cancel</a>'
+           '<a class="btn" href="{PREFIX}">Cancel</a>'
            '<span class="state">Saved changes go live when you publish</span>')
     return page(label, body, flash, bar)
 
@@ -458,7 +469,7 @@ def view_images(flash=None):
     body = ("<h1>Photos</h1>"
             '<p class="sub">Every photo on the site. Uploading adds the sizes the '
             'pages need; pick a photo for a page from the content screens.</p>'
-            '<form class="up" method="post" action="/upload" enctype="multipart/form-data">'
+            '<form class="up" method="post" action="{PREFIX}/upload" enctype="multipart/form-data">'
             '<input type="file" name="file" accept="image/*" required>'
             '<input type="text" name="slug" placeholder="short-name" required '
             'pattern="[a-z0-9-]+" title="lower-case letters, numbers and hyphens">'
@@ -542,6 +553,72 @@ def parse_multipart(headers, rfile):
     return out
 
 
+
+# ---------------------------------------------------------------------------
+# Access control
+# The panel writes files and runs builds, so it is never open — not even on
+# localhost. Credentials live in data/admin.local.json, which is gitignored:
+# only a PBKDF2 hash is stored, never the password itself.
+# ---------------------------------------------------------------------------
+import base64
+import hashlib
+import hmac
+import secrets
+
+PBKDF2_ROUNDS = 240_000
+
+
+def hash_password(password, salt=None):
+    salt = salt or secrets.token_hex(16)
+    dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"),
+                             salt.encode("ascii"), PBKDF2_ROUNDS)
+    return {"salt": salt, "hash": dk.hex(), "rounds": PBKDF2_ROUNDS}
+
+
+def ensure_credentials():
+    """Create credentials on first run and print where to read them.
+
+    The generated password is written once to a gitignored file. It is never
+    echoed into the server log, because logs get pasted into chats and issues.
+    """
+    if os.path.isfile(AUTH_FILE):
+        with open(AUTH_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    user = os.environ.get("HDIP_ADMIN_USER", "hdip")
+    password = os.environ.get("HDIP_ADMIN_PASSWORD") or secrets.token_urlsafe(18)
+    rec = {"_note": "Credentials for the control panel at /admin. "
+                    "Gitignored — never commit this file. Delete it and "
+                    "restart to issue a new password.",
+           "user": user, "password": password, **hash_password(password)}
+    os.makedirs(os.path.dirname(AUTH_FILE), exist_ok=True)
+    with open(AUTH_FILE, "w", encoding="utf-8") as f:
+        json.dump(rec, f, indent=1)
+    os.chmod(AUTH_FILE, 0o600)
+    print(f"\n  Control panel credentials written to {AUTH_FILE}")
+    print("  (open that file for the password; it is not printed here)\n")
+    return rec
+
+
+CREDS = None
+
+
+def check_auth(header):
+    """Constant-time check of an HTTP Basic header."""
+    if not header or not header.startswith("Basic "):
+        return False
+    try:
+        raw = base64.b64decode(header[6:]).decode("utf-8")
+        user, _, password = raw.partition(":")
+    except Exception:
+        return False
+    ok_user = hmac.compare_digest(user, CREDS["user"])
+    dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"),
+                             CREDS["salt"].encode("ascii"),
+                             CREDS.get("rounds", PBKDF2_ROUNDS))
+    ok_pass = hmac.compare_digest(dk.hex(), CREDS["hash"])
+    return ok_user and ok_pass
+
+
 class Handler(BaseHTTPRequestHandler):
     server_version = "HDIPPanel/1.0"
 
@@ -576,8 +653,59 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(data)
 
     # -- routes ----------------------------------------------------------
+    # -- access ----------------------------------------------------------
+    def guard(self):
+        """Every /admin request must authenticate. Returns True to continue."""
+        if check_auth(self.headers.get("Authorization")):
+            return True
+        self.send_response(401)
+        self.send_header("WWW-Authenticate", 'Basic realm="HDIP control panel"')
+        self.send_header("Content-Length", "0")
+        self.end_headers()
+        return False
+
+    def admin_path(self, u):
+        """`/admin/edit` -> `/edit`; None when the request is not for the panel."""
+        if u.path == PREFIX:
+            return "/"
+        if u.path.startswith(PREFIX + "/"):
+            return u.path[len(PREFIX):]
+        return None
+
+    def serve_site(self, u):
+        """The built static site, so one address serves site and panel."""
+        rel = urllib.parse.unquote(u.path).lstrip("/") or "index.html"
+        path = os.path.normpath(os.path.join(ROOT, rel))
+        # Never serve outside the project, and never serve the panel's own
+        # files, the store, or the credentials.
+        if not path.startswith(ROOT + os.sep) and path != ROOT:
+            self.send_error(403)
+            return
+        if os.path.isdir(path):
+            path = os.path.join(path, "index.html")
+        blocked = (os.path.join(ROOT, "data"), os.path.join(ROOT, "tools"),
+                   os.path.join(ROOT, ".git"))
+        if any(path.startswith(b + os.sep) for b in blocked):
+            self.send_error(404)
+            return
+        ext = path.rsplit(".", 1)[-1].lower()
+        ctype = {"html": "text/html; charset=utf-8", "css": "text/css; charset=utf-8",
+                 "js": "text/javascript; charset=utf-8", "json": "application/json",
+                 "jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+                 "webp": "image/webp", "svg": "image/svg+xml",
+                 "ico": "image/x-icon"}.get(ext, "application/octet-stream")
+        self.serve_file(path, ctype)
+
+    # -- routes ----------------------------------------------------------
     def do_GET(self):
         u = urllib.parse.urlparse(self.path)
+        p = self.admin_path(u)
+        if p is None:
+            self.serve_site(u)
+            return
+        if not self.guard():
+            return
+
         q = urllib.parse.parse_qs(u.query)
         flash = None
         if "ok" in q:
@@ -585,18 +713,18 @@ class Handler(BaseHTTPRequestHandler):
         elif "err" in q:
             flash = ("err", q["err"][0])
 
-        if u.path == "/":
+        if p == "/":
             self.send_html(view_index(flash))
-        elif u.path == "/edit":
+        elif p == "/edit":
             v = view_edit(q.get("k", [""])[0], flash)
             if v:
                 self.send_html(v)
             else:
                 self.send_error(404, "No such content key")
-        elif u.path == "/images":
+        elif p == "/images":
             self.send_html(view_images(flash))
-        elif u.path.startswith("/img/"):
-            name = os.path.basename(urllib.parse.unquote(u.path[5:]))
+        elif p.startswith("/img/"):
+            name = os.path.basename(urllib.parse.unquote(p[5:]))
             ext = name.rsplit(".", 1)[-1].lower()
             ctype = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
                      "webp": "image/webp", "svg": "image/svg+xml"}.get(
@@ -607,10 +735,17 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         u = urllib.parse.urlparse(self.path)
+        p = self.admin_path(u)
+        if p is None:
+            self.send_error(404)
+            return
+        if not self.guard():
+            return
+        u = urllib.parse.urlparse(p)
 
         if u.path == "/publish":
             kind, msg = publish()
-            self.redirect(f"/?{kind}={urllib.parse.quote(msg)}")
+            self.redirect(f"{PREFIX}?{kind}={urllib.parse.quote(msg)}")
             return
 
         if u.path == "/upload":
@@ -618,17 +753,17 @@ class Handler(BaseHTTPRequestHandler):
             slug = str(fields.get("slug", "")).strip().lower()
             item = fields.get("file")
             if not re.fullmatch(r"[a-z0-9-]+", slug or ""):
-                self.redirect("/images?err=" + urllib.parse.quote(
+                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(
                     "Use lower-case letters, numbers and hyphens for the short name."))
                 return
             if not isinstance(item, tuple) or not item[1]:
-                self.redirect("/images?err=" + urllib.parse.quote("No file received."))
+                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote("No file received."))
                 return
             err = add_image(slug, item[1], item[0] or "")
             if err:
-                self.redirect("/images?err=" + urllib.parse.quote(err))
+                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(err))
             else:
-                self.redirect("/images?ok=" + urllib.parse.quote(
+                self.redirect(f"{PREFIX}/images?ok=" + urllib.parse.quote(
                     f"Added “{slug}”. Pick it on a content screen, then publish."))
             return
 
@@ -654,7 +789,7 @@ class Handler(BaseHTTPRequestHandler):
                 except (KeyError, IndexError, TypeError):
                     continue
             store.save(data)
-            self.redirect(f"/edit?k={urllib.parse.quote(key)}&ok="
+            self.redirect(f"{PREFIX}/edit?k={urllib.parse.quote(key)}&ok="
                           + urllib.parse.quote(
                               f"Saved {count} fields. Publish to put them live."))
             return
@@ -663,9 +798,18 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
-    print(f"HDIP control panel  →  http://127.0.0.1:{PORT}")
-    print(f"store: data/site.json")
+    global CREDS
+    CREDS = ensure_credentials()
+
+    if HOST not in ("127.0.0.1", "localhost", "::1"):
+        print("\n  WARNING: binding to", HOST, "exposes /admin beyond this machine.")
+        print("  HTTP Basic sends the password in clear text, so put TLS in")
+        print("  front of it before doing that on a real network.\n")
+
+    srv = ThreadingHTTPServer((HOST, PORT), Handler)
+    print(f"  site   http://{HOST}:{PORT}/")
+    print(f"  panel  http://{HOST}:{PORT}{PREFIX}")
+    print(f"  store  data/site.json")
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
