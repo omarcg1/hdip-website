@@ -646,22 +646,43 @@ def set_password_interactively():
 
 
 CREDS = None
+_CREDS_MTIME = None
+
+
+def current_credentials():
+    """Re-read the credentials file whenever it changes on disk.
+
+    Loading once at startup meant editing the password appeared to do nothing
+    until the server was restarted — with no error to explain it. Re-reading
+    on change costs a stat per request, which is nothing beside the PBKDF2
+    round that follows.
+    """
+    global CREDS, _CREDS_MTIME
+    try:
+        mtime = os.path.getmtime(AUTH_FILE)
+    except OSError:
+        return CREDS
+    if mtime != _CREDS_MTIME:
+        CREDS = ensure_credentials()
+        _CREDS_MTIME = os.path.getmtime(AUTH_FILE)
+    return CREDS
 
 
 def check_auth(header):
     """Constant-time check of an HTTP Basic header."""
-    if not header or not header.startswith("Basic "):
+    creds = current_credentials()
+    if not creds or not header or not header.startswith("Basic "):
         return False
     try:
         raw = base64.b64decode(header[6:]).decode("utf-8")
         user, _, password = raw.partition(":")
     except Exception:
         return False
-    ok_user = hmac.compare_digest(user, CREDS["user"])
+    ok_user = hmac.compare_digest(user, creds["user"])
     dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"),
-                             CREDS["salt"].encode("ascii"),
-                             CREDS.get("rounds", PBKDF2_ROUNDS))
-    ok_pass = hmac.compare_digest(dk.hex(), CREDS["hash"])
+                             creds["salt"].encode("ascii"),
+                             creds.get("rounds", PBKDF2_ROUNDS))
+    ok_pass = hmac.compare_digest(dk.hex(), creds["hash"])
     return ok_user and ok_pass
 
 
