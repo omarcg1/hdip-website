@@ -1345,7 +1345,25 @@ def main():
         written.append(build_credits(lang))
     for w in written:
         print("wrote", w)
-    print(f"\n{len(written)} pages ({len(written)//2} per language)")
+
+    # Remove pages this build no longer generates. Without this, deleting an
+    # article or a project leaves its page on disk and published — the content
+    # is gone from the store but still reachable at its old URL.
+    kept = {os.path.normpath(os.path.join(ROOT, w)) for w in written}
+    removed = []
+    for d in (ROOT, os.path.join(ROOT, "ar")):
+        for f in sorted(os.listdir(d)):
+            if not f.endswith(".html"):
+                continue
+            path = os.path.join(d, f)
+            if path not in kept:
+                os.remove(path)
+                removed.append(os.path.relpath(path, ROOT))
+    for r in removed:
+        print("removed", r)
+
+    print(f"\n{len(written)} pages ({len(written)//2} per language)"
+          + (f", {len(removed)} removed" if removed else ""))
 
 
 if __name__ == "__main__":

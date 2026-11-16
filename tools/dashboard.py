@@ -37,44 +37,46 @@ PREFIX = "/admin"
 AUTH_FILE = os.path.join(ROOT, "data", "admin.local.json")
 
 # ---------------------------------------------------------------------------
-# How the 30 content keys map onto the pages an editor actually thinks about.
-# Without this the panel is an alphabetical wall of variable names.
+# One screen per part of the site, not one per variable.
+# An editor thinks "I am editing the Reports page", not "I am editing
+# years.REPORTS and content.REPORT_2024 and years.YEARS" — so each section
+# below is a single page holding everything that part of the site needs.
 # ---------------------------------------------------------------------------
-GROUPS = [
-    ("Home page", "The home page, top to bottom", [
+SECTIONS = [
+    ("home", "Home page", "index.html — top to bottom", [
         ("content.HOME", "Section headings, leads and hero copy"),
         ("years.HERO_SLIDES", "Hero slideshow — which photos, in what order"),
         ("years.IMPACT", "Four years of results — the figures per year"),
         ("content.GOVERNORATES", "Governorate names (English)"),
         ("content.GOVERNORATES_AR", "Governorate names (Arabic)"),
     ]),
-    ("About", "about.html", [
+    ("about", "About", "about.html", [
         ("content.ABOUT", "Vision, mission, objectives"),
         ("years.ABOUT_EXTRA", "Areas, approach, donor principles"),
     ]),
-    ("Programme areas", "work.html and the five area pages", [
-        ("content.AREAS", "The five areas — name, purpose, activities, photo"),
+    ("work", "Our work", "work.html and the five programme area pages", [
+        ("content.AREAS", "The areas — name, purpose, activities, photo"),
     ]),
-    ("Projects", "projects.html and the four project pages", [
+    ("projects", "Projects", "projects.html and a page per project", [
         ("content.PROJECTS", "Name, tagline, objectives, components, figures"),
         ("years.PHASES", "Results by year, per project"),
     ]),
-    ("Reports", "reports.html and the four annual reports", [
+    ("news", "Articles & news", "news.html and a page per article", [
+        ("content.NEWS", "Articles (2024)"),
+        ("years.NEWS_2025", "Articles (2025)"),
+    ]),
+    ("reports", "Reports", "reports.html and a page per annual report", [
+        ("years.REPORTS", "Annual reports"),
         ("content.REPORT_2024", "The 2024 annual report"),
-        ("years.REPORTS", "The 2022, 2023 and 2025 reports"),
         ("years.LIBRARIES", "Libraries narrative (2022)"),
         ("years.YEARS", "Which years exist, newest first"),
         ("content.IMPACT_2024", "2024 headline figures"),
     ]),
-    ("News & stories", "news.html and the article pages", [
-        ("content.NEWS", "Articles (2024)"),
-        ("years.NEWS_2025", "Articles (2025)"),
-    ]),
-    ("Contact", "contact.html", [
+    ("contact", "Contact", "contact.html", [
         ("content.CONTACT", "Address, email, phone, lead text"),
         ("content.CONTACT_FIELDS", "Enquiry routes"),
     ]),
-    ("Photography & credits", "credits.html", [
+    ("credits", "Photography & credits", "credits.html", [
         ("years.CONTEXT_PHOTOS", "Captions and alt text for contextual photos"),
         ("years.HERO_PHOTOS", "Which photo heads each page"),
         ("content.SOURCES", "Source documents"),
@@ -82,7 +84,7 @@ GROUPS = [
         ("content.GAPS", "Content still needed"),
         ("years.GAPS_REMAINING", "Content still needed (other years)"),
     ]),
-    ("Site-wide", "Navigation, buttons, labels — every page", [
+    ("site", "Site-wide", "Navigation, buttons and labels — every page", [
         ("content.UI", "Button and label text"),
         ("content.NAV", "Main navigation"),
         ("years.ENDINGS", "Closing call-to-action per page type"),
@@ -90,7 +92,10 @@ GROUPS = [
         ("years.CLOSURES_NOTE", "Closures note"),
     ]),
 ]
-LABELS = {k: (lbl, grp) for grp, _, items in GROUPS for k, lbl in items}
+SECTION = {sid: (name, where, items) for sid, name, where, items in SECTIONS}
+LABELS = {k: (lbl, name)
+          for _, name, _, items in SECTIONS for k, lbl in items}
+SECTION_OF = {k: sid for sid, _, _, items in SECTIONS for k, _ in items}
 
 
 def manifest():
@@ -173,6 +178,70 @@ def set_at(obj, parts, value):
 # ---------------------------------------------------------------------------
 # Rendering
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# Adding and removing list items
+# Articles are the obvious case, but projects, areas and the year lists are
+# the same shape. A new item is cloned from an existing one so every key the
+# templates read is present — a missing key is a build failure, not a blank.
+# ---------------------------------------------------------------------------
+# Lists an editor may add to or delete from, and what one item is called.
+LISTS = {
+    "content.NEWS": "article",
+    "years.NEWS_2025": "article",
+    "content.PROJECTS": "project",
+}
+
+
+def blank_like(value):
+    """Same shape, emptied. Keeps keys so templates never hit a KeyError."""
+    if isinstance(value, dict):
+        return {k: blank_like(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [blank_like(v) for v in value]
+    if isinstance(value, bool):
+        return False
+    if isinstance(value, (int, float)):
+        return 0
+    if value is None:
+        return None
+    return ""
+
+
+def slug_exists(slug):
+    data = store.load()
+    for key in LISTS:
+        for item in get_at(data, parse_path(key)):
+            if isinstance(item, dict) and item.get("slug") == slug:
+                return True
+    return False
+
+
+def unique_slug(base="new-article"):
+    slug, n = base, 2
+    while slug_exists(slug):
+        slug, n = f"{base}-{n}", n + 1
+    return slug
+
+
+# Fields whose value has to be one of a known set, or the generated page
+# would link somewhere that does not exist.
+def choices_for(path, value):
+    leaf = path.rsplit(".", 1)[-1]
+    data = store.load()
+    if leaf == "area":
+        return [("", "— none —")] + [(a["slug"], a["en"]["name"])
+                                     for a in data["content"]["AREAS"]]
+    if leaf == "project":
+        return [("", "— none —")] + [(p["slug"], p["en"]["name"])
+                                     for p in data["content"]["PROJECTS"]]
+    if leaf == "status":
+        # Indexed straight into UI by the templates, so it cannot be free text.
+        return [(k, data["content"]["UI"]["en"].get(k, k))
+                for k in ("ongoing", "completed")]
+    return None
+
+
 def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
 
@@ -201,6 +270,16 @@ def field(path, value, label=None):
                 f'<img src="{thumb(value)}" alt="" loading="lazy">'
                 f'<select id="{lid}" name="{lid}" data-img>{opts}</select>'
                 f'</div></div>')
+
+    # Values that must be one of a known set — a free-text area or project
+    # would generate a link to a page that does not exist.
+    choices = choices_for(path, value)
+    if choices is not None:
+        opts = "".join(
+            f'<option value="{esc(v)}"{" selected" if v == (value or "") else ""}>'
+            f'{esc(t)}</option>' for v, t in choices)
+        return f'<div class="f">{lab}<select id="{lid}" name="{lid}">{opts}</select></div>'
+
     text = "" if value is None else str(value)
     if len(text) > 85 or "\n" in text:
         rows = min(14, max(3, text.count("\n") + len(text) // 70 + 1))
@@ -243,12 +322,37 @@ def render(path, value, label=None, depth=0):
                     f'<ol class="slides" data-sortable>{items}</ol>'
                     f'<p class="hint">Drag to reorder. The order here is the order on the page.</p>'
                     f'</div>')
+        noun = LISTS.get(path)
+        def controls(i, item):
+            if not noun:
+                return ""
+            name = ""
+            if isinstance(item, dict):
+                name = item.get("en", {}).get("title") or item.get("slug") or ""
+            # A button can only submit its own name and value, and a section
+            # may hold more than one list, so the value carries both which
+            # list and which row.
+            return (f'<button class="btn btn--del" type="submit" '
+                    f'formaction="{{PREFIX}}/delitem" formmethod="post" '
+                    f'formnovalidate name="item" value="{esc(path)}|{i}" '
+                    f'data-confirm="Delete the {esc(noun)} &quot;{esc(name)}&quot;? '
+                    f'This cannot be undone.">Delete this {esc(noun)}</button>')
         items = "".join(
             f'<li><span class="n">{i + 1}</span>'
-            f'<div class="row">{render(f"{path}[{i}]", v, None, depth + 1)}</div></li>'
+            f'<div class="row">{render(f"{path}[{i}]", v, None, depth + 1)}'
+            f'{controls(i, v)}</div></li>'
             for i, v in enumerate(value))
         head = f'<h3>{esc(label)}</h3>' if label else ""
-        return f'<div class="grp grp--list">{head}<ol class="rows">{items}</ol></div>'
+        add = ""
+        if noun:
+            add = (f'<p class="addrow"><button class="btn btn--add" type="submit" '
+                   f'formaction="{{PREFIX}}/additem" formmethod="post" formnovalidate '
+                   f'name="listkey" value="{esc(path)}">'
+                   f'Add {esc(noun)}</button>'
+                   f'<span class="hint">Saves what is on screen first, then adds '
+                   f'a blank {esc(noun)} at the end.</span></p>')
+        return (f'<div class="grp grp--list">{head}'
+                f'<ol class="rows">{items}</ol>{add}</div>')
 
     return field(path, value, label)
 
@@ -297,7 +401,7 @@ margin:0 0 10px;font-weight:700}
 .lang[dir=rtl] h4{letter-spacing:0;text-transform:none;font-size:.86rem}
 .f{margin:0 0 12px}
 .f label{display:block;font-size:.8rem;color:var(--soft);margin:0 0 4px;font-weight:600}
-input[type=text],textarea,select{width:100%;padding:9px 11px;border:1px solid var(--line);
+input[type=text],input[type=password],textarea,select{width:100%;padding:9px 11px;border:1px solid var(--line);
 border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
 input:focus,textarea:focus,select:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
 textarea{resize:vertical;line-height:1.5}
@@ -314,6 +418,40 @@ ol.slides>li.drag{opacity:.4}
 .imgpick img{width:62px;height:44px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#fff;flex:none}
 .f--img{flex:1;margin:0}
 .hint{color:var(--mute);font-size:.8rem;margin:8px 0 0}
+.scards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.scard{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+.scard:hover{border-color:var(--brand);box-shadow:0 6px 22px -14px rgba(14,35,68,.45)}
+.scard__head{display:flex;align-items:baseline;gap:10px}
+.scard h2{font-size:1.02rem;margin:0}
+.scard .count{margin-inline-start:auto;color:var(--mute);font-size:.76rem;white-space:nowrap}
+.scard .where{color:var(--mute);font-size:.84rem;margin:3px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.72rem;color:var(--soft);background:var(--bg);border:1px solid var(--line);
+border-radius:999px;padding:2px 9px}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.jump a{font-size:.8rem;text-decoration:none;color:var(--soft);background:var(--card);
+border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+.jump a:hover{border-color:var(--brand);color:var(--brand)}
+.block{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+padding:6px 22px 20px;margin:0 0 18px;scroll-margin-top:72px}
+.block__head{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);
+padding:14px 0 12px;margin:0 0 14px}
+.block__head h2{font-size:1rem;margin:0}
+.block__head code{margin-inline-start:auto;font-size:.72rem;color:var(--mute)}
+form.edit{background:none;border:0;padding:0}
+.addbox{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);
+padding:16px 20px;margin:0 0 18px}
+.addbox b{font-size:.94rem}
+.addbox .hint{margin:4px 0 10px}
+.addbox__row{display:flex;gap:10px;align-items:center}
+.addbox__row input{max-width:150px}
+.btn--add{border-color:var(--brand);color:var(--brand)}
+.btn--add:hover{background:#F5F8FD}
+.btn--del{border-color:#F0C9C2;color:#9B2C1C;margin-top:10px;font-size:.82rem;padding:6px 13px}
+.btn--del:hover{background:#FDF0EE;border-color:#D88B7C}
+.addrow{display:flex;align-items:center;gap:12px;margin:16px 0 0}
+.addrow .hint{margin:0}
 .btn--quiet{color:var(--mute)}
 .btn--quiet:hover{color:var(--ink)}
 .login{max-width:380px;margin:12vh auto 0;background:var(--card);border:1px solid var(--line);
@@ -359,6 +497,18 @@ if(form){
   });
 }
 function setState(t){const el=document.querySelector('.bar .state');if(el)el.textContent=t;}
+
+// Deleting removes a page from the site, so it asks first. The dirty-state
+// warning is suppressed for Add and Delete, which save the form themselves.
+document.querySelectorAll('[data-confirm]').forEach(b=>{
+  b.addEventListener('click',e=>{
+    if(!confirm(b.dataset.confirm)){e.preventDefault();return;}
+    dirty=false;
+  });
+});
+document.querySelectorAll('.btn--add').forEach(b=>{
+  b.addEventListener('click',()=>{dirty=false;});
+});
 
 // Slideshow reordering. The inputs keep their own values; only the rows move,
 // and the order is read off the DOM on submit.
@@ -427,45 +577,88 @@ def page(title, body, flash=None, bar=None, chrome=True):
     return doc.replace("{PREFIX}", PREFIX)
 
 
+def count_fields(value):
+    if isinstance(value, dict):
+        return sum(count_fields(v) for v in value.values())
+    if isinstance(value, list):
+        return sum(count_fields(v) for v in value)
+    return 1
+
+
 def view_index(flash=None):
+    data = store.load()
     cards = []
-    for name, where, items in GROUPS:
-        links = "".join(
-            f'<a href="{PREFIX}/edit?k={urllib.parse.quote(k)}">'
-            f'<b>{esc(lbl)}</b><span>{esc(k.split(".")[1])}</span></a>'
-            for k, lbl in items)
-        cards.append(f'<div class="gcard"><h2>{esc(name)}</h2>'
-                     f'<p class="where">{esc(where)}</p>'
-                     f'<div class="links">{links}</div></div>')
+    for sid, name, where, items in SECTIONS:
+        n = sum(count_fields(get_at(data, parse_path(k))) for k, _ in items)
+        bits = "".join(f'<span class="chip">{esc(lbl)}</span>' for _, lbl in items)
+        cards.append(
+            f'<a class="scard" href="{PREFIX}/s/{sid}">'
+            f'<div class="scard__head"><h2>{esc(name)}</h2>'
+            f'<span class="count">{n} fields</span></div>'
+            f'<p class="where">{esc(where)}</p>'
+            f'<div class="chips">{bits}</div></a>')
     body = ("<h1>Content</h1>"
-            "<p class=\"sub\">Every field on the site. Edit, save, then publish "
-            "to rewrite the pages.</p>"
-            f'<div class="groups">{"".join(cards)}</div>')
+            '<p class="sub">One screen per part of the site. Edit, save, then '
+            'publish to rewrite the pages.</p>'
+            f'<div class="scards">{"".join(cards)}</div>')
     bar = ('<form method="post" action="{PREFIX}/publish" style="display:contents">'
            '<button class="btn btn--p" type="submit">Publish to the site</button></form>'
            '<span class="state">Publishing rebuilds all 58 pages</span>')
     return page("Content", body, flash, bar)
 
 
-def view_edit(key, flash=None):
-    if key not in LABELS:
+def view_section(sid, flash=None):
+    if sid not in SECTION:
         return None
-    label, group = LABELS[key]
+    name, where, items = SECTION[sid]
     data = store.load()
-    value = get_at(data, parse_path(key))
-    body = (f'<p class="sub" style="margin:0 0 4px"><a href="{PREFIX}">← Content</a> · {esc(group)}</p>'
-            f'<h1>{esc(label)}</h1>'
-            f'<p class="sub">{esc(key)}</p>'
-            f'<form class="edit" method="post" action="{PREFIX}/save">'
-            f'<input type="hidden" name="__key" value="{esc(key)}">'
-            f'{render(key, value, None)}'
-            f'</form>')
-    bar = ('<button class="btn btn--p" form="" '
+
+    # Reports are keyed by year rather than listed, so adding one means four
+    # coordinated entries; it gets its own control rather than a generic Add.
+    extra = ""
+    if sid == "reports":
+        extra = ('<div class="addbox">'
+                 '<b>Add an annual report</b>'
+                 '<p class="hint">Creates the report text, adds the year to the '
+                 'switch, and sets up its figures and hero photo.</p>'
+                 '<div class="addbox__row">'
+                 '<input type="text" name="year" placeholder="2026" '
+                 'pattern="(19|20)[0-9]{2}" required form="addreport">'
+                 '<button class="btn" type="submit" form="addreport">Add report</button>'
+                 '</div></div>'
+                 f'<form id="addreport" method="post" '
+                 f'action="{PREFIX}/addreport" hidden>'
+                 f'<input type="hidden" name="sid" value="{esc(sid)}"></form>')
+
+    blocks = []
+    for k, lbl in items:
+        value = get_at(data, parse_path(k))
+        blocks.append(
+            f'<section class="block" id="{esc(k.split(".")[1].lower())}">'
+            f'<div class="block__head"><h2>{esc(lbl)}</h2>'
+            f'<code>{esc(k)}</code></div>'
+            f'<input type="hidden" name="__key" value="{esc(k)}">'
+            f'{render(k, value, None)}</section>')
+
+    jump = "".join(
+        f'<a href="#{esc(k.split(".")[1].lower())}">{esc(lbl)}</a>'
+        for k, lbl in items) if len(items) > 1 else ""
+
+    body = (f'<p class="sub" style="margin:0 0 4px">'
+            f'<a href="{PREFIX}">← All sections</a></p>'
+            f'<h1>{esc(name)}</h1>'
+            f'<p class="sub">{esc(where)}</p>'
+            + (f'<nav class="jump">{jump}</nav>' if jump else "")
+            + extra
+            + f'<form class="edit" method="post" action="{PREFIX}/save">'
+            f'<input type="hidden" name="__sid" value="{esc(sid)}">'
+            f'{"".join(blocks)}</form>')
+    bar = ('<button class="btn btn--p" '
            'onclick="document.querySelector(\'form.edit\').requestSubmit();return false;">'
            'Save</button>'
            '<a class="btn" href="{PREFIX}">Cancel</a>'
            '<span class="state">Saved changes go live when you publish</span>')
-    return page(label, body, flash, bar)
+    return page(name, body, flash, bar)
 
 
 def view_images(flash=None):
@@ -528,6 +721,139 @@ def add_image(slug, raw, filename):
     with open(os.path.join(IMG_DIR, "manifest.json"), "w", encoding="utf-8") as f:
         json.dump(m, f, indent=1, sort_keys=True)
     return None
+
+
+
+# ---------------------------------------------------------------------------
+# Structural changes
+# Adding or removing an item touches the shape of the store, not just text,
+# so each one is tried against a real build and rolled back if the build
+# fails. The panel should never be able to leave the site unbuildable.
+# ---------------------------------------------------------------------------
+def apply_structural(change):
+    """Run `change(data)`, keep it only if the site still builds."""
+    before = store.load()
+    data = json.loads(json.dumps(before))
+    try:
+        note = change(data)
+    except ValueError as e:
+        return ("err", str(e))
+    store.save(data)
+    r = subprocess.run([sys.executable, "build.py"], cwd=ROOT,
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        store.save(before)
+        subprocess.run([sys.executable, "build.py"], cwd=ROOT, capture_output=True)
+        detail = (r.stderr or r.stdout).strip().splitlines()[-1:] or [""]
+        return ("err", "Change rolled back — the site would not build.\n"
+                       + detail[0])
+    return ("ok", note)
+
+
+def add_list_item(key):
+    noun = LISTS[key]
+
+    def change(data):
+        lst = get_at(data, parse_path(key))
+        if not lst:
+            raise ValueError("Nothing to copy the shape from.")
+        item = blank_like(lst[0])
+        if isinstance(item, dict):
+            # Blank the prose, but inherit the fields the templates resolve
+            # against something else. build.py looks an area up with an
+            # unguarded next() and indexes UI by status, so an empty one is a
+            # failed build rather than an empty page.
+            for structural in ("area", "status", "photo", "icon"):
+                if structural in item and lst[0].get(structural):
+                    item[structural] = lst[0][structural]
+            if "slug" in item:
+                item["slug"] = unique_slug(f"new-{noun}")
+            for lg in ("en", "ar"):
+                block = item.get(lg)
+                if not isinstance(block, dict):
+                    continue
+                for titleish in ("title", "name"):
+                    if titleish in block:
+                        block[titleish] = f"Untitled {noun}"
+        lst.append(item)
+        return f"Added a blank {noun} at the end. Fill it in, then publish."
+    return apply_structural(change)
+
+
+def delete_list_item(key, idx):
+    noun = LISTS[key]
+
+    def change(data):
+        lst = get_at(data, parse_path(key))
+        if not 0 <= idx < len(lst):
+            raise ValueError("That item no longer exists.")
+        if len(lst) <= 1:
+            raise ValueError(f"The last {noun} cannot be deleted — "
+                             "the templates need at least one to copy from.")
+        gone = lst.pop(idx)
+        name = (gone.get("en", {}).get("title") or gone.get("slug", "")
+                if isinstance(gone, dict) else "")
+        return f"Deleted the {noun} “{name}”. Publish to remove its page."
+    return apply_structural(change)
+
+
+def add_report(year):
+    """A report year is four coordinated entries, not one.
+
+    REPORTS holds the text, YEARS drives the index and the year switch,
+    IMPACT the figures behind that switch, and HERO_PHOTOS the picture at the
+    top — which build.py reads directly, so a missing one is a KeyError and a
+    failed build rather than a blank page.
+    """
+    if not re.fullmatch(r"(19|20)\d{2}", year or ""):
+        return ("err", "Use a four-digit year, for example 2026.")
+
+    def change(data):
+        years, reports = data["years"], data["years"]["REPORTS"]
+        if year in reports or year in years["YEARS"]:
+            raise ValueError(f"{year} already exists.")
+        template = reports[sorted(reports)[-1]]
+        new = blank_like(template)
+        for lg in ("en", "ar"):
+            if isinstance(new.get(lg), dict):
+                new[lg]["year"] = year
+                new[lg]["title"] = (f"Annual Report {year}" if lg == "en"
+                                    else f"التقرير السنوي {year}")
+        reports[year] = new
+        years["YEARS"] = sorted(set(years["YEARS"]) | {year}, reverse=True)
+        years["IMPACT"][year] = blank_like(
+            years["IMPACT"][sorted(years["IMPACT"])[-1]])
+        photos = years["HERO_PHOTOS"]
+        photos[f"report-{year}"] = photos.get(
+            f"report-{sorted(reports)[-1]}", sorted(manifest())[0])
+        return (f"Added Annual Report {year} — report text, the year switch, "
+                "its figures and a hero photo. Fill it in, then publish.")
+    return apply_structural(change)
+
+
+
+def save_fields(form):
+    """Write every submitted field that lies inside a known content key.
+
+    A section page posts several keys at once, so the guard is per field:
+    a path is written only if it sits under one of the keys this panel owns.
+    """
+    data = store.load()
+    roots = [(k, parse_path(k)) for k in LABELS]
+    count = 0
+    for path, vals in form.items():
+        if path.startswith("__"):
+            continue
+        parts = parse_path(path)
+        if not any(parts[:len(r)] == r for _, r in roots):
+            continue
+        try:
+            set_at(data, parts, vals[0])
+            count += 1
+        except (KeyError, IndexError, TypeError):
+            continue
+    store.save(data)
+    return count
 
 
 def publish():
@@ -885,12 +1211,16 @@ class Handler(BaseHTTPRequestHandler):
 
         if p == "/":
             self.send_html(view_index(flash))
-        elif p == "/edit":
-            v = view_edit(q.get("k", [""])[0], flash)
+        elif p.startswith("/s/"):
+            v = view_section(p[3:], flash)
             if v:
                 self.send_html(v)
             else:
-                self.send_error(404, "No such content key")
+                self.send_error(404, "No such section")
+        elif p == "/edit":
+            # Old per-key links still work; send them to the section.
+            sid = SECTION_OF.get(q.get("k", [""])[0])
+            self.redirect(f"{PREFIX}/s/{sid}" if sid else PREFIX)
         elif p == "/images":
             self.send_html(view_images(flash))
         elif p.startswith("/img/"):
@@ -925,6 +1255,44 @@ class Handler(BaseHTTPRequestHandler):
             else:
                 self.send_html(view_login("That user and password did not match.",
                                           nexturl), 401)
+            return
+
+        if p in ("/additem", "/delitem", "/addreport"):
+            length = int(self.headers.get("Content-Length", "0"))
+            form = urllib.parse.parse_qs(
+                self.rfile.read(length).decode("utf-8"), keep_blank_values=True)
+            sid = form.get("__sid", form.get("sid", [""]))[0]
+            if sid not in SECTION:
+                self.send_error(400, "Unknown section")
+                return
+            if not session_user(self.headers.get("Cookie")):
+                self.redirect(f"{PREFIX}/login")
+                return
+            # Keep what is on screen before changing the shape, so edits in
+            # progress are not lost by pressing Add.
+            if p != "/addreport":
+                save_fields(form)
+
+            if p == "/addreport":
+                kind, msg = add_report(form.get("year", [""])[0].strip())
+            else:
+                if p == "/additem":
+                    key = form.get("listkey", [""])[0]
+                    if key not in LISTS:
+                        self.send_error(400, "Not an editable list")
+                        return
+                    kind, msg = add_list_item(key)
+                else:
+                    key, _, raw = form.get("item", [""])[0].rpartition("|")
+                    if key not in LISTS:
+                        self.send_error(400, "Not an editable list")
+                        return
+                    try:
+                        idx = int(raw)
+                    except ValueError:
+                        idx = -1
+                    kind, msg = delete_list_item(key, idx)
+            self.redirect(f"{PREFIX}/s/{sid}?{kind}=" + urllib.parse.quote(msg))
             return
 
         if p == "/logout":
@@ -965,25 +1333,12 @@ class Handler(BaseHTTPRequestHandler):
             length = int(self.headers.get("Content-Length", "0"))
             body = self.rfile.read(length).decode("utf-8")
             form = urllib.parse.parse_qs(body, keep_blank_values=True)
-            key = form.pop("__key", [""])[0]
-            if key not in LABELS:
-                self.send_error(400, "Unknown content key")
+            sid = form.get("__sid", [""])[0]
+            if sid not in SECTION:
+                self.send_error(400, "Unknown section")
                 return
-            data = store.load()
-            allowed = parse_path(key)
-            count = 0
-            for path, vals in form.items():
-                parts = parse_path(path)
-                # Only ever write inside the section being edited.
-                if parts[:len(allowed)] != allowed:
-                    continue
-                try:
-                    set_at(data, parts, vals[0])
-                    count += 1
-                except (KeyError, IndexError, TypeError):
-                    continue
-            store.save(data)
-            self.redirect(f"{PREFIX}/edit?k={urllib.parse.quote(key)}&ok="
+            count = save_fields(form)
+            self.redirect(f"{PREFIX}/s/{sid}&ok=".replace("&ok=", "?ok=")
                           + urllib.parse.quote(
                               f"Saved {count} fields. Publish to put them live."))
             return
