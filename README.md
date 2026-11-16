@@ -5,6 +5,32 @@ A rebuild of the Health Development Information and Policy Institute site, follo
 
 Bilingual: English at the root, Arabic (RTL) under `/ar/`. 29 pages per language, covering 2022–2025.
 
+## Editing the site
+
+All content lives in `data/site.json` and is edited through the control panel.
+Nothing is edited in code any more.
+
+```bash
+python3 tools/dashboard.py      # http://127.0.0.1:4620
+```
+
+Edit a field, **Save**, then **Publish** — publishing reruns `build.py` and
+rewrites all 58 pages. The published site stays static: the panel runs on your
+machine, not on the public site.
+
+The panel covers every field on every page — copy in both languages, the
+figures per year, which photo heads each page, and the order of the hero
+slideshow. Uploading a photo generates the same size tiers the pages' `srcset`
+expects, and never upscales.
+
+Fields marked **not shown** reach no page. Some are genuinely dead, some are
+conditional (the `DRAFT` placeholders in `build.py`). Regenerate that list
+after template changes:
+
+```bash
+python3 tools/find_orphans.py --write
+```
+
 ## Run it
 
 ```bash
@@ -24,8 +50,13 @@ python3 -m http.server 4610 --directory .
 | Contact | `contact.html` |
 | Credits | `credits.html` — photography, document sources, outstanding gaps |
 
-- `content.py` — organisation, areas, projects, 2024 report; `SOURCES`
-- `content_years.py` — 2022 / 2023 / 2025 reports, project phases, libraries, `GAPS_REMAINING`
+- `data/site.json` — **all content**, both languages. The source of truth; the panel writes it.
+- `store.py` — reads and writes that file
+- `content.py` / `content_years.py` — thin loaders exposing the store under the names the
+  templates use, so `build.py` did not change. The original hand-written modules are kept
+  at `tools/legacy/` for reference.
+- `tools/dashboard.py` — the control panel (standard library only)
+- `tools/verify_migration.py` — byte-compares the generated site against a snapshot
 - `build.py` — templates and rendering
 - `assets/css/style.css` — design system, components and RTL rules
 - `assets/js/main.js` — nav, scroll reveals, counters

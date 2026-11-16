@@ -1,0 +1,3518 @@
+{
+ "_note": "Edited through the dashboard (tools/dashboard.py). Seeded verbatim from the original content modules.",
+ "content": {
+  "ABOUT": {
+   "en": {
+    "title": "About HDIP",
+    "lead": "Founded in 1989 by researchers, health practitioners and development experts, in response to the urgent need to improve health care in Palestine — particularly in the West Bank and the Gaza Strip — through a scientific and professional approach to research, planning and development policy.",
+    "who_title": "Who we are",
+    "who": [
+     "HDIP is an independent, non-profit Palestinian organisation. It dedicates its work to specialised research, consultancy and the development of public policy across development sectors.",
+     "Over time its role expanded to advocating for the rights of marginalised groups in Palestinian society — women, youth and persons with disabilities — rooted in a conviction about the importance of social justice and equality of opportunity.",
+     "The institute gives considerable attention to building a democratic Palestinian civil society founded on active participation, transparency and accountability. It provides accurate information, evaluation studies and specialised training programmes in health, systems management and development policy, in order to strengthen local institutions and improve the quality of services delivered to citizens."
+    ],
+    "vision_title": "Our vision",
+    "vision": "We seek to advance development in Palestine by enabling Palestinian society to reach its basic needs in health, education and social services, fairly and sustainably. We believe a strong and cohesive society begins with meeting these vital needs and with development policies that respond to citizens' aspirations and reflect their real priorities. We work in a spirit of responsibility and community partnership to support positive change and to establish the principles of social justice and good governance — towards a prosperous Palestinian future that guarantees dignity and opportunity for all.",
+    "mission_title": "Our mission",
+    "mission": "HDIP seeks to contribute actively to building a Palestinian society founded on social and economic justice, which upholds the values of freedom, democracy and human rights. The programme works by implementing activities and initiatives that strengthen Palestinian capacities, open horizons for constructive dialogue and meet urgent community needs. We believe purposeful media is a tool for change, a platform for the citizen's voice, and a bridge towards a more aware and solidary society. Through it we seek to establish a culture of community participation, to stimulate critical thinking, and to support policies that place people at the heart of development.",
+    "objectives_title": "Our objectives",
+    "objectives_lead": "The fifteen general objectives set out in HDIP's founding profile.",
+    "objectives": [
+     "Conduct research and studies on health and development conditions and on health and development policies.",
+     "Hold seminars, meetings and conferences, and issue publications, research, books, periodicals and booklets in its field.",
+     "Run programmes and training courses, and provide research, training, media and technical services in health and development, administration, administrative development and development planning.",
+     "Raise the level of health and development awareness, and establish health information and research databases.",
+     "Conduct dialogues and coordination activities to improve cooperation between civil society organisations and the relevant ministries, in order to improve coordination and rationalise the use of development resources.",
+     "Provide advice and organise the scientific and technical activities that assist in preparing and adopting appropriate health, social and development legislation.",
+     "Prepare, publish and document research abstracts in a way that serves Palestinian researchers, academics and development policy makers.",
+     "Provide the consultations, evaluations, studies and expertise needed to strengthen individuals and institutions.",
+     "Publish information that contributes to developing health and development awareness and improving development capacities, and provide the advisory, research and technical services that support sound development planning.",
+     "Cooperate with Arab and international institutions in health and development research and statistics, and in developing health and development policies.",
+     "Organise health and development programmes and activities.",
+     "Supply and assist students, researchers, planners and local councils with information.",
+     "Issue maps, explanatory materials, publications, books and periodicals that follow health issues and general development policies.",
+     "Develop cooperation and coordination in the health and development fields between civil society and governmental institutions, in a way that serves Palestinian society.",
+     "Carry out media activities that support the cause of the Palestinian people and meet its needs."
+    ],
+    "approach_title": "Our approach",
+    "partner_title": "Why partner with us",
+    "team_title": "Team & board"
+   },
+   "ar": {
+    "title": "عن البرنامج",
+    "lead": "تأسس عام 1989 على يد مجموعة من الباحثين والممارسين الصحيين وخبراء التنمية، استجابةً للحاجة الملحّة لتحسين واقع الرعاية الصحية في فلسطين، لا سيما في الضفة الغربية وقطاع غزة، وذلك من خلال اعتماد منهج علمي ومهني في البحث والتخطيط وصياغة السياسات التنموية.",
+    "who_title": "من نحن",
+    "who": [
+     "يُعد البرنامج الإعلامي مؤسسة فلسطينية مستقلة غير ربحية، تكرّس جهودها لإجراء البحوث المتخصصة، وتقديم الاستشارات، وتطوير السياسات العامة في مختلف القطاعات التنموية.",
+     "ومع مرور الوقت، توسّع دور البرنامج ليشمل الدفاع عن حقوق الفئات المهمّشة في المجتمع الفلسطيني، مثل النساء والشباب وذوي الإعاقة، انطلاقًا من إيمانه العميق بأهمية العدالة الاجتماعية والمساواة في الفرص.",
+     "كما يولي المعهد اهتمامًا كبيرًا ببناء مجتمع مدني فلسطيني ديمقراطي، يقوم على أسس المشاركة الفاعلة والشفافية والمساءلة. ويقدّم مجموعة من الخدمات النوعية تشمل توفير المعلومات الدقيقة، وتنفيذ الدراسات التقييمية، وتنظيم برامج تدريبية متخصصة في مجالات الصحة وإدارة النظم وصياغة السياسات التنموية، بهدف تعزيز قدرات المؤسسات المحلية وتحسين جودة الخدمات المقدمة للمواطنين."
+    ],
+    "vision_title": "رؤيتنا",
+    "vision": "نسعى إلى تعزيز مسيرة التطوير والتنمية في فلسطين من خلال تمكين المجتمع الفلسطيني من الوصول العادل والمستدام إلى احتياجاته الأساسية في مجالات الصحة والتعليم والخدمات الاجتماعية. ونؤمن بأن بناء مجتمع قوي ومتماسك يبدأ من تلبية هذه الاحتياجات الحيوية، وصياغة سياسات تنموية تستجيب لتطلعات المواطنين وتعكس أولوياتهم الحقيقية. نعمل بروح المسؤولية والشراكة المجتمعية على دعم مبادرات التغيير الإيجابي، وترسيخ مبادئ العدالة الاجتماعية والحكم الرشيد، وصولًا إلى مستقبل فلسطيني مزدهر يضمن الكرامة والفرص للجميع.",
+    "mission_title": "رسالتنا",
+    "mission": "يسعى البرنامج الإعلامي للتطوير الصحي إلى الإسهام الفاعل في بناء مجتمع فلسطيني يقوم على أسس العدالة الاجتماعية والاقتصادية، ويُعلي من قيم الحرية والديمقراطية وحقوق الإنسان. ويعمل البرنامج من خلال تنفيذ أنشطة ومبادرات نوعية تُعزز من قدرات الإنسان الفلسطيني، وتفتح آفاق الحوار البنّاء، وتلبي الاحتياجات المجتمعية الملحّة. نؤمن بأن الإعلام الهادف هو أداة للتغيير، ومنبر لإيصال صوت المواطن، وجسر نحو مجتمع أكثر وعيًا وتضامنًا. ومن خلال هذا البرنامج، نسعى إلى ترسيخ ثقافة المشاركة المجتمعية، وتحفيز التفكير النقدي، ودعم السياسات التي تضع الإنسان في قلب عملية التنمية.",
+    "objectives_title": "الأهداف العامة",
+    "objectives_lead": "الأهداف العامة الخمسة عشر الواردة في الملف التعريفي للبرنامج.",
+    "objectives": [
+     "إجراء الأبحاث والدراسات المتعلقة بالوضع الصحي والتنموي والسياسات الصحية والتنموية.",
+     "عقد الندوات والاجتماعات والمؤتمرات وإصدار المنشورات والأبحاث والكتب والدوريات والكراسات في مجال اختصاصه.",
+     "عقد البرامج والدورات التدريبية وتقديم الخدمات البحثية والتدريبية والإعلامية والتقنية في مجالات التطوير الصحي والتنموي والإدارة والتطوير الإداري والتخطيط التنموي.",
+     "رفع مستوى الوعي الصحي والتنموي وإنشاء قواعد المعلومات والأبحاث الصحية.",
+     "إجراء الحوارات وتنظيم أنشطة التنسيق لتحسين التعاون بين المؤسسات الأهلية والوزارات المختلفة، بهدف تحسين التنسيق وترشيد استخدام الموارد التنموية.",
+     "تقديم المشورة وتنظيم النشاطات العلمية والتقنية التي تساعد في إعداد وإقرار التشريعات الصحية والاجتماعية والتنموية المناسبة.",
+     "إعداد ونشر الملخصات البحثية وتوثيقها بما يخدم الباحثين والأكاديميين الفلسطينيين وصانعي السياسات التنموية.",
+     "تقديم المشورات وأعمال التقييم والدراسات والخبرات اللازمة لتقوية الأفراد والمؤسسات.",
+     "نشر المعلومات التي تساهم في تطوير الوعي الصحي والتنموي وتحسين القدرات التنموية، وتقديم الخدمات الاستشارية والبحثية والتقنية التي تساعد على التخطيط التنموي السليم.",
+     "التعاون مع المؤسسات العربية والدولية في مجالات الأبحاث والإحصائيات الصحية والتنموية وتطوير السياسات الصحية والتنموية.",
+     "تنظيم البرامج والنشاطات الصحية والتنموية.",
+     "تزويد ومساعدة الطلبة والباحثين والمخططين والمجالس المحلية بالمعلومات.",
+     "إصدار الخرائط والوسائل الإيضاحية والمنشورات والكتب والدوريات التي تتابع قضايا الصحة والسياسات التنموية العامة.",
+     "تطوير التعاون والتنسيق في الحقول الصحية والتنموية بين المؤسسات الأهلية والحكومية بما يخدم المجتمع الفلسطيني.",
+     "القيام بالنشاطات الإعلامية المختلفة بما يخدم دعم قضية الشعب الفلسطيني وتلبية احتياجاته."
+    ],
+    "approach_title": "منهجيتنا",
+    "partner_title": "لماذا الشراكة معنا",
+    "team_title": "الفريق ومجلس الإدارة"
+   }
+  },
+  "AREAS": [
+   {
+    "slug": "health",
+    "icon": "pulse",
+    "photo": "women-able-session",
+    "en": {
+     "name": "Health & Health Education",
+     "purpose": "Health awareness, first aid and preventive health for women, students and communities.",
+     "overview": "Health for All — awareness and health education. HDIP delivered a series of specialised training courses in 2024 for different age and social groups: women, university students and school students. The courses covered health, psychological and preventive topics, building participants' capacities, improving their awareness of health issues and behaviours, and strengthening the idea of health as a basic right.",
+     "what_title": "What we do",
+     "what": [
+      [
+       "First aid courses",
+       "Theoretical and practical training on wounds, bleeding, fractures, burns, choking, fainting and CPR."
+      ],
+      [
+       "Women's mental health",
+       "Basic concepts of mental health, stress management, coping with anxiety and depression, and psychological support during pregnancy and childbirth."
+      ],
+      [
+       "Health awareness",
+       "Physical and psychological change, prevention of risky behaviours and building self-confidence."
+      ],
+      [
+       "Disease prevention",
+       "Chronic and infectious disease, maternal health, family planning and nutrition during pregnancy and breastfeeding."
+      ],
+      [
+       "Environmental health",
+       "Air and water pollution, the effects of chemicals, and improving environmental conditions for public health."
+      ],
+      [
+       "Health education workshops",
+       "School health, personal hygiene, first aid, healthy nutrition, environmental health, psychological first aid and child health."
+      ]
+     ],
+     "figures": [
+      [
+       "85",
+       "first aid courses"
+      ],
+      [
+       "1,700",
+       "students reached"
+      ],
+      [
+       "210",
+       "women in mental health courses"
+      ],
+      [
+       "420",
+       "students in health education workshops"
+      ]
+     ]
+    },
+    "ar": {
+     "name": "الصحة والتثقيف الصحي",
+     "purpose": "التوعية الصحية والإسعاف الأولي والصحة الوقائية للنساء والطلبة والمجتمعات.",
+     "overview": "برنامج الصحة للجميع: الوعي والتثقيف الصحي. نفّذ البرنامج الإعلامي للتطوير الصحي في عام 2024 سلسلة من الدورات التدريبية المتخصصة التي استهدفت فئات عمرية واجتماعية مختلفة (نساء، طلاب جامعات، طلاب مدارس). غطّت هذه الدورات مجموعة واسعة من المواضيع الصحية والنفسية والوقائية، مما ساهم في بناء قدرات المشاركين وتحسين وعيهم بالقضايا والسلوكيات الصحية، وتعزيز مفهوم «الصحة للجميع» كحق أساسي.",
+     "what_title": "ماذا نقدّم",
+     "what": [
+      [
+       "دورات الإسعاف الأولي",
+       "تدريب نظري وعملي على الجروح والنزيف والكسور والحروق والاختناق والإغماء وإنعاش القلب."
+      ],
+      [
+       "الصحة النفسية للنساء",
+       "أساسيات الصحة النفسية، إدارة الضغوط، التعامل مع القلق والاكتئاب، ودعم النساء نفسيًا خلال الحمل والولادة."
+      ],
+      [
+       "التوعية الصحية",
+       "التغيرات الجسدية والنفسية، الوقاية من السلوكيات الخطرة، وتعزيز الثقة بالنفس."
+      ],
+      [
+       "الوقاية من الأمراض",
+       "الأمراض المزمنة والمعدية، صحة الحامل، تنظيم الأسرة، والتغذية خلال الحمل والرضاعة."
+      ],
+      [
+       "الصحة البيئية",
+       "تلوث الهواء والماء، وتأثير المواد الكيميائية، وتحسين الظروف البيئية لتعزيز الصحة العامة."
+      ],
+      [
+       "ورشات التثقيف الصحي",
+       "الصحة المدرسية، النظافة الشخصية، الإسعافات الأولية، التغذية السليمة، الصحة البيئية، الإسعاف النفسي الطارئ، وصحة الطفل."
+      ]
+     ],
+     "figures": [
+      [
+       "85",
+       "دورة إسعاف أولي"
+      ],
+      [
+       "1,700",
+       "طالب وطالبة"
+      ],
+      [
+       "210",
+       "سيدة في دورات الصحة النفسية"
+      ],
+      [
+       "420",
+       "طالبًا في ورشات التثقيف الصحي"
+      ]
+     ]
+    }
+   },
+   {
+    "slug": "education",
+    "icon": "book",
+    "photo": "youth-training",
+    "en": {
+     "name": "Education",
+     "purpose": "Addressing learning loss and keeping students in education through crisis.",
+     "overview": "HDIP supports students facing learning gaps caused by school closures, interruptions to education, teachers' strikes and conflict. Work covers supplementary teaching in core subjects, life skills, awareness of the importance of education, and support for students in displacement settings in Gaza.",
+     "what_title": "What we do",
+     "what": [
+      [
+       "Supplementary school courses",
+       "English, mathematics, physics, Arabic, computer skills, science and life skills for grades 7 to 11."
+      ],
+      [
+       "University courses",
+       "Communication skills, Microsoft Office, Bisan accounting software, scientific research and management."
+      ],
+      [
+       "Awareness workshops",
+       "Cyberbullying and online exploitation, effective communication, research skills, choosing a specialisation, dropout risks, and the value of reading."
+      ],
+      [
+       "Career guidance",
+       "Workshops and dialogue sessions with professionals so students can explore academic and career pathways."
+      ],
+      [
+       "Study support groups",
+       "Peer groups for cooperation and knowledge sharing, plus a scientific research club in each library."
+      ],
+      [
+       "Emergency delivery",
+       "Educational support for students in displacement settings in Gaza, maintaining learning through severe disruption."
+      ]
+     ],
+     "figures": [
+      [
+       "345",
+       "activities in 2024"
+      ],
+      [
+       "8,321",
+       "participants"
+      ],
+      [
+       "61%",
+       "female participants"
+      ],
+      [
+       "355",
+       "participants with disabilities"
+      ]
+     ]
+    },
+    "ar": {
+     "name": "التعليم",
+     "purpose": "معالجة الفاقد التعليمي والحفاظ على استمرار الطلبة في التعليم رغم الأزمات.",
+     "overview": "يدعم البرنامج الطلبة الذين يواجهون فجوات تعليمية ناتجة عن إغلاق المدارس والانقطاعات في التعليم وإضراب المعلمين والحرب. يشمل العمل دروس التقوية في المواد الأساسية والمهارات الحياتية والتوعية بأهمية التعليم، ودعم الطلبة في خيم النزوح في غزة.",
+     "what_title": "ماذا نقدّم",
+     "what": [
+      [
+       "دورات مدرسية تعويضية",
+       "اللغة الإنجليزية والرياضيات والفيزياء واللغة العربية والحاسوب والعلوم والمهارات الحياتية، من الصف السابع حتى الحادي عشر."
+      ],
+      [
+       "دورات جامعية",
+       "مهارات الاتصال، برامج الأوفيس، برنامج بيسان لطلبة المحاسبة، البحث العلمي، والإدارة."
+      ],
+      [
+       "ورش التوعية",
+       "الابتزاز الإلكتروني، الاتصال الفعّال، إعداد البحث العلمي، اختيار التخصصات، مخاطر التسرب المدرسي، وتشجيع القراءة."
+      ],
+      [
+       "التوجيه المهني",
+       "ورش عمل وجلسات حوارية مع مهنيين تساعد الطلبة على استكشاف مساراتهم الأكاديمية والمهنية."
+      ],
+      [
+       "مجموعات الدعم الدراسي",
+       "مجموعات طلابية للتعاون وتبادل المعرفة، إضافة إلى نادي للبحث العلمي في كل مكتبة."
+      ],
+      [
+       "الاستجابة الطارئة",
+       "دروس تقوية للطلبة في خيم النزوح في غزة للحفاظ على استمرار العملية التعليمية."
+      ]
+     ],
+     "figures": [
+      [
+       "345",
+       "نشاطًا في 2024"
+      ],
+      [
+       "8,321",
+       "مستفيدًا"
+      ],
+      [
+       "61%",
+       "نسبة الإناث"
+      ],
+      [
+       "355",
+       "من ذوي الإعاقة"
+      ]
+     ]
+    }
+   },
+   {
+    "slug": "women",
+    "icon": "users",
+    "photo": "women-leaders-training",
+    "en": {
+     "name": "Women's Empowerment",
+     "purpose": "Women's leadership, political participation and rights in local communities.",
+     "overview": "HDIP works with women as leaders, candidates and community representatives — not only as voters. Training covers feminist leadership, political participation, gender equality, human rights, the family protection law, non-violence, first aid and mental health, alongside coalition building and advocacy.",
+     "what_title": "What we do",
+     "what": [
+      [
+       "Leadership training",
+       "Feminist leadership, political participation, the electoral process and campaign management."
+      ],
+      [
+       "Rights and legal awareness",
+       "Gender equality, human rights, the family protection law and non-violence."
+      ],
+      [
+       "Coalition building",
+       "Meetings that identify shared goals and issues across women's groups and communities."
+      ],
+      [
+       "Experience sharing",
+       "Direct meetings with women who have previously stood in elections."
+      ],
+      [
+       "Health and wellbeing",
+       "First aid and mental health training delivered within the women's programme."
+      ],
+      [
+       "Public platforms",
+       "Conferences that bring women and decision-makers into the same room."
+      ]
+     ],
+     "figures": [
+      [
+       "200+",
+       "women and men at the closing conference"
+      ],
+      [
+       "4",
+       "governorates"
+      ],
+      [
+       "16",
+       "sites per governorate"
+      ],
+      [
+       "10",
+       "coalition-building meetings"
+      ]
+     ]
+    },
+    "ar": {
+     "name": "تمكين المرأة",
+     "purpose": "قيادة النساء ومشاركتهن السياسية وحقوقهن في المجتمعات المحلية.",
+     "overview": "يعمل البرنامج مع النساء كقياديات ومرشحات وممثلات لمجتمعاتهن، لا كناخبات فقط. تشمل التدريبات القيادة النسوية والمشاركة السياسية والمساواة الجندرية وحقوق الإنسان وقانون حماية الأسرة واللاعنف والإسعافات الأولية والصحة النفسية، إلى جانب بناء التحالفات والمناصرة.",
+     "what_title": "ماذا نقدّم",
+     "what": [
+      [
+       "التدريب القيادي",
+       "القيادة النسوية، المشاركة السياسية، العملية الانتخابية، وإدارة الحملات الانتخابية."
+      ],
+      [
+       "الوعي بالحقوق والقانون",
+       "المساواة الجندرية، حقوق الإنسان، قانون حماية الأسرة، واللاعنف."
+      ],
+      [
+       "بناء التحالفات",
+       "لقاءات لتحديد الأهداف والقضايا المشتركة بين المجموعات النسوية والمجتمعات."
+      ],
+      [
+       "تبادل الخبرات",
+       "لقاءات مباشرة مع نساء سبق أن خضن التجربة الانتخابية."
+      ],
+      [
+       "الصحة والعافية",
+       "تدريبات في الإسعافات الأولية والصحة النفسية ضمن البرنامج النسوي."
+      ],
+      [
+       "المنصات العامة",
+       "مؤتمرات تجمع النساء وصانعي القرار في مكان واحد."
+      ]
+     ],
+     "figures": [
+      [
+       "200+",
+       "امرأة ورجلًا في المؤتمر الختامي"
+      ],
+      [
+       "4",
+       "محافظات"
+      ],
+      [
+       "16",
+       "موقعًا في كل محافظة"
+      ],
+      [
+       "10",
+       "لقاءات لبناء التحالفات"
+      ]
+     ]
+    }
+   },
+   {
+    "slug": "youth",
+    "icon": "vote",
+    "photo": "youth-training",
+    "en": {
+     "name": "Youth & Civic Leadership",
+     "purpose": "University students as informed, responsible and community-oriented leaders.",
+     "overview": "HDIP invests in young people's potential by providing knowledge, leadership skills and practical tools to engage constructively in their universities and communities — combining leadership development with human rights education, critical thinking, teamwork and advocacy.",
+     "what_title": "What we do",
+     "what": [
+      [
+       "Leadership training",
+       "Participatory and democratic leadership, respect for diversity and different opinions, teamwork and collaborative decision-making."
+      ],
+      [
+       "Human rights education",
+       "Fundamental human and civic rights, mechanisms for promoting and defending them, and rights issues in local and international contexts."
+      ],
+      [
+       "Advocacy skills",
+       "Identifying community issues and priorities, planning advocacy campaigns, and developing messages for community engagement."
+      ],
+      [
+       "Youth networks",
+       "Exchange of experience and ideas among students from different universities, and cooperation between academic institutions and local communities."
+      ]
+     ],
+     "figures": [
+      [
+       "3",
+       "day intensive training"
+      ],
+      [
+       "Multiple",
+       "universities represented"
+      ],
+      [
+       "Leadership",
+       "rights and advocacy combined"
+      ],
+      [
+       "2024",
+       "programme year"
+      ]
+     ]
+    },
+    "ar": {
+     "name": "الشباب والقيادة المدنية",
+     "purpose": "طلبة الجامعات كقادة واعين ومسؤولين ومنخرطين في مجتمعاتهم.",
+     "overview": "يستثمر البرنامج في طاقات الشباب عبر تزويدهم بالمعرفة والمهارات القيادية والأدوات العملية التي تؤهلهم للانخراط البنّاء في محيطهم الجامعي والمجتمعي، بالجمع بين تطوير القيادة والتثقيف بحقوق الإنسان والتفكير النقدي والعمل الجماعي والمناصرة.",
+     "what_title": "ماذا نقدّم",
+     "what": [
+      [
+       "التدريب القيادي",
+       "القيادة التشاركية والديمقراطية، احترام التنوع والرأي الآخر، العمل الجماعي واتخاذ القرار التشاركي."
+      ],
+      [
+       "التثقيف بحقوق الإنسان",
+       "الحقوق الأساسية والمدنية، وآليات تعزيزها والدفاع عنها، وقضايا الحقوق محليًا ودوليًا."
+      ],
+      [
+       "مهارات المناصرة",
+       "تحديد القضايا والأولويات المجتمعية، التخطيط لحملات المناصرة، وصياغة الرسائل للانخراط المجتمعي."
+      ],
+      [
+       "الشبكات الشبابية",
+       "تبادل الخبرات والأفكار بين طلبة الجامعات المختلفة، والتعاون بين المؤسسات الأكاديمية والمجتمعات المحلية."
+      ]
+     ],
+     "figures": [
+      [
+       "3",
+       "أيام تدريب مكثف"
+      ],
+      [
+       "عدة",
+       "جامعات مشاركة"
+      ],
+      [
+       "القيادة",
+       "والحقوق والمناصرة معًا"
+      ],
+      [
+       "2024",
+       "سنة البرنامج"
+      ]
+     ]
+    }
+   },
+   {
+    "slug": "research",
+    "icon": "search",
+    "photo": "women-able-group",
+    "en": {
+     "name": "Research, Policy & Knowledge",
+     "purpose": "Scientific research, evidence and knowledge-sharing as the basis of policy.",
+     "overview": "HDIP conducts research and studies on health and development conditions and policies, and works to raise awareness of the value of scientific research among students, researchers and academic communities. In 2024 this took the form of targeted campaigns, workshops, lectures and seminars, alongside the dissemination of educational material.",
+     "what_title": "What we do",
+     "what": [
+      [
+       "Research campaigns",
+       "Workshops, lectures and seminars encouraging students, researchers and academic communities to engage in research."
+      ],
+      [
+       "Knowledge dissemination",
+       "Publishing information and educational materials related to health and development."
+      ],
+      [
+       "Research clubs",
+       "A scientific research club established in each library to encourage inquiry and critical thinking."
+      ],
+      [
+       "Capacity building",
+       "Specialised training in health education, health systems and preventive approaches for community members, particularly women and youth."
+      ],
+      [
+       "Policy dialogue",
+       "Coordination activities to improve cooperation between civil society organisations and ministries."
+      ]
+     ],
+     "figures": [
+      [
+       "Workshops",
+       "lectures and seminars"
+      ],
+      [
+       "1 per library",
+       "scientific research club"
+      ],
+      [
+       "Evidence",
+       "based approaches"
+      ],
+      [
+       "2024",
+       "reporting year"
+      ]
+     ]
+    },
+    "ar": {
+     "name": "البحث والسياسات والمعرفة",
+     "purpose": "البحث العلمي والأدلة وتبادل المعرفة كأساس للسياسات.",
+     "overview": "يجري البرنامج الأبحاث والدراسات المتعلقة بالوضع الصحي والتنموي والسياسات، ويعمل على رفع الوعي بأهمية البحث العلمي لدى الطلبة والباحثين والمجتمع الأكاديمي. وفي عام 2024 اتخذ ذلك شكل حملات موجهة وورش عمل ومحاضرات وندوات، إلى جانب نشر المواد التعليمية.",
+     "what_title": "ماذا نقدّم",
+     "what": [
+      [
+       "حملات البحث العلمي",
+       "ورش عمل ومحاضرات وندوات تشجّع الطلبة والباحثين والمجتمع الأكاديمي على الانخراط في البحث."
+      ],
+      [
+       "نشر المعرفة",
+       "نشر المعلومات والمواد التعليمية المتعلقة بالصحة والتنمية."
+      ],
+      [
+       "أندية البحث",
+       "تشكيل نادٍ للبحث العلمي في كل مكتبة لتشجيع الاستقصاء والتفكير النقدي."
+      ],
+      [
+       "بناء القدرات",
+       "تدريب متخصص في التثقيف الصحي وإدارة النظم الصحية والسياسات الوقائية لأفراد المجتمع، خاصة النساء والشباب."
+      ],
+      [
+       "حوار السياسات",
+       "أنشطة تنسيق لتحسين التعاون بين المؤسسات الأهلية والوزارات."
+      ]
+     ],
+     "figures": [
+      [
+       "ورش",
+       "ومحاضرات وندوات"
+      ],
+      [
+       "نادٍ لكل مكتبة",
+       "للبحث العلمي"
+      ],
+      [
+       "مقاربات",
+       "قائمة على الأدلة"
+      ],
+      [
+       "2024",
+       "سنة التقرير"
+      ]
+     ]
+    }
+   }
+  ],
+  "CONTACT": {
+   "en": {
+    "title": "Contact & partnership",
+    "lead": "HDIP works with local and international partners on research, training, evaluation and community programmes. Write to us about a partnership, a consultation or access to our reporting.",
+    "details_title": "Contact details",
+    "unverified": "These details are carried over from HDIP's earlier published site and need confirmation.",
+    "partners_title": "Partners",
+    "partners_lead": "Two partners are identifiable from the 2024 programme photographs. A full donor and partner list, with logos we may display, has not been supplied.",
+    "partners": [
+     [
+      "Friedrich-Ebert-Stiftung",
+      "Young Leadership in Universities"
+     ],
+     [
+      "Olof Palme International Center",
+      "Women Able to Change Society"
+     ]
+    ],
+    "direct_title": "Get in touch",
+    "direct_lead": "Write to us directly and we will route your message to the right unit. For partnership and consultancy enquiries, please include the programme area and the timeframe you are working to.",
+    "email_cta": "Email HDIP",
+    "call_cta": "Call the office"
+   },
+   "ar": {
+    "title": "التواصل والشراكة",
+    "lead": "يعمل البرنامج مع شركاء محليين ودوليين في البحث والتدريب والتقييم والبرامج المجتمعية. راسلنا بشأن شراكة أو استشارة أو للاطلاع على تقاريرنا.",
+    "details_title": "بيانات الاتصال",
+    "unverified": "هذه البيانات منقولة عن الموقع المنشور سابقًا وبحاجة إلى تأكيد.",
+    "partners_title": "الشركاء",
+    "partners_lead": "يمكن تمييز شريكين من صور برامج عام 2024. ولم يتم تزويدنا بقائمة كاملة بالممولين والشركاء والشعارات المسموح بعرضها.",
+    "partners": [
+     [
+      "مؤسسة فريدريش إيبرت",
+      "تعزيز القيادات الشابة في الجامعات"
+     ],
+     [
+      "مركز أولوف بالمه الدولي",
+      "نساء قادرات على تغيير المجتمع"
+     ]
+    ],
+    "direct_title": "تواصل معنا",
+    "direct_lead": "راسلنا مباشرة وسنحوّل رسالتك إلى الوحدة المعنية. وللاستفسارات المتعلقة بالشراكة والاستشارات، يُرجى ذكر المجال البرامجي والإطار الزمني الذي تعملون ضمنه.",
+    "email_cta": "راسلنا بالبريد",
+    "call_cta": "اتصل بالمكتب"
+   }
+  },
+  "CONTACT_FIELDS": [
+   [
+    "pin",
+    "Address",
+    "العنوان",
+    "PO Box 1351<br>Ramallah, Palestine",
+    "ص.ب 1351<br>رام الله، فلسطين",
+    null
+   ],
+   [
+    "phone",
+    "Telephone",
+    "الهاتف",
+    "+972 2 298 5372",
+    "+972 2 298 5372",
+    "tel:+97222985372"
+   ],
+   [
+    "print",
+    "Fax",
+    "الفاكس",
+    "+972 2 298 5917",
+    "+972 2 298 5917",
+    null
+   ],
+   [
+    "mail",
+    "Email",
+    "البريد الإلكتروني",
+    "hdip@hdip.org",
+    "hdip@hdip.org",
+    "mailto:hdip@hdip.org"
+   ]
+  ],
+  "GAPS": {
+   "en": [
+    [
+     "About — Our Approach",
+     "No source document. The approved structure lists it as an About section."
+    ],
+    [
+     "About — Why Partner With Us (7 principles)",
+     "No source document; the English HDIP profile was not supplied."
+    ],
+    [
+     "About — Team & Board",
+     "Names, roles and photographs not supplied."
+    ],
+    [
+     "Impact in numbers — 2025 figures",
+     "The 2025 documents were not supplied, so the year switch shows 2024 only."
+    ],
+    [
+     "Annual Reports 2022, 2023, 2025",
+     "Only the 2024 batch was supplied."
+    ],
+    [
+     "Research, Policy & Knowledge — full source",
+     "Main source is the 2022 Narrative Report, not supplied; this page is built from the 2024 research pillar only."
+    ],
+    [
+     "Women Able to Change Society — English text",
+     "The English half of that document contains Right to Education text instead."
+    ],
+    [
+     "Donors and partners",
+     "Only two are visible in the supplied photographs; no list or logos were supplied."
+    ],
+    [
+     "Annual report PDFs",
+     "Not supplied, so report pages have no download."
+    ],
+    [
+     "Contact details",
+     "Address, phone, email and social links need confirmation."
+    ]
+   ],
+   "ar": [
+    [
+     "نبذة عنا — منهجيتنا",
+     "لا يوجد مستند مصدر. الهيكل المعتمد يدرجه ضمن صفحة «عن البرنامج»."
+    ],
+    [
+     "نبذة عنا — لماذا الشراكة معنا (٧ مبادئ)",
+     "لا يوجد مستند مصدر؛ لم يتم تزويدنا بالملف التعريفي بالإنجليزية."
+    ],
+    [
+     "نبذة عنا — الفريق ومجلس الإدارة",
+     "لم يتم تزويدنا بالأسماء والمهام والصور."
+    ],
+    [
+     "الأثر بالأرقام — أرقام 2025",
+     "لم يتم تزويدنا بمستندات 2025، لذلك يعرض المبدّل عام 2024 فقط."
+    ],
+    [
+     "التقارير السنوية 2022 و2023 و2025",
+     "لم يتم تزويدنا إلا بمستندات عام 2024."
+    ],
+    [
+     "البحث والسياسات والمعرفة — المصدر الكامل",
+     "المصدر الأساسي هو التقرير السردي 2022 ولم يتم تزويدنا به."
+    ],
+    [
+     "نساء قادرات على تغيير المجتمع — النص الإنجليزي",
+     "القسم الإنجليزي في الملف يحتوي نص مشروع الحق في التعليم."
+    ],
+    [
+     "الممولون والشركاء",
+     "لم يظهر سوى شريكين في الصور المرفقة، ولم تُزوَّد قائمة أو شعارات."
+    ],
+    [
+     "ملفات التقارير السنوية PDF",
+     "لم يتم تزويدنا بها، لذلك لا يوجد تنزيل في صفحات التقارير."
+    ],
+    [
+     "بيانات الاتصال",
+     "العنوان والهاتف والبريد وروابط التواصل بحاجة إلى تأكيد."
+    ]
+   ]
+  },
+  "GOVERNORATES": [
+   "Hebron",
+   "Bethlehem",
+   "Abu Dis",
+   "Ramallah",
+   "Jenin",
+   "Tulkarm",
+   "Nablus",
+   "Gaza"
+  ],
+  "GOVERNORATES_AR": [
+   "الخليل",
+   "بيت لحم",
+   "أبو ديس",
+   "رام الله",
+   "جنين",
+   "طولكرم",
+   "نابلس",
+   "غزة"
+  ],
+  "HOME": {
+   "en": {
+    "hero_badge": "Since 1989",
+    "hero_title": "A healthy, educated and <em>empowered</em> Palestinian society.",
+    "hero_lead": "The Health Development Information and Policy Institute is an independent, non-profit Palestinian organisation. We work through research, health education, educational support, capacity building and advocacy — with women, youth, students and underserved communities across the West Bank, Jerusalem and Gaza.",
+    "who_eyebrow": "Who we are",
+    "who_title": "An independent Palestinian institute, founded in 1989",
+    "who_body": "HDIP was established in 1989 by a group of researchers, health practitioners and development experts, in response to the urgent need to improve health care in Palestine. It conducts specialised research, provides consultations and develops public policy across development sectors — and advocates for the rights of marginalised groups, including women, youth and persons with disabilities.",
+    "who_short": "HDIP was established in 1989 by a group of researchers, health practitioners and development experts, in response to the urgent need to improve health care in Palestine.",
+    "who_facts": [
+     [
+      "1989",
+      "Founded in Ramallah"
+     ],
+     [
+      "Independent",
+      "Non-profit, non-governmental"
+     ],
+     [
+      "35+ years",
+      "Of research and advocacy"
+     ]
+    ],
+    "impact_eyebrow": "Impact in numbers",
+    "impact_title": "Four years of results",
+    "impact_lead": "Figures as reported by HDIP for each year. Switch between years to compare.",
+    "areas_eyebrow": "Our work",
+    "areas_title": "Five programme areas",
+    "areas_lead": "Permanent areas of work. Each one carries its own activities, figures and related projects.",
+    "projects_eyebrow": "Projects",
+    "projects_title": "Featured projects",
+    "projects_lead": "Funded initiatives with their own objectives, components and results.",
+    "where_eyebrow": "Where we work",
+    "where_title": "Eight governorates",
+    "where_lead": "In 2024 HDIP delivered activities across the West Bank, Jerusalem and the Gaza Strip — including educational support to students in displacement settings in Gaza.",
+    "news_eyebrow": "Latest",
+    "news_title": "News & stories",
+    "reports_eyebrow": "Reports",
+    "reports_title": "Annual reporting",
+    "reports_lead": "The 2024 annual report covers strategic directions, activities, key outputs and recommendations.",
+    "partner_eyebrow": "Partner with us",
+    "partner_title": "Work with HDIP",
+    "partner_lead": "HDIP works with local and international partners on research, training, evaluation and community programmes."
+   },
+   "ar": {
+    "hero_badge": "منذ عام 1989",
+    "hero_title": "مجتمع فلسطيني صحي ومتعلّم <em>وممكّن</em>.",
+    "hero_lead": "البرنامج الإعلامي للتطوير الصحي مؤسسة فلسطينية مستقلة غير ربحية. نعمل من خلال البحث والتثقيف الصحي والدعم التعليمي وبناء القدرات والمناصرة — مع النساء والشباب والطلبة والمجتمعات المهمّشة في الضفة الغربية والقدس وقطاع غزة.",
+    "who_eyebrow": "من نحن",
+    "who_title": "مؤسسة فلسطينية مستقلة تأسست عام 1989",
+    "who_body": "تأسس البرنامج الإعلامي للتطوير الصحي عام 1989 على يد مجموعة من الباحثين والممارسين الصحيين وخبراء التنمية، استجابةً للحاجة الملحّة لتحسين واقع الرعاية الصحية في فلسطين. يجري البرنامج البحوث المتخصصة ويقدّم الاستشارات ويطوّر السياسات العامة في مختلف القطاعات التنموية، كما يدافع عن حقوق الفئات المهمّشة من النساء والشباب وذوي الإعاقة.",
+    "who_short": "تأسس البرنامج الإعلامي للتطوير الصحي عام 1989 على يد مجموعة من الباحثين والممارسين الصحيين وخبراء التنمية، استجابةً للحاجة الملحّة لتحسين واقع الرعاية الصحية في فلسطين.",
+    "who_facts": [
+     [
+      "1989",
+      "تأسس في رام الله"
+     ],
+     [
+      "مستقل",
+      "غير ربحي وغير حكومي"
+     ],
+     [
+      "أكثر من 35 عامًا",
+      "من البحث والمناصرة"
+     ]
+    ],
+    "impact_eyebrow": "الأثر بالأرقام",
+    "impact_title": "أربع سنوات من النتائج",
+    "impact_lead": "الأرقام كما وردت في تقارير البرنامج لكل عام. بدّل بين الأعوام للمقارنة.",
+    "areas_eyebrow": "مجالات عملنا",
+    "areas_title": "خمسة مجالات برامجية",
+    "areas_lead": "مجالات عمل دائمة، لكل منها أنشطتها وأرقامها ومشاريعها المرتبطة بها.",
+    "projects_eyebrow": "المشاريع",
+    "projects_title": "مشاريع مختارة",
+    "projects_lead": "مبادرات ممولة لكل منها أهدافها ومكوّناتها ونتائجها.",
+    "where_eyebrow": "أين نعمل",
+    "where_title": "ثماني محافظات",
+    "where_lead": "في عام 2024 نفّذ البرنامج أنشطته في الضفة الغربية والقدس وقطاع غزة — بما في ذلك دروس تقوية للطلبة في خيم النزوح في غزة.",
+    "news_eyebrow": "الأحدث",
+    "news_title": "أخبار وقصص",
+    "reports_eyebrow": "التقارير",
+    "reports_title": "التقارير السنوية",
+    "reports_lead": "يغطي تقرير عام 2024 التوجهات الاستراتيجية والأنشطة وأبرز المخرجات والتوصيات.",
+    "partner_eyebrow": "كن شريكًا",
+    "partner_title": "اعمل مع البرنامج",
+    "partner_lead": "يعمل البرنامج مع شركاء محليين ودوليين في البحث والتدريب والتقييم والبرامج المجتمعية."
+   }
+  },
+  "IMPACT_2024": [
+   {
+    "num": "345",
+    "label_en": "activities delivered by the Right to Education Project",
+    "label_ar": "نشاطًا نفّذه مشروع الحق في التعليم"
+   },
+   {
+    "num": "8,321",
+    "label_en": "participants reached, 61% of them female",
+    "label_ar": "مستفيدًا ومستفيدة، 61% منهم إناث"
+   },
+   {
+    "num": "85",
+    "label_en": "first aid courses for 1,700 school and university students",
+    "label_ar": "دورة إسعاف أولي استفاد منها 1,700 طالب وطالبة"
+   },
+   {
+    "num": "355",
+    "label_en": "participants with disabilities included across the programme",
+    "label_ar": "مشاركًا من ذوي الإعاقة ضمن أنشطة البرنامج"
+   }
+  ],
+  "NAV": {
+   "en": [
+    [
+     "about.html",
+     "About"
+    ],
+    [
+     "work.html",
+     "Our Work"
+    ],
+    [
+     "projects.html",
+     "Projects"
+    ],
+    [
+     "reports.html",
+     "Reports"
+    ],
+    [
+     "news.html",
+     "News & Stories"
+    ]
+   ],
+   "ar": [
+    [
+     "about.html",
+     "عن البرنامج"
+    ],
+    [
+     "work.html",
+     "مجالات عملنا"
+    ],
+    [
+     "projects.html",
+     "المشاريع"
+    ],
+    [
+     "reports.html",
+     "التقارير"
+    ],
+    [
+     "news.html",
+     "أخبار وقصص"
+    ]
+   ]
+  },
+  "NEWS": [
+   {
+    "slug": "first-aid-2024",
+    "photo": "women-able-session",
+    "area": "health",
+    "project": null,
+    "date": "2024",
+    "en": {
+     "title": "85 first aid courses reach 1,700 students across seven governorates",
+     "tag": "Health",
+     "date": "2024",
+     "summary": "Theoretical and practical training on responding to emergencies — wounds, bleeding, fractures, burns, choking, fainting and CPR.",
+     "body": [
+      "HDIP implemented 85 first aid training courses during 2024, benefiting 1,700 male and female students in Hebron, Bethlehem, Abu Dis, Ramallah, Jenin, Tulkarm and Nablus.",
+      "The courses included both theoretical and practical training on how to respond to emergency situations, including wounds, bleeding, fractures, burns, choking, fainting and cardiopulmonary resuscitation.",
+      "A special course was also organised for students at Birzeit University entitled “How to Become a Successful Health-Literate Person”, attended by 20 students.",
+      "Alongside these, 24 emergency first aid courses were delivered across eight areas, focused on providing first aid in emergency situations including injuries resulting from shelling or military incursions, covering techniques such as controlling bleeding and managing fractures."
+     ]
+    },
+    "ar": {
+     "title": "85 دورة إسعاف أولي تصل إلى 1,700 طالب وطالبة في سبع محافظات",
+     "tag": "الصحة",
+     "date": "2024",
+     "summary": "تدريب نظري وعملي على التعامل مع حالات الطوارئ — الجروح والنزيف والكسور والحروق والاختناق والإغماء وإنعاش القلب.",
+     "body": [
+      "نفّذ البرنامج 85 دورة إسعاف أولي خلال عام 2024، استفاد منها 1,700 طالب وطالبة في الخليل وبيت لحم وأبو ديس ورام الله وجنين وطولكرم ونابلس.",
+      "تضمّنت هذه الدورات تدريبًا عمليًا ونظريًا على كيفية التعامل مع حالات الطوارئ مثل الجروح والنزيف والكسور والحروق والاختناق والإغماء وإنعاش القلب.",
+      "كما تم تنظيم دورة خاصة لطلاب جامعة بيرزيت بعنوان «كيف تكون مثقفًا صحيًا ناجحًا» حضرها 20 طالبًا وطالبة.",
+      "وإلى جانب ذلك، نُفّذت 24 دورة إسعاف أولي في حالات الطوارئ في ثماني مناطق، ركّزت على تقديم الإسعافات في حالات الطوارئ مثل الإصابات الناتجة عن القصف أو الاجتياحات، وشملت تقنيات وقف النزيف والتعامل مع الكسور."
+     ]
+    }
+   },
+   {
+    "slug": "first-aid-children-jenin",
+    "photo": "women-leaders-training",
+    "area": "health",
+    "project": null,
+    "date": "2024",
+    "en": {
+     "title": "First aid for children injured during incursions — two courses in Jenin",
+     "tag": "Health",
+     "date": "2024",
+     "summary": "45 women trained in how to treat children wounded during military incursions, using techniques suited to children's psychological and physical needs.",
+     "body": [
+      "Two courses were implemented for 45 women in Jenin, focusing on how to provide first aid to children who sustain injuries during military incursions and conflict situations.",
+      "The training emphasised appropriate techniques that take into consideration children's specific psychological and physical needs.",
+      "The courses sit within HDIP's wider 2024 health education work, which also included 12 women's mental health courses for 210 women covering basic concepts of mental health, stress management, coping with anxiety and depression, and psychological support for women during pregnancy and childbirth."
+     ]
+    },
+    "ar": {
+     "title": "الإسعافات الأولية للأطفال المصابين أثناء الاجتياحات — دورتان في جنين",
+     "tag": "الصحة",
+     "date": "2024",
+     "summary": "تدريب 45 سيدة على كيفية إسعاف الأطفال المصابين أثناء الاجتياحات، بتقنيات تراعي احتياجاتهم النفسية والجسدية.",
+     "body": [
+      "تم تنفيذ دورتين استهدفتا 45 سيدة في جنين، ناقشتا كيفية تقديم الإسعافات الأولية للأطفال الذين يتعرضون للإصابات أثناء الاجتياحات وحالات النزاع.",
+      "وركّز التدريب على تقنيات خاصة تناسب احتياجات الأطفال النفسية والجسدية.",
+      "وتندرج الدورتان ضمن عمل البرنامج الأوسع في التثقيف الصحي لعام 2024، الذي شمل أيضًا 12 دورة في صحة المرأة النفسية استهدفت 210 سيدة، وتناولت أساسيات الصحة النفسية وإدارة الضغوط والتعامل مع القلق والاكتئاب ودعم النساء نفسيًا خلال الحمل والولادة."
+     ]
+    }
+   },
+   {
+    "slug": "closing-conference",
+    "photo": "conference-closing",
+    "area": "women",
+    "project": "women-able",
+    "date": "2024",
+    "en": {
+     "title": "More than 200 women and men meet decision-makers at the closing conference",
+     "tag": "Women's Empowerment",
+     "date": "2024",
+     "summary": "The Women Able to Change Society project closed in Ramallah with a conference where women told their own success stories.",
+     "body": [
+      "At the close of the Women Able to Change Society project, a closing conference was held in Ramallah where more than 200 women and men met decision-makers.",
+      "The conference gave women a platform to raise their issues and experiences, contributing significantly to their empowerment and to strengthening their participation in political and social life.",
+      "During the conference women told their own success stories — a source of pride for the project. They demonstrated their ability to share their experience and to invite other women to take part, reflecting the behavioural change and the positive impact of the training and empowerment programmes delivered.",
+      "The project ran for five years across Hebron, Jenin, Tulkarm and Ramallah, working with 35 trainees in each governorate and 16 sites per governorate."
+     ]
+    },
+    "ar": {
+     "title": "أكثر من 200 امرأة ورجل يلتقون بصانعي القرار في المؤتمر الختامي",
+     "tag": "تمكين المرأة",
+     "date": "2024",
+     "summary": "اختُتم مشروع نساء قادرات على تغيير المجتمع في رام الله بمؤتمر روت فيه النساء قصص نجاحهن.",
+     "body": [
+      "في ختام أنشطة مشروع نساء قادرات على تغيير المجتمع، نُظّم مؤتمر ختامي في رام الله التقى فيه أكثر من 200 امرأة ورجل بصانعي القرار.",
+      "أتاح هذا المؤتمر للنساء منصة لطرح قضاياهن وتجاربهن، مما أسهم بشكل كبير في تمكينهن وتعزيز مشاركتهن في الحياة السياسية والاجتماعية.",
+      "وخلال المؤتمر قامت النساء بسرد قصص نجاحهن، مما كان بمثابة فخر للمشروع. أظهرن قدرتهن على مشاركة تجاربهن ودعوة النساء الأخريات لخوض التجربة، بما يعكس التغير السلوكي والأثر الإيجابي لبرامج التدريب والتمكين التي نُفّذت.",
+      "استمر المشروع خمسة أعوام في الخليل وجنين وطولكرم ورام الله، بمشاركة 35 متدربة في كل محافظة و16 موقعًا في كل محافظة."
+     ]
+    }
+   },
+   {
+    "slug": "gaza-education",
+    "photo": "youth-training",
+    "area": "education",
+    "project": "right-to-education",
+    "date": "2024",
+    "en": {
+     "title": "Right to Education reaches students in displacement settings in Gaza",
+     "tag": "Education",
+     "date": "2024",
+     "summary": "345 activities across eight governorates including Gaza, reaching 8,321 participants through an emergency-adapted plan.",
+     "body": [
+      "Despite school closures, violence, displacement and the war on the Gaza Strip, HDIP implemented the Right to Education Project in 2024 within a comprehensive emergency plan covering eight governorates including Gaza.",
+      "345 activities were delivered — awareness workshops and educational and training courses — across the West Bank, Jerusalem and Gaza. Through these activities, supplementary lessons were provided to students in displacement tents, helping to ease the effect of the war on education and to keep the educational process going.",
+      "More than 8,321 people benefited: 3,232 males (39%) and 5,089 females (61%), including 355 persons with disabilities.",
+      "School courses were delivered through 7 centres in the West Bank and 9 centres in Gaza, covering English, mathematics, physics, Arabic, computer skills, science and life skills for students from grade 7 to grade 11."
+     ]
+    },
+    "ar": {
+     "title": "الحق في التعليم يصل إلى الطلبة في خيم النزوح في غزة",
+     "tag": "التعليم",
+     "date": "2024",
+     "summary": "345 نشاطًا في ثماني محافظات بما فيها غزة، وصلت إلى 8,321 مستفيدًا ضمن خطة طوارئ شاملة.",
+     "body": [
+      "رغم إغلاق المدارس والعنف والنزوح والحرب على قطاع غزة، نفّذ البرنامج مشروع الحق في التعليم في عام 2024 ضمن خطة طوارئ شاملة في ثماني محافظات بما فيها قطاع غزة.",
+      "بلغ عدد الأنشطة المنفذة 345 فعالية، تنوعت بين ورش عمل ودورات تدريبية، استهدفت محافظات الضفة الغربية والقدس وقطاع غزة. ومن خلال هذه الأنشطة تم تقديم دروس تقوية للطلاب في خيم النزوح، مما ساعد في تخفيف آثار الحرب على التعليم وضمان استمرار العملية التعليمية.",
+      "استفاد من هذه الأنشطة أكثر من 8,321 مستفيدًا ومستفيدة، شكّل الذكور 39% (3,232 مشاركًا) والإناث 61% (5,089 مشاركة)، كما شملت الأنشطة 355 شخصًا من ذوي الإعاقة.",
+      "نُفّذت دورات المدارس عبر 7 مراكز في الضفة الغربية و9 مراكز في غزة، وشملت اللغة الإنجليزية والرياضيات والفيزياء واللغة العربية والحاسوب والعلوم والمهارات الحياتية للصفوف من السابع حتى الحادي عشر."
+     ]
+    }
+   },
+   {
+    "slug": "ai-and-creativity",
+    "photo": "women-able-group",
+    "area": "education",
+    "project": null,
+    "date": "2024",
+    "en": {
+     "title": "AI tools, creative competitions and research clubs enter the classroom",
+     "tag": "Education",
+     "date": "2024",
+     "summary": "Among 2024's key outputs: AI applications supporting language and mathematics learning, creative competitions, and a scientific research club in every library.",
+     "body": [
+      "A number of artificial intelligence tools and applications were introduced into the educational process during 2024, including applications that support language and mathematics learning. This contributed to more interactive learning methods and encouraged students to use technology to develop their skills.",
+      "A series of creative competitions was organised in writing, arts, innovation and technology. These contributed to discovering and encouraging students' talents, fostering creativity and positive competition, and strengthening students' confidence in their abilities.",
+      "Study support groups were formed among students to promote cooperation, knowledge sharing and mutual academic assistance. In addition, a scientific research club was established in each library to encourage students to conduct research and inquiry, develop critical thinking and foster interest in science and knowledge.",
+      "Topics related to climate change, sustainability and environmental protection were integrated into training sessions and workshops, alongside practical activities such as clean-up campaigns and tree-planting initiatives."
+     ]
+    },
+    "ar": {
+     "title": "أدوات الذكاء الاصطناعي والمسابقات الإبداعية وأندية البحث تدخل الصف",
+     "tag": "التعليم",
+     "date": "2024",
+     "summary": "من أبرز مخرجات 2024: تطبيقات ذكاء اصطناعي تدعم تعلّم اللغات والرياضيات، ومسابقات إبداعية، ونادٍ للبحث العلمي في كل مكتبة.",
+     "body": [
+      "تم إدخال عدد من أدوات وتطبيقات الذكاء الاصطناعي في العملية التعليمية خلال عام 2024، منها تطبيقات تساعد في تعلّم اللغات والرياضيات. وقد ساهم ذلك في توفير أساليب تعلّم أكثر تفاعلية وشجّع الطلبة على استخدام التكنولوجيا لتطوير مهاراتهم.",
+      "ونُظّمت سلسلة من المسابقات الإبداعية في مجالات الكتابة والفنون والابتكار والتكنولوجيا، أسفرت عن اكتشاف مواهب جديدة بين الطلبة وزيادة روح المنافسة الإيجابية وتعزيز ثقتهم بقدراتهم.",
+      "كما تم تشكيل مجموعات دعم دراسية بين الطلبة لتعزيز التعاون ومشاركة المعرفة والمساندة الأكاديمية، إضافة إلى تشكيل نادٍ للبحث العلمي في كل مكتبة لتشجيع الطلبة على البحث والاستقصاء وتطوير مهارات التفكير النقدي.",
+      "وأُدرجت مواضيع تتعلق بالتغير المناخي والاستدامة وحماية البيئة ضمن التدريبات وورشات العمل، إلى جانب فعاليات عملية مثل أيام النظافة وزراعة الأشجار."
+     ]
+    }
+   }
+  ],
+  "PROJECTS": [
+   {
+    "slug": "right-to-education",
+    "area": "education",
+    "photo": "youth-training",
+    "status": "ongoing",
+    "years": "2024",
+    "partner": null,
+    "en": {
+     "name": "Right to Education",
+     "tagline": "Keeping students learning through closure, displacement and war.",
+     "glance": [
+      [
+       "Governorates",
+       "8, including Gaza"
+      ],
+      [
+       "Target group",
+       "School and university students"
+      ],
+      [
+       "Participants",
+       "8,321 in 2024"
+      ],
+      [
+       "Activities",
+       "345 in 2024"
+      ]
+     ],
+     "about": "The Right to Education Project aims to support a generation of Palestinian students who are better equipped to develop themselves and contribute to their communities, particularly in marginalised and underserved areas. Despite significant challenges — school closures, violence, displacement, interruptions to education and the war in Gaza — HDIP continued implementing the project in 2024 through an emergency-adapted approach across eight governorates, including Gaza.",
+     "objectives": [
+      "Raise students' awareness of the importance of education as a means of individual and community development.",
+      "Strengthen students' scientific, analytical, creative and problem-solving skills, improving their future educational and employment opportunities.",
+      "Provide educational and skills-based training for school students, particularly those from disadvantaged and marginalised backgrounds.",
+      "Support students to improve academic performance, particularly in science, mathematics and languages.",
+      "Address learning gaps resulting from COVID-19 disruptions, interruptions to education and teachers' strikes.",
+      "Contribute to reducing school dropout and support students in identifying appropriate educational and university pathways.",
+      "Develop students' life skills, communication skills and ability to overcome challenges."
+     ],
+     "components": [
+      [
+       "Trainer evaluation and capacity building",
+       "Evaluation meetings with trainers across project locations — face to face in Ramallah and Abu Dis, online with Nablus, Tulkarm, Jenin, Bethlehem and Hebron. Meetings were documented through formal minutes, and produced corrective action plans and monthly work plans for each centre."
+      ],
+      [
+       "Awareness workshops on the importance of education",
+       "112 workshops in Hebron, Bethlehem, Abu Dis, Ramallah, Tulkarm, Jenin and Nablus, covering cyberbullying and online exploitation, effective communication, scientific research skills, choice of specialisation, dropout risks, and the importance of education and reading."
+      ],
+      [
+       "School educational and training courses",
+       "170 courses through centres in the West Bank and Gaza — English, mathematics, physics, Arabic, computer skills, science and life skills. Each course ran roughly 10 to 20 sessions, targeting grades 7 to 11, with particular attention to subjects where students experienced difficulty."
+      ],
+      [
+       "University educational and training courses",
+       "63 courses for university students in the West Bank, covering communication skills, Microsoft Office, Bisan accounting software for accounting students, scientific research and management skills."
+      ]
+     ],
+     "table_head": [
+      "Activity",
+      "Activities",
+      "Participants",
+      "Male",
+      "Female",
+      "With disabilities"
+     ],
+     "table": [
+      [
+       "Right to Education workshops",
+       "112",
+       "2,842",
+       "1,319",
+       "1,523",
+       "121"
+      ],
+      [
+       "School courses",
+       "170",
+       "4,403",
+       "1,565",
+       "2,838",
+       "210"
+      ],
+      [
+       "University courses",
+       "63",
+       "1,076",
+       "348",
+       "728",
+       "24"
+      ],
+      [
+       "Total",
+       "345",
+       "8,321",
+       "3,232",
+       "5,089",
+       "355"
+      ]
+     ],
+     "results": [
+      "345 activities implemented across the targeted areas.",
+      "8,321 participants reached, 61% of them female.",
+      "355 persons with disabilities participated in project activities.",
+      "Educational support extended to students affected by conflict, displacement and interruption to formal education, including in displacement settings in Gaza."
+     ]
+    },
+    "ar": {
+     "name": "الحق في التعليم",
+     "tagline": "استمرار تعليم الطلبة رغم الإغلاق والنزوح والحرب.",
+     "glance": [
+      [
+       "المحافظات",
+       "8 بما فيها غزة"
+      ],
+      [
+       "الفئة المستهدفة",
+       "طلبة المدارس والجامعات"
+      ],
+      [
+       "المستفيدون",
+       "8,321 في 2024"
+      ],
+      [
+       "الأنشطة",
+       "345 في 2024"
+      ]
+     ],
+     "about": "يهدف مشروع الحق في التعليم إلى تكوين جيل من الطلاب الفلسطينيين قادرين على تطوير أنفسهم ومجتمعاتهم، خاصة في المناطق المهمّشة. ورغم الظروف الصعبة — إغلاق المدارس والعنف والنزوح والانقطاعات في التعليم والحرب على قطاع غزة واجتياح مخيمي جنين وطولكرم — تمكّن البرنامج من تنفيذ المشروع في عام 2024 ضمن خطة طوارئ شاملة في ثماني محافظات بما فيها قطاع غزة.",
+     "objectives": [
+      "زيادة الوعي لدى الطلاب حول أهمية التعليم كوسيلة لتنمية الفرد والمجتمع.",
+      "تحسين القدرة العلمية والتحليلية والإبداعية للطلاب وبالتالي تحسين فرصهم التعليمية والمهنية.",
+      "تدريب طلبة المدارس ذكورًا وإناثًا، وخاصة من الفئات المهمّشة والفقيرة.",
+      "مساعدتهم على تحسين مستوى تعليمهم المدرسي خاصة في العلوم والرياضيات واللغات.",
+      "تعويضهم عن النقص الناجم عن فترة كورونا والانقطاعات في التعليم وفترة إضراب المعلمين.",
+      "المساهمة في الحد من التسرب المدرسي وتحديد توجهاتهم العلمية والجامعية.",
+      "تنمية المهارات الحياتية ومهارات التواصل والقدرة على تجاوز العقبات."
+     ],
+     "components": [
+      [
+       "لقاءات تقييمية للمدربين وبناء القدرات",
+       "عُقدت لقاءات تقييمية للمدربين في مختلف المناطق، وجاهية في مركزي رام الله وأبو ديس، وعبر الإنترنت مع مراكز نابلس وطولكرم وجنين وبيت لحم والخليل. وُثّقت اللقاءات بمحاضر رسمية، وخرجت بخطة علاجية وخطة عمل شهرية لكل مركز."
+      ],
+      [
+       "ورش توعية حول أهمية التعليم",
+       "112 ورشة في الخليل وبيت لحم وأبو ديس ورام الله وطولكرم وجنين ونابلس، تناولت الابتزاز الإلكتروني والاتصال الفعّال وإعداد البحث العلمي واختيار التخصصات ومخاطر التسرب المدرسي وأهمية التعليم وتشجيع القراءة."
+      ],
+      [
+       "الدورات التعليمية والتدريبية المدرسية",
+       "170 دورة عبر مراكز الضفة الغربية وغزة، شملت اللغة الإنجليزية والرياضيات والفيزياء واللغة العربية والحاسوب والعلوم والمهارات الحياتية. تراوحت كل دورة بين عشرة وعشرين لقاءً واستهدفت الصفوف من السابع حتى الحادي عشر."
+      ],
+      [
+       "الدورات التعليمية والتدريبية الجامعية",
+       "63 دورة لطلبة الجامعات في الضفة الغربية، شملت مهارات الاتصال وبرامج الأوفيس وبرنامج بيسان لطلبة المحاسبة والبحث العلمي ومهارات الإدارة."
+      ]
+     ],
+     "table_head": [
+      "النشاط",
+      "عدد الأنشطة",
+      "المستفيدون",
+      "ذكور",
+      "إناث",
+      "ذوو إعاقة"
+     ],
+     "table": [
+      [
+       "ورش الحق في التعليم",
+       "112",
+       "2,842",
+       "1,319",
+       "1,523",
+       "121"
+      ],
+      [
+       "دورات المدارس",
+       "170",
+       "4,403",
+       "1,565",
+       "2,838",
+       "210"
+      ],
+      [
+       "دورات الجامعات",
+       "63",
+       "1,076",
+       "348",
+       "728",
+       "24"
+      ],
+      [
+       "المجموع الكلي",
+       "345",
+       "8,321",
+       "3,232",
+       "5,089",
+       "355"
+      ]
+     ],
+     "results": [
+      "تنفيذ 345 نشاطًا في المناطق المستهدفة.",
+      "الوصول إلى 8,321 مستفيدًا ومستفيدة، 61% منهم إناث.",
+      "مشاركة 355 شخصًا من ذوي الإعاقة في أنشطة المشروع.",
+      "تقديم الدعم التعليمي للطلبة المتأثرين بالحرب والنزوح وانقطاع التعليم، بما في ذلك في خيم النزوح في غزة."
+     ]
+    }
+   },
+   {
+    "slug": "women-able",
+    "area": "women",
+    "photo": "conference-closing",
+    "status": "completed",
+    "years": "2020–2024",
+    "partner": "Olof Palme International Center",
+    "en": {
+     "name": "Women Able to Change Society",
+     "tagline": "Five years of women's leadership across four governorates.",
+     "glance": [
+      [
+       "Governorates",
+       "Hebron, Jenin, Tulkarm, Ramallah"
+      ],
+      [
+       "Target group",
+       "Women and youth aged 18–30"
+      ],
+      [
+       "Trainees",
+       "35 per governorate"
+      ],
+      [
+       "Sites",
+       "16 per governorate"
+      ]
+     ],
+     "about": "Over five years the project was implemented in four main West Bank governorates. It targeted women and youth aged 18 to 30 — university students, graduates and homemakers. In each governorate 35 trainees took part, working with 16 sites (a village or town each), with one trainee selected from every site to act as a link to the women's groups in her area.",
+     "objectives": [
+      "Raise awareness of women's rights and the importance of their participation in local elections.",
+      "Deliver comprehensive training in feminist leadership, political participation, gender equality and human rights.",
+      "Build knowledge of the family protection law and the principles of non-violence.",
+      "Equip women to express themselves and defend their rights, increasing their opportunity to stand in local elections.",
+      "Create spaces where women can bring their issues directly to decision-makers."
+     ],
+     "components": [
+      [
+       "Training in 2024",
+       "The project continued delivering training through 2024, with trainees receiving further sessions in feminist leadership, gender and non-violence."
+      ],
+      [
+       "Coalition building",
+       "10 coalition-building meetings for 30 participants, identifying shared goals and issues including discussion of the family protection law. A training seminar was also held in Ramallah for 52 participants, allowing exchange of experience and strengthening of skills."
+      ],
+      [
+       "Closing conference",
+       "A closing conference was held in Ramallah where more than 200 women and men met decision-makers. The conference gave women a platform to raise their issues and experiences, contributing significantly to their empowerment and to strengthening their participation in political and social life."
+      ],
+      [
+       "Success stories",
+       "At the closing conference women told their own success stories — demonstrating their ability to share their experience and to invite other women to take part, reflecting the behavioural change and positive impact of the training and empowerment programmes."
+      ]
+     ],
+     "results": [
+      "A marked change in women's behaviour and self-confidence between the start and the end of the project.",
+      "At the outset many women had low self-confidence, which limited their participation in social and political activity.",
+      "There was a significant gap in awareness of their legal and social rights, leaving them hesitant to claim those rights.",
+      "As the project progressed, women became markedly more confident, more ready to express their opinions and to take part in events.",
+      "Awareness of legal and social rights rose, helping them claim those rights more effectively."
+     ]
+    },
+    "ar": {
+     "name": "نساء قادرات على تغيير المجتمع",
+     "tagline": "خمس سنوات من القيادة النسوية في أربع محافظات.",
+     "glance": [
+      [
+       "المحافظات",
+       "الخليل، جنين، طولكرم، رام الله"
+      ],
+      [
+       "الفئة المستهدفة",
+       "النساء والشباب 18–30 عامًا"
+      ],
+      [
+       "المتدربات",
+       "35 في كل محافظة"
+      ],
+      [
+       "المواقع",
+       "16 في كل محافظة"
+      ]
+     ],
+     "about": "على مدار خمسة أعوام، نُفّذ المشروع في أربع محافظات رئيسية في الضفة الغربية. استهدف النساء والشباب من الفئة العمرية بين 18 و30 عامًا، بما في ذلك طالبات الجامعات والخريجات وربات البيوت. في كل محافظة شاركت 35 متدربة، وتم العمل مع 16 موقعًا (قرية أو بلدة) في كل محافظة، حيث اختيرت متدربة واحدة من كل موقع لتكون حلقة وصل مع المجموعات النسائية في منطقتها.",
+     "objectives": [
+      "رفع الوعي بحقوق المرأة وأهمية مشاركتها في الانتخابات المحلية.",
+      "تقديم تدريبات شاملة في القيادة النسوية والمشاركة السياسية والمساواة الجندرية وحقوق الإنسان.",
+      "بناء المعرفة بقانون حماية الأسرة ومبادئ اللاعنف.",
+      "تمكين النساء من التعبير عن أنفسهن والدفاع عن حقوقهن، بما يزيد فرصهن في الترشح للانتخابات المحلية.",
+      "خلق مساحات تلتقي فيها النساء بصانعي القرار مباشرة."
+     ],
+     "components": [
+      [
+       "استكمال المشروع في 2024",
+       "استمر المشروع في تقديم التدريبات خلال عام 2024، حيث تلقت المتدربات مزيدًا من التدريب في القيادة النسوية والجندر واللاعنف."
+      ],
+      [
+       "بناء التحالفات",
+       "تم تنظيم 10 لقاءات لبناء التحالفات استهدفت 30 مشاركًا ومشاركة، حُدّدت خلالها الأهداف والقضايا المشتركة، بما في ذلك نقاشات حول قانون حماية الأسرة. كما عُقدت ندوة تدريبية في رام الله لـ 52 مشاركًا ومشاركة."
+      ],
+      [
+       "المؤتمر الختامي",
+       "في ختام الأنشطة نُظّم مؤتمر ختامي في رام الله، التقى فيه أكثر من 200 امرأة ورجل بصانعي القرار. أتاح المؤتمر للنساء منصة لطرح قضاياهن وتجاربهن، مما أسهم في تمكينهن وتعزيز مشاركتهن في الحياة السياسية والاجتماعية."
+      ],
+      [
+       "قصص النجاح",
+       "خلال المؤتمر الختامي روت النساء قصص نجاحهن، وأظهرن قدرتهن على مشاركة تجاربهن ودعوة نساء أخريات لخوض التجربة، بما يعكس التغير السلوكي والأثر الإيجابي لبرامج التدريب والتمكين."
+      ]
+     ],
+     "results": [
+      "تحوّل ملحوظ في سلوك النساء وثقتهن بأنفسهن بين بداية المشروع ونهايته.",
+      "في البداية كانت العديد من النساء تعاني من انخفاض الثقة بالنفس، مما أثّر سلبًا على مشاركتهن في الأنشطة الاجتماعية والسياسية.",
+      "كانت هناك فجوة كبيرة في الوعي بحقوقهن القانونية والاجتماعية، مما أدى إلى ترددهن في المطالبة بها.",
+      "مع تقدّم المشروع شهدت النساء تحسنًا كبيرًا في ثقتهن بأنفسهن، وأصبحن أكثر استعدادًا للتعبير عن آرائهن والمشاركة في الفعاليات.",
+      "ارتفعت مستويات الوعي بالحقوق القانونية والاجتماعية، مما ساعدهن على المطالبة بحقوقهن بشكل أكثر فعالية."
+     ]
+    }
+   },
+   {
+    "slug": "women-leaders",
+    "area": "women",
+    "photo": "women-leaders-training",
+    "status": "ongoing",
+    "years": "2024",
+    "partner": null,
+    "en": {
+     "name": "Women Leaders in Local Councils",
+     "tagline": "Towards effective women's political participation in local communities.",
+     "glance": [
+      [
+       "Format",
+       "3-day intensive"
+      ],
+      [
+       "Training hours",
+       "30"
+      ],
+      [
+       "Focus",
+       "Candidacy and local councils"
+      ],
+      [
+       "Target group",
+       "Women in local communities"
+      ]
+     ],
+     "about": "The project was designed to strengthen women's participation in local public life and increase their knowledge and capacity to engage in decision-making. It focused on supporting women not only as voters, but as potential candidates and community representatives, with an emphasis on leadership skills, electoral processes, communication, advocacy and community engagement.",
+     "objectives": [
+      "Strengthen women's knowledge and confidence regarding participation in electoral processes.",
+      "Encourage women to consider candidacy for leadership positions in local councils.",
+      "Support the development of women's groups and networks that can advocate for women's rights and community concerns.",
+      "Increase awareness of legal and policy issues related to women's protection, including domestic violence.",
+      "Address negative social perceptions and stereotypes affecting women's participation in public life.",
+      "Promote awareness of civic and political participation among women, particularly in underserved communities."
+     ],
+     "components": [
+      [
+       "Intensive leadership and political participation training",
+       "An intensive three-day programme comprising 30 training hours, bringing together women from different communities. The training covered women's leadership and political participation, the electoral process, experience sharing among participants, election campaign management, communication and negotiation skills, and community coalition and alliance building."
+      ],
+      [
+       "Experience-sharing sessions with women leaders",
+       "Direct meetings with women who had previously participated in elections. The sessions gave participants the chance to hear first-hand experience, discuss the challenges encountered, exchange practical lessons and strategies, and ask questions about public and political participation."
+      ]
+     ],
+     "results": [
+      "Increased political and civic awareness — greater understanding of electoral processes and the role women can play in local decision-making.",
+      "Strengthened leadership skills — practical skills in communication, negotiation, campaign planning, teamwork and coalition building.",
+      "Increased readiness to consider candidacy, through learning the practical requirements and challenges of electoral participation.",
+      "Increased confidence and peer learning through interaction with other participants and with women who had stood before.",
+      "Greater awareness of the barriers to women's participation — social perceptions, stereotypes and practical challenges."
+     ]
+    },
+    "ar": {
+     "name": "نساء قياديات في المجالس المحلية",
+     "tagline": "نحو مشاركة سياسية فاعلة للنساء في المجتمعات المحلية.",
+     "glance": [
+      [
+       "الشكل",
+       "تدريب مكثف 3 أيام"
+      ],
+      [
+       "ساعات التدريب",
+       "30"
+      ],
+      [
+       "التركيز",
+       "الترشح والمجالس المحلية"
+      ],
+      [
+       "الفئة المستهدفة",
+       "النساء في المجتمعات المحلية"
+      ]
+     ],
+     "about": "صُمّم المشروع لتعزيز مشاركة النساء في الحياة العامة المحلية وزيادة معرفتهن وقدرتهن على الانخراط في عمليات صنع القرار. وركّز على دعم النساء لا كناخبات فحسب، بل كمرشحات محتملات وممثلات لمجتمعاتهن، مع التركيز على المهارات القيادية والعمليات الانتخابية والاتصال والمناصرة والانخراط المجتمعي.",
+     "objectives": [
+      "تعزيز معرفة النساء وثقتهن فيما يتعلق بالمشاركة في العمليات الانتخابية.",
+      "تشجيع النساء على التفكير في الترشح لمواقع قيادية في المجالس المحلية.",
+      "دعم تطوير المجموعات والشبكات النسوية القادرة على المناصرة لحقوق المرأة وقضايا المجتمع.",
+      "زيادة الوعي بالقضايا القانونية والسياساتية المتعلقة بحماية المرأة، بما في ذلك العنف الأسري.",
+      "معالجة التصورات الاجتماعية السلبية والصور النمطية التي تؤثر على مشاركة النساء في الحياة العامة.",
+      "تعزيز الوعي بالمشاركة المدنية والسياسية لدى النساء، خاصة في المجتمعات المهمّشة."
+     ],
+     "components": [
+      [
+       "تدريب مكثف في القيادة والمشاركة السياسية",
+       "برنامج تدريبي مكثف على مدار ثلاثة أيام شمل 30 ساعة تدريبية، جمع نساءً من مجتمعات مختلفة. غطّى التدريب القيادة النسوية والمشاركة السياسية، والعملية الانتخابية، وتبادل الخبرات بين المشاركات، وإدارة الحملات الانتخابية، ومهارات الاتصال والتفاوض، وبناء التحالفات المجتمعية."
+      ],
+      [
+       "جلسات تبادل الخبرات مع نساء قياديات",
+       "لقاءات مباشرة مع نساء سبق أن شاركن في الانتخابات. أتاحت الجلسات للمشاركات الاستماع إلى تجارب مباشرة، ومناقشة التحديات التي واجهتهن، وتبادل الدروس والاستراتيجيات العملية، وطرح الأسئلة حول المشاركة العامة والسياسية."
+      ]
+     ],
+     "results": [
+      "زيادة الوعي السياسي والمدني — فهم أعمق للعمليات الانتخابية ولدور النساء في صنع القرار المحلي.",
+      "تعزيز المهارات القيادية — مهارات عملية في الاتصال والتفاوض وتخطيط الحملات والعمل الجماعي وبناء التحالفات.",
+      "زيادة الاستعداد للتفكير في الترشح، عبر التعرف على المتطلبات والتحديات العملية للمشاركة الانتخابية.",
+      "زيادة الثقة والتعلّم من الأقران عبر التفاعل مع المشاركات ومع نساء سبق أن خضن التجربة.",
+      "وعي أكبر بالعوائق أمام مشاركة النساء — التصورات الاجتماعية والصور النمطية والتحديات العملية."
+     ]
+    }
+   },
+   {
+    "slug": "youth-leadership",
+    "area": "youth",
+    "photo": "youth-training",
+    "status": "ongoing",
+    "years": "2024",
+    "partner": "Friedrich-Ebert-Stiftung",
+    "en": {
+     "name": "Young Leadership in Universities",
+     "tagline": "University students as active, responsible and community-oriented leaders.",
+     "glance": [
+      [
+       "Format",
+       "3-day intensive"
+      ],
+      [
+       "Target group",
+       "University students"
+      ],
+      [
+       "Focus",
+       "Leadership, rights, advocacy"
+      ],
+      [
+       "Partner",
+       "Friedrich-Ebert-Stiftung"
+      ]
+     ],
+     "about": "The project aims to empower university students to play an active role in building a more informed and progressive society. It invests in young people's potential by providing them with knowledge, leadership skills and practical tools to engage constructively in their universities and communities.",
+     "objectives": [
+      "Increase knowledge and awareness of leadership, community participation and civil rights among university students.",
+      "Develop leadership skills through practical workshops and training focused on teamwork, decision-making and effective communication.",
+      "Promote community engagement by encouraging students to participate in volunteer activities and local initiatives.",
+      "Build a youth leadership network that facilitates exchange of experience and ideas among students from different universities, and encourages cooperation between academic institutions and local communities."
+     ],
+     "components": [
+      [
+       "Leadership training",
+       "Principles of participatory and democratic leadership, respect for diversity and different opinions, and teamwork and collaborative decision-making."
+      ],
+      [
+       "Human rights education",
+       "Fundamental human rights and civic rights, mechanisms for promoting and defending rights, and human rights issues in local and international contexts."
+      ],
+      [
+       "Advocacy and campaigning",
+       "Identifying community issues and priorities, planning advocacy campaigns, developing messages and approaches for community engagement, and using advocacy tools to influence relevant policies and practices."
+      ]
+     ],
+     "results": [
+      "Increased self-confidence — practising leadership and communication skills gave students greater confidence in expressing their ideas and taking part in group activities.",
+      "Strengthened social and professional relationships through interaction with peers and academic stakeholders.",
+      "Improved leadership and practical skills — teamwork, communication, decision-making, leadership and advocacy, transferable to future study and employment.",
+      "Enhanced critical thinking — interactive discussion encouraged students to analyse issues, weigh perspectives and make informed decisions.",
+      "Increased community engagement — students came to see themselves as active participants in their communities.",
+      "Stronger youth leadership potential, combining leadership training, human rights education and advocacy skills."
+     ]
+    },
+    "ar": {
+     "name": "تعزيز القيادات الشابة في الجامعات",
+     "tagline": "طلبة الجامعات كقادة فاعلين ومسؤولين ومنخرطين في مجتمعاتهم.",
+     "glance": [
+      [
+       "الشكل",
+       "تدريب مكثف 3 أيام"
+      ],
+      [
+       "الفئة المستهدفة",
+       "طلبة الجامعات"
+      ],
+      [
+       "التركيز",
+       "القيادة والحقوق والمناصرة"
+      ],
+      [
+       "الشريك",
+       "مؤسسة فريدريش إيبرت"
+      ]
+     ],
+     "about": "يهدف المشروع إلى تمكين الشباب الجامعي من لعب دور فاعل في بناء مجتمع أكثر وعيًا وتقدمًا على المستويات السياسية والاجتماعية والاقتصادية. ينطلق المشروع من إيمان عميق بأهمية الاستثمار في طاقات الشباب، وتزويدهم بالمعرفة والمهارات التي تؤهلهم ليكونوا قادة مؤثرين في محيطهم الجامعي والمجتمعي.",
+     "objectives": [
+      "تعزيز الوعي والمعرفة لدى الطلبة حول مفاهيم القيادة والمشاركة المجتمعية والحقوق المدنية.",
+      "تطوير المهارات القيادية من خلال ورش عمل ودورات تدريبية تركز على إدارة الفريق واتخاذ القرار والتواصل الفعّال.",
+      "تشجيع الانخراط المجتمعي عبر تحفيز الطلبة على المشاركة في الأنشطة التطوعية والمبادرات المحلية.",
+      "بناء شبكة قيادية شبابية تتيح تبادل الخبرات والأفكار بين الطلبة من مختلف الجامعات، وتفتح المجال للتعاون بين المؤسسات الأكاديمية والمجتمعات المحلية."
+     ],
+     "components": [
+      [
+       "التدريب القيادي",
+       "مبادئ القيادة التشاركية والديمقراطية، واحترام التنوع والرأي الآخر، والعمل الجماعي واتخاذ القرار التشاركي."
+      ],
+      [
+       "التثقيف بحقوق الإنسان",
+       "الحقوق الأساسية والمدنية، وآليات تعزيز الحقوق والدفاع عنها، وقضايا حقوق الإنسان في السياقين المحلي والدولي."
+      ],
+      [
+       "المناصرة والحملات",
+       "تحديد القضايا والأولويات المجتمعية، والتخطيط لحملات المناصرة، وصياغة الرسائل وأساليب الانخراط المجتمعي، واستخدام أدوات المناصرة للتأثير في السياسات والممارسات."
+      ]
+     ],
+     "results": [
+      "زيادة الثقة بالنفس — أتاحت المشاركة في الأنشطة القيادية للطلبة ممارسة مهارات القيادة والتواصل، مما عزّز ثقتهم في التعبير عن أفكارهم.",
+      "تعزيز العلاقات الاجتماعية والمهنية عبر التفاعل مع الأقران والجهات الأكاديمية.",
+      "تحسين المهارات القيادية والعملية — العمل الجماعي والتواصل واتخاذ القرار والقيادة والمناصرة.",
+      "تعزيز التفكير النقدي — شجّعت النقاشات التفاعلية الطلبة على تحليل القضايا وتقدير وجهات النظر المختلفة واتخاذ قرارات مستنيرة.",
+      "زيادة الانخراط المجتمعي — أصبح الطلبة يرون أنفسهم مشاركين فاعلين في مجتمعاتهم.",
+      "تعزيز القدرات القيادية الشابة عبر الجمع بين التدريب القيادي والتثقيف الحقوقي ومهارات المناصرة."
+     ]
+    }
+   }
+  ],
+  "REPORT_2024": {
+   "en": {
+    "year": "2024",
+    "title": "Annual Report 2024",
+    "lead": "Strategic directions, activities delivered, key outputs and recommendations for 2024.",
+    "summary_title": "Strategic directions",
+    "summary": [
+     "During 2024, HDIP focused on inclusive community development, with particular attention to women, youth, students and underserved groups. Its work emphasised health education, education support, research, capacity building and community empowerment.",
+     "The programme gave increasing attention to health education as one of the basic pillars for improving quality of life and strengthening community awareness, delivering awareness programmes on mental health, reproductive health, sound nutrition and the prevention of chronic disease — through interactive workshops in schools and universities and media campaigns on social platforms.",
+     "2024 was a distinct stage in the programme's path: it continued its leading role in supporting women, youth and school and university students, using empowerment as a tool for change, education as a means of advancement, and policy as a route towards social justice."
+    ],
+    "pillars_title": "The five pillars of 2024",
+    "pillars": [
+     [
+      "Health Education and Awareness",
+      "Health awareness and educational programmes for women, university students and school students; workshops on mental health, reproductive health, nutrition, disease prevention and healthy lifestyles; interactive sessions in schools and universities; digital and social media dissemination; first aid and emergency response training.",
+      [
+       "Increased knowledge and awareness of key health issues.",
+       "Improved understanding of disease prevention and healthy behaviours.",
+       "Strengthened practical skills in first aid and emergency response.",
+       "Improved access to reliable and understandable health information."
+      ]
+     ],
+     [
+      "Research and Knowledge Development",
+      "Workshops, lectures and seminars on the importance of scientific research; encouraging students, researchers and academic communities to engage in research and knowledge sharing; dissemination of information and educational materials related to health and development.",
+      [
+       "Increased awareness among students and researchers of the importance of scientific research.",
+       "Strengthened research and critical-thinking skills.",
+       "Greater engagement with knowledge generation and evidence-based approaches."
+      ]
+     ],
+     [
+      "Local Capacity Building",
+      "Specialised training in health education, health systems and preventive approaches; training community members, particularly women and youth, as informed participants and contributors within their communities.",
+      [
+       "Strengthened knowledge and practical capacities.",
+       "Improved health literacy among targeted women and youth.",
+       "Increased ability to make informed health-related decisions."
+      ]
+     ],
+     [
+      "Right to Education Programme",
+      "Continued implementation of the Right to Education Programme; educational support to students experiencing learning gaps; activities to strengthen critical thinking and community participation; integration of public health concepts into non-formal education.",
+      [
+       "Supported students in addressing learning gaps and educational challenges.",
+       "Strengthened critical-thinking and problem-solving skills.",
+       "Enhanced awareness of the relationship between education and health."
+      ]
+     ],
+     [
+      "Community Empowerment and Inclusion",
+      "Prioritising women, youth, students and underserved communities in programme design and delivery; community-based activities responding to identified educational and health needs.",
+      [
+       "Increased access to educational and health knowledge among underserved groups.",
+       "Strengthened confidence, knowledge and capacity to engage with community issues.",
+       "Contributed to stronger community resilience and participation."
+      ]
+     ]
+    ],
+    "outputs_title": "Key outputs",
+    "outputs": [
+     [
+      "Career guidance programmes",
+      "Workshops and dialogue sessions with professionals from various fields, giving students the chance to learn from real experience and explore career paths."
+     ],
+     [
+      "Creative competitions",
+      "Competitions in writing, arts, innovation and technology, which helped discover and encourage students' talents and build confidence in their abilities."
+     ],
+     [
+      "Parental participation",
+      "Regular meetings and awareness workshops that strengthened communication between students, families and the organisation, and increased the support available to students."
+     ],
+     [
+      "Diverse educational content",
+      "Educational videos, articles and interactive materials that made learning more engaging and addressed students' diverse needs."
+     ],
+     [
+      "Environmental awareness",
+      "Climate change, sustainability and environmental protection integrated into training, alongside clean-up campaigns and tree-planting initiatives."
+     ],
+     [
+      "Study groups and research clubs",
+      "Peer study groups for cooperation and mutual academic support, plus a scientific research club established in each library."
+     ],
+     [
+      "Communication skills",
+      "Workshops that helped students express their ideas, interact with others and build positive relationships with peers."
+     ],
+     [
+      "Artificial intelligence in education",
+      "AI tools and applications introduced into teaching, including applications supporting language and mathematics learning."
+     ],
+     [
+      "Reaching underserved groups",
+      "Activities expanded into remote areas, and modern subjects such as programming, digital marketing and digital skills introduced with a focus on women and youth."
+     ],
+     [
+      "Improving training quality",
+      "Qualified trainers engaged, regular evaluation through questionnaires and participant feedback, psychosocial support sessions, and career consultations."
+     ]
+    ],
+    "recs_title": "Recommendations",
+    "recs": [
+     [
+      "Expand career guidance programmes",
+      "Cover a wider range of fields and specialisations, with a particular focus on providing students with practical training opportunities."
+     ],
+     [
+      "Establish an online platform",
+      "Facilitate communication among students, trainers and parents, and support the exchange of information, educational materials and resources."
+     ],
+     [
+      "Increase cultural and artistic activities",
+      "Enhance cultural awareness and help students understand the importance and role of the arts in society."
+     ],
+     [
+      "Strengthen volunteer activities",
+      "Build students' sense of social responsibility and develop leadership, communication and teamwork skills."
+     ],
+     [
+      "Launch targeted training programmes",
+      "Programmes specifically for women with disabilities and unemployed youth, focused on building skills and improving employment opportunities."
+     ],
+     [
+      "Focus on empowering marginalised groups",
+      "Continue prioritising programmes that improve access to education, training, health and development opportunities."
+     ],
+     [
+      "Establish a permanent coordination mechanism",
+      "Between civil society organisations and government institutions, to ensure sustained cooperation and coordination of effort."
+     ],
+     [
+      "Organise annual forums",
+      "To exchange experience, knowledge and best practice among organisations working in development and health."
+     ]
+    ]
+   },
+   "ar": {
+    "year": "2024",
+    "title": "التقرير السنوي 2024",
+    "lead": "التوجهات الاستراتيجية والأنشطة المنفذة وأبرز المخرجات والتوصيات لعام 2024.",
+    "summary_title": "التوجهات الاستراتيجية",
+    "summary": [
+     "خلال عام 2024، ركّزنا على تعزيز التنمية المجتمعية الشاملة، مكثّفين جهودنا على تمكين الفئات المهمّشة، وخاصة النساء والشباب. وقد انطلقت أنشطتنا من إيمان راسخ بأن النهوض بالمجتمع الفلسطيني لا يمكن تحقيقه إلا من خلال تمكين أفراده عبر مجالات الصحة والتعليم والتمكين.",
+     "أولى البرنامج اهتمامًا متزايدًا بالتثقيف الصحي كأحد الركائز الأساسية لتحسين جودة الحياة وتعزيز الوعي المجتمعي، فنفّذ سلسلة من البرامج التوعوية التي ركّزت على الصحة النفسية والصحة الإنجابية والتغذية السليمة والوقاية من الأمراض المزمنة، عبر ورش تفاعلية في المدارس والجامعات وحملات إعلامية على منصات التواصل الاجتماعي.",
+     "لقد شكّل عام 2024 محطة نوعية في مسيرة البرنامج، حيث واصل أداء دوره الريادي في دعم النساء والشباب وطلاب المدارس والجامعات، مستخدمًا التمكين كأداة للتغيير، والتعليم كوسيلة للنهضة، والسياسات كمسار نحو العدالة الاجتماعية."
+    ],
+    "pillars_title": "ركائز عام 2024 الخمس",
+    "pillars": [
+     [
+      "التثقيف والتوعية الصحية",
+      "برامج توعية وتثقيف صحي للنساء وطلبة الجامعات وطلبة المدارس؛ ورش حول الصحة النفسية والصحة الإنجابية والتغذية والوقاية من الأمراض وأنماط الحياة الصحية؛ جلسات تفاعلية في المدارس والجامعات؛ النشر عبر المنصات الرقمية؛ تدريبات الإسعاف الأولي والاستجابة للطوارئ.",
+      [
+       "زيادة معرفة المشاركين ووعيهم بالقضايا الصحية الأساسية.",
+       "تحسين فهم الوقاية من الأمراض والسلوكيات الصحية.",
+       "تعزيز المهارات العملية في الإسعاف الأولي والاستجابة للطوارئ.",
+       "تحسين الوصول إلى معلومات صحية موثوقة ومفهومة."
+      ]
+     ],
+     [
+      "البحث وتطوير المعرفة",
+      "ورش عمل ومحاضرات وندوات حول أهمية البحث العلمي؛ تشجيع الطلبة والباحثين والمجتمع الأكاديمي على الانخراط في البحث وتبادل المعرفة؛ نشر المعلومات والمواد التعليمية المتعلقة بالصحة والتنمية.",
+      [
+       "زيادة الوعي لدى الطلبة والباحثين بأهمية البحث العلمي.",
+       "تعزيز مهارات البحث والتفكير النقدي.",
+       "انخراط أكبر في إنتاج المعرفة والمقاربات القائمة على الأدلة."
+      ]
+     ],
+     [
+      "بناء القدرات المحلية",
+      "تدريب متخصص في التثقيف الصحي وإدارة النظم الصحية والمقاربات الوقائية؛ تدريب أفراد المجتمع، وخاصة النساء والشباب، ليكونوا مشاركين واعين ومساهمين في مجتمعاتهم.",
+      [
+       "تعزيز المعرفة والقدرات العملية لدى المشاركين.",
+       "تحسين الثقافة الصحية لدى النساء والشباب المستهدفين.",
+       "زيادة القدرة على اتخاذ قرارات صحية مستنيرة."
+      ]
+     ],
+     [
+      "برنامج الحق في التعليم",
+      "استمرار تنفيذ برنامج الحق في التعليم؛ دعم تعليمي للطلبة الذين يعانون من فجوات تعليمية؛ أنشطة لتعزيز التفكير النقدي والمشاركة المجتمعية؛ إدماج مفاهيم الصحة العامة ضمن التعليم غير الرسمي.",
+      [
+       "دعم الطلبة في معالجة الفاقد التعليمي والتحديات التعليمية.",
+       "تعزيز مهارات التفكير النقدي وحل المشكلات.",
+       "زيادة وعي الطلبة بالعلاقة بين التعليم والصحة."
+      ]
+     ],
+     [
+      "التمكين المجتمعي والشمول",
+      "إعطاء الأولوية للنساء والشباب والطلبة والمجتمعات المهمّشة في تصميم البرامج وتنفيذها؛ أنشطة مجتمعية تستجيب للاحتياجات التعليمية والصحية المحددة.",
+      [
+       "زيادة وصول الفئات المهمّشة إلى المعرفة التعليمية والصحية.",
+       "تعزيز ثقة المشاركين ومعرفتهم وقدرتهم على الانخراط في قضايا مجتمعهم.",
+       "المساهمة في تعزيز صمود المجتمع ومشاركته."
+      ]
+     ]
+    ],
+    "outputs_title": "أبرز المخرجات",
+    "outputs": [
+     [
+      "برامج التوجيه المهني",
+      "ورش عمل وجلسات حوارية مع مهنيين من مجالات متنوعة، أتاحت للطلبة التعلّم من تجارب واقعية واستكشاف مساراتهم المهنية."
+     ],
+     [
+      "المسابقات الإبداعية",
+      "مسابقات في الكتابة والفنون والابتكار والتكنولوجيا، أسهمت في اكتشاف مواهب الطلبة وتشجيعها وبناء ثقتهم بقدراتهم."
+     ],
+     [
+      "مشاركة أولياء الأمور",
+      "اجتماعات دورية وورش توعوية عزّزت التواصل بين الطلبة وأسرهم والمؤسسة، وزادت الدعم المتاح للطلبة."
+     ],
+     [
+      "محتوى تعليمي متنوع",
+      "مقاطع فيديو تعليمية ومقالات وموارد تفاعلية جعلت التعلّم أكثر جاذبية ولبّت احتياجات الطلبة المتنوعة."
+     ],
+     [
+      "الوعي البيئي",
+      "إدماج التغير المناخي والاستدامة وحماية البيئة في التدريبات، إلى جانب حملات النظافة ومبادرات زراعة الأشجار."
+     ],
+     [
+      "مجموعات الدعم وأندية البحث",
+      "مجموعات دعم دراسية للتعاون والمساندة الأكاديمية، إضافة إلى نادٍ للبحث العلمي في كل مكتبة."
+     ],
+     [
+      "مهارات التواصل",
+      "ورش ساعدت الطلبة على التعبير عن أفكارهم والتفاعل مع الآخرين وبناء علاقات إيجابية مع زملائهم."
+     ],
+     [
+      "الذكاء الاصطناعي في التعليم",
+      "إدخال أدوات وتطبيقات الذكاء الاصطناعي في العملية التعليمية، منها تطبيقات تدعم تعلّم اللغات والرياضيات."
+     ],
+     [
+      "الوصول إلى الفئات المهمّشة",
+      "توسيع الأنشطة لتشمل المناطق النائية، وإدخال مواضيع حديثة مثل البرمجة والتسويق الرقمي والمهارات الرقمية مع التركيز على النساء والشباب."
+     ],
+     [
+      "تحسين جودة التدريب",
+      "الاستعانة بمدربين متخصصين، وتقييمات دورية عبر الاستبيانات وملاحظات المشاركين، وجلسات دعم نفسي واجتماعي، واستشارات مهنية."
+     ]
+    ],
+    "recs_title": "التوصيات",
+    "recs": [
+     [
+      "توسيع برامج التوجيه المهني",
+      "لتشمل المزيد من المجالات والتخصصات، مع التركيز على توفير فرص تدريبية عملية للطلاب."
+     ],
+     [
+      "إنشاء منصة إلكترونية",
+      "لتسهيل التواصل بين الطلاب والمدربين وأولياء الأمور، ودعم تبادل المعلومات والمواد والموارد."
+     ],
+     [
+      "زيادة الأنشطة الثقافية والفنية",
+      "لتعزيز الوعي الثقافي وتعليم الطلاب أهمية الفنون ودورها في المجتمع."
+     ],
+     [
+      "تعزيز الأنشطة التطوعية",
+      "لتعزيز روح المسؤولية الاجتماعية لدى الطلاب وتطوير مهارات القيادة والتواصل والعمل الجماعي."
+     ],
+     [
+      "إطلاق برامج تدريبية موجّهة",
+      "تستهدف النساء ذوات الإعاقة والشباب العاطلين عن العمل، وتركّز على بناء مهاراتهم وتحسين فرص عملهم."
+     ],
+     [
+      "التركيز على تمكين الفئات المهمّشة",
+      "مواصلة إعطاء الأولوية للبرامج التي تحسّن وصولهم إلى فرص التعليم والتدريب والصحة والتنمية."
+     ],
+     [
+      "إنشاء آلية تنسيق دائمة",
+      "بين المؤسسات الأهلية والحكومية لضمان استدامة التعاون وتنسيق الجهود."
+     ],
+     [
+      "تنظيم منتديات سنوية",
+      "لتبادل الخبرات والمعرفة وأفضل الممارسات بين الجهات العاملة في التنمية والصحة."
+     ]
+    ]
+   }
+  },
+  "SOURCES": {
+   "profile": "تعريف.docx — organisation profile, vision, mission, 15 objectives (AR)",
+   "directions": "توجهات البرنامج الإعلامي.docx — Strategic Directions 2024 (AR + EN)",
+   "activities": "الأنشطة المنفذة في عام 2024.docx — Activities Implemented 2024 (AR + EN)",
+   "outputs": "أبرز المخرجات لعام 2024.docx — Key Outputs 2024 (AR + EN)",
+   "recs": "التوصيات.docx — Recommendations 2024 (AR + EN)",
+   "rte": "مشروع الحق في التعليم.docx — Right to Education 2024 (AR + EN)",
+   "women_able": "مشروع نساء قادرات على تغيير المجتمع.docx — Women Able 2020–2024 (AR)",
+   "women_lead": "مشروع نساء قياديات في المجالس المحلية.docx — Women Leaders (AR + EN)",
+   "youth": "مشروع تعزيز القيادات الشابة في الجامعات.docx — Youth Leadership (AR + EN)",
+   "photo": "صورة جماعية.docx — closing conference group photograph"
+  },
+  "UI": {
+   "en": {
+    "lang_label": "العربية",
+    "lang_href_note": "Arabic",
+    "dir": "ltr",
+    "code": "en",
+    "org": "Health Development Information and Policy Institute",
+    "org_short": "HDIP",
+    "place": "Ramallah · Palestine",
+    "contact": "Contact us",
+    "partner": "Partner with us",
+    "skip": "Skip to content",
+    "home": "Home",
+    "explore": "Explore",
+    "read_more": "Read more",
+    "all_news": "All news",
+    "back_work": "All programme areas",
+    "back_projects": "All projects",
+    "at_a_glance": "At a glance",
+    "objectives": "Objectives",
+    "activities": "Activities and outputs",
+    "results": "Results",
+    "related_projects": "Related projects",
+    "related_news": "Related news",
+    "key_figures": "Key figures",
+    "governorates": "Governorates",
+    "target_group": "Target group",
+    "years_label": "Years",
+    "today": "Today",
+    "participants": "Participants",
+    "partner_label": "Partner",
+    "status": "Status",
+    "years": "Years",
+    "ongoing": "Ongoing",
+    "completed": "Completed",
+    "content_needed": "Content needed",
+    "content_needed_note": "This section is part of the approved structure. HDIP has not yet supplied the source material.",
+    "credits": "Photography & credits",
+    "sources": "Sources",
+    "download": "Download PDF",
+    "no_download": "PDF not yet supplied",
+    "year_switch": "Year",
+    "female": "female",
+    "male": "male",
+    "pwd": "with disabilities",
+    "footer_about": "An independent, non-profit Palestinian institute for research, advocacy and capacity building in health, education and development — since 1989.",
+    "developed_by": "Developed by"
+   },
+   "ar": {
+    "lang_label": "English",
+    "lang_href_note": "English",
+    "dir": "rtl",
+    "code": "ar",
+    "org": "البرنامج الإعلامي للتطوير الصحي",
+    "org_short": "HDIP",
+    "place": "رام الله · فلسطين",
+    "contact": "اتصل بنا",
+    "partner": "كن شريكًا",
+    "skip": "تخطَّ إلى المحتوى",
+    "home": "الرئيسية",
+    "explore": "تصفّح",
+    "read_more": "اقرأ المزيد",
+    "all_news": "كل الأخبار",
+    "back_work": "كل مجالات العمل",
+    "back_projects": "كل المشاريع",
+    "at_a_glance": "لمحة سريعة",
+    "objectives": "الأهداف",
+    "activities": "الأنشطة والمخرجات",
+    "results": "النتائج",
+    "related_projects": "مشاريع ذات صلة",
+    "related_news": "أخبار ذات صلة",
+    "key_figures": "أرقام رئيسية",
+    "governorates": "المحافظات",
+    "target_group": "الفئة المستهدفة",
+    "years_label": "سنوات",
+    "today": "اليوم",
+    "participants": "المستفيدون",
+    "partner_label": "الشريك",
+    "status": "الحالة",
+    "years": "السنوات",
+    "ongoing": "مستمر",
+    "completed": "مكتمل",
+    "content_needed": "محتوى مطلوب",
+    "content_needed_note": "هذا القسم جزء من الهيكل المعتمد، ولم يتم تزويدنا بالمادة المصدرية بعد.",
+    "credits": "الصور والمصادر",
+    "sources": "المصادر",
+    "download": "تحميل PDF",
+    "no_download": "لم يتم تزويدنا بالملف بعد",
+    "year_switch": "السنة",
+    "female": "إناث",
+    "male": "ذكور",
+    "pwd": "من ذوي الإعاقة",
+    "footer_about": "مؤسسة فلسطينية مستقلة غير ربحية للبحث والمناصرة وبناء القدرات في الصحة والتعليم والتنمية — منذ عام 1989.",
+    "developed_by": "تطوير"
+   }
+  }
+ },
+ "years": {
+  "ABOUT_EXTRA": {
+   "en": {
+    "whatwedo_title": "What we do",
+    "whatwedo_lead": "HDIP works across seven interconnected areas. Five of them are presented on this site as programme areas with their own pages.",
+    "whatwedo": [
+     [
+      "Health and Health Education",
+      "Promoting health awareness, prevention, healthy behaviours, mental health, and access to reliable health information.",
+      "health"
+     ],
+     [
+      "Education and Youth Development",
+      "Supporting students through educational programmes, training, mentoring, community libraries, skills development and access to learning opportunities.",
+      "education"
+     ],
+     [
+      "Women's Empowerment",
+      "Developing programmes that strengthen women's knowledge, skills, participation, resilience and access to economic and social opportunities.",
+      "women"
+     ],
+     [
+      "Community Development",
+      "Working with local communities and institutions to identify needs and develop practical, sustainable responses.",
+      null
+     ],
+     [
+      "Research, Policy and Advocacy",
+      "Conducting research, assessments and policy-oriented activities that generate evidence and support informed decision-making.",
+      "research"
+     ],
+     [
+      "Capacity Building",
+      "Providing training and technical support to individuals, civil society organisations and local institutions.",
+      "youth"
+     ],
+     [
+      "Monitoring, Evaluation and Learning",
+      "Applying systematic approaches to monitoring implementation, measuring results, documenting lessons and improving programme quality.",
+      null
+     ]
+    ],
+    "approach_title": "Our approach",
+    "approach": [
+     "HDIP places people and communities at the centre of development. Our programmes are designed based on identified needs and implemented through participatory approaches that encourage local ownership and meaningful engagement.",
+     "We seek to connect research with practical action, ensuring that programme design is informed by evidence while remaining responsive to the realities faced by communities. We also promote partnerships and coordination among civil society organisations, educational institutions, governmental bodies and other stakeholders."
+    ],
+    "partner_title": "Why partner with us",
+    "partner_lead": "HDIP is committed to implementing donor-supported programmes with professionalism, transparency, accountability and effective resource management. We value long-term partnerships and work closely with donors and implementing partners to ensure that agreed objectives, activities, outputs and reporting requirements are met.",
+    "principles": [
+     "Clear and measurable programme objectives and results.",
+     "Transparent financial and administrative procedures.",
+     "Regular monitoring, documentation and reporting.",
+     "Evidence-based programme design and decision-making.",
+     "Community participation and stakeholder engagement.",
+     "Continuous learning and improvement.",
+     "Sustainability and institutional capacity development."
+    ],
+    "partner_close": "With more than three decades of experience, HDIP offers partners a combination of local knowledge, technical expertise, community access, programme implementation capacity and commitment to accountability. Through collaboration with donors and development partners, HDIP seeks to translate resources and knowledge into practical, measurable and sustainable benefits for Palestinian communities."
+   },
+   "ar": {
+    "whatwedo_title": "ماذا نعمل",
+    "whatwedo_lead": "يعمل البرنامج في سبعة مجالات مترابطة، خمسة منها معروضة على هذا الموقع كمجالات برامجية لكل منها صفحتها.",
+    "whatwedo": [
+     [
+      "الصحة والتثقيف الصحي",
+      "تعزيز الوعي الصحي والوقاية والسلوكيات الصحية والصحة النفسية والوصول إلى معلومات صحية موثوقة.",
+      "health"
+     ],
+     [
+      "التعليم وتنمية الشباب",
+      "دعم الطلبة عبر البرامج التعليمية والتدريب والإرشاد والمكتبات المجتمعية وتنمية المهارات وإتاحة فرص التعلّم.",
+      "education"
+     ],
+     [
+      "تمكين المرأة",
+      "برامج تعزّز معرفة النساء ومهاراتهن ومشاركتهن وصمودهن ووصولهن إلى الفرص الاقتصادية والاجتماعية.",
+      "women"
+     ],
+     [
+      "التنمية المجتمعية",
+      "العمل مع المجتمعات والمؤسسات المحلية لتحديد الاحتياجات وتطوير استجابات عملية ومستدامة.",
+      null
+     ],
+     [
+      "البحث والسياسات والمناصرة",
+      "إجراء البحوث والتقييمات والأنشطة السياساتية التي تنتج الأدلة وتدعم اتخاذ القرار المستنير.",
+      "research"
+     ],
+     [
+      "بناء القدرات",
+      "تقديم التدريب والدعم الفني للأفراد ومؤسسات المجتمع المدني والمؤسسات المحلية.",
+      "youth"
+     ],
+     [
+      "المتابعة والتقييم والتعلّم",
+      "اعتماد مقاربات منهجية لمتابعة التنفيذ وقياس النتائج وتوثيق الدروس وتحسين جودة البرامج.",
+      null
+     ]
+    ],
+    "approach_title": "منهجيتنا",
+    "approach": [
+     "يضع البرنامج الناس والمجتمعات في قلب التنمية. تُصمَّم برامجنا بناءً على احتياجات محددة وتُنفَّذ بمقاربات تشاركية تشجّع الملكية المحلية والانخراط الحقيقي.",
+     "نسعى إلى ربط البحث بالعمل التطبيقي، بما يضمن أن يكون تصميم البرامج قائمًا على الأدلة ومستجيبًا في الوقت نفسه لواقع المجتمعات. كما نعزّز الشراكات والتنسيق بين مؤسسات المجتمع المدني والمؤسسات التعليمية والجهات الحكومية وأصحاب المصلحة الآخرين."
+    ],
+    "partner_title": "لماذا الشراكة معنا",
+    "partner_lead": "يلتزم البرنامج بتنفيذ البرامج المدعومة من الممولين بمهنية وشفافية ومساءلة وإدارة فعّالة للموارد. ونقدّر الشراكات طويلة الأمد ونعمل عن قرب مع الممولين والشركاء المنفذين لضمان تحقيق الأهداف والأنشطة والمخرجات ومتطلبات التقارير المتفق عليها.",
+    "principles": [
+     "أهداف ونتائج برامجية واضحة وقابلة للقياس.",
+     "إجراءات مالية وإدارية شفافة.",
+     "متابعة وتوثيق وإعداد تقارير بشكل منتظم.",
+     "تصميم البرامج واتخاذ القرار استنادًا إلى الأدلة.",
+     "مشاركة المجتمع وانخراط أصحاب المصلحة.",
+     "التعلّم والتحسين المستمران.",
+     "الاستدامة وتطوير القدرات المؤسسية."
+    ],
+    "partner_close": "بخبرة تمتد أكثر من ثلاثة عقود، يوفّر البرنامج لشركائه مزيجًا من المعرفة المحلية والخبرة الفنية والوصول المجتمعي وقدرة التنفيذ والالتزام بالمساءلة. ومن خلال التعاون مع الممولين وشركاء التنمية، يسعى البرنامج إلى ترجمة الموارد والمعرفة إلى منافع عملية وقابلة للقياس ومستدامة للمجتمعات الفلسطينية."
+   }
+  },
+  "CLOSURES_NOTE": {
+   "en": {
+    "title": "A school you cannot reach",
+    "body": "The Right to Education Project runs across eight governorates including Gaza. What that costs is visible in documents like this one: the December 2011 humanitarian atlas recorded 104 closures in the Ramallah governorate alone — checkpoints, partial checkpoints, earthmounds, roadblocks, road gates, trenches and earth walls. Closure is why the project is delivered through local centres rather than from one place, and why 2024 ran on an emergency-adapted plan."
+   },
+   "ar": {
+    "title": "مدرسة لا يمكنك الوصول إليها",
+    "body": "يُنفَّذ مشروع الحق في التعليم في ثماني محافظات بما فيها غزة. وتظهر كلفة ذلك في وثائق كهذه: سجّل الأطلس الإنساني في كانون الأول 2011 مئة وأربعة إغلاقات في محافظة رام الله وحدها — حواجز وحواجز جزئية وسواتر ترابية ومكعبات إسمنتية وبوابات وخنادق وجدران ترابية. الإغلاق هو سبب تنفيذ المشروع عبر مراكز محلية لا من مكان واحد، وسبب اعتماد خطة طوارئ في عام 2024."
+   }
+  },
+  "CONTEXT_PHOTOS": {
+   "ramallah-city": {
+    "alt": "Residential blocks spreading across the hills of Ramallah under a clear sky",
+    "en": "Ramallah, September 2024",
+    "ar": "رام الله، أيلول 2024"
+   },
+   "al-bireh": {
+    "alt": "The city of Al-Bireh seen across open ground from behind a wire fence",
+    "en": "Al-Bireh, Ramallah governorate",
+    "ar": "البيرة، محافظة رام الله"
+   },
+   "ramallah-oldcity": {
+    "alt": "Wide view over the old city of Ramallah",
+    "en": "Ramallah old city",
+    "ar": "البلدة القديمة، رام الله"
+   },
+   "ramallah-market": {
+    "alt": "A man walking past a taxi in the busy central market district of Ramallah",
+    "en": "Central market, Ramallah",
+    "ar": "السوق المركزي، رام الله"
+   },
+   "ramallah-hills": {
+    "alt": "A concrete watchtower and barrier wall section on the edge of Ramallah, with a village on the far hillside",
+    "en": "Barrier and watchtower, Ramallah district",
+    "ar": "الجدار وبرج مراقبة، محافظة رام الله"
+   },
+   "checkpoint": {
+    "alt": "A road checkpoint with a watchtower beside a signpost reading Ramallah in Hebrew, Arabic and English",
+    "en": "Checkpoint on the road to Ramallah",
+    "ar": "حاجز على الطريق إلى رام الله"
+   },
+   "hospital-turmusayya": {
+    "alt": "The curved glass frontage of Hugo Chávez Hospital at dusk",
+    "en": "Hugo Chávez Hospital, Turmus Ayya",
+    "ar": "مستشفى هوغو تشافيز، ترمسعيا"
+   },
+   "westbank-satellite": {
+    "alt": "Satellite photograph of the West Bank showing built-up areas threaded through brown hills",
+    "en": "The West Bank from the ISS, Expedition 75",
+    "ar": "الضفة الغربية من محطة الفضاء الدولية، البعثة 75"
+   },
+   "closures-map": {
+    "alt": "United Nations map of Ramallah governorate marking checkpoints, roadblocks, earthmounds and the route of the barrier",
+    "en": "Ramallah closures — UN OCHA Humanitarian Atlas, December 2011",
+    "ar": "إغلاقات رام الله — الأطلس الإنساني، مكتب الأمم المتحدة لتنسيق الشؤون الإنسانية، كانون الأول 2011"
+   },
+   "women-workplace": {
+    "alt": "Two women walking up a narrow stone-walled street, the town spread over the hill behind them",
+    "en": "A village street, Palestine",
+    "ar": "شارع في قرية فلسطينية"
+   },
+   "olives-nablus": {
+    "alt": "An older man reaching into an olive tree during the harvest while a boy holds the bucket",
+    "en": "Olive harvest near Nablus",
+    "ar": "موسم قطف الزيتون قرب نابلس"
+   },
+   "olive-planting": {
+    "alt": "A farmer kneeling on terraced ground, setting an olive sapling into the soil",
+    "en": "Planting olive trees, Beit Ommar, 2010",
+    "ar": "زراعة أشجار الزيتون، بيت أمر، 2010"
+   }
+  },
+  "ENDINGS": {
+   "en": {
+    "project": [
+     "Work with this project",
+     "HDIP partners with donors, councils and community organisations on delivery, training and evaluation.",
+     "Contact us"
+    ],
+    "area": [
+     "Partner with us on this work",
+     "HDIP works with local and international partners on research, training, evaluation and community programmes.",
+     "Contact us"
+    ],
+    "report": [
+     "Read another year",
+     "Annual reporting from 2022 onward sets each year's directions, activities and recommendations side by side.",
+     "All reports"
+    ],
+    "about": [
+     "Work with HDIP",
+     "We welcome partners on research, training, evaluation and community programmes.",
+     "Contact us"
+    ],
+    "news": [
+     "More from the programme",
+     "Conference statements, campaign launches and findings from HDIP's units.",
+     "All news"
+    ]
+   },
+   "ar": {
+    "project": [
+     "اعمل معنا في هذا المشروع",
+     "يعمل البرنامج مع الممولين والمجالس والمؤسسات المجتمعية في التنفيذ والتدريب والتقييم.",
+     "اتصل بنا"
+    ],
+    "area": [
+     "كن شريكًا في هذا العمل",
+     "يعمل البرنامج مع شركاء محليين ودوليين في البحث والتدريب والتقييم والبرامج المجتمعية.",
+     "اتصل بنا"
+    ],
+    "report": [
+     "اقرأ عامًا آخر",
+     "التقارير السنوية منذ 2022 تضع توجهات كل عام وأنشطته وتوصياته جنبًا إلى جنب.",
+     "كل التقارير"
+    ],
+    "about": [
+     "اعمل مع البرنامج",
+     "نرحّب بالشركاء في البحث والتدريب والتقييم والبرامج المجتمعية.",
+     "اتصل بنا"
+    ],
+    "news": [
+     "المزيد من البرنامج",
+     "بيانات المؤتمرات وإطلاق الحملات ونتائج وحدات البرنامج.",
+     "كل الأخبار"
+    ]
+   }
+  },
+  "GAPS_REMAINING": {
+   "en": [
+    [
+     "Team & Board",
+     "Names, roles and photographs still not supplied."
+    ],
+    [
+     "Donors and partners",
+     "No list or logos supplied. Only Friedrich-Ebert-Stiftung and Olof Palme International Center are identifiable, from banners in the 2024 photographs."
+    ],
+    [
+     "Annual report PDFs",
+     "No PDFs supplied, so report pages have no download."
+    ],
+    [
+     "Contact details",
+     "Address, phone, email and social links still need confirmation."
+    ],
+    [
+     "2023 statistical annex",
+     "The per-activity figures are internally inconsistent and the document itself asks for them to be verified against the original. Only the reconciling totals are published."
+    ],
+    [
+     "Women Able 2024 — English text",
+     "The English half of the 2024 file contains Right to Education text; the English 2024 phase is translated from the Arabic."
+    ],
+    [
+     "Photography for 2022, 2023 and 2025",
+     "Programme photographs were supplied only with the 2024 batch."
+    ],
+    [
+     "Project donors per phase",
+     "Which donor funded which project in which year is not recorded in any document."
+    ],
+    [
+     "Online donations",
+     "No decision recorded on whether the site should accept donations."
+    ]
+   ],
+   "ar": [
+    [
+     "الفريق ومجلس الإدارة",
+     "لم تُزوَّد الأسماء والمهام والصور بعد."
+    ],
+    [
+     "الممولون والشركاء",
+     "لم تُزوَّد قائمة أو شعارات. ولا يمكن تمييز سوى مؤسسة فريدريش إيبرت ومركز أولوف بالمه الدولي من لافتات في صور 2024."
+    ],
+    [
+     "ملفات التقارير السنوية PDF",
+     "لم تُزوَّد، لذلك لا يوجد تنزيل في صفحات التقارير."
+    ],
+    [
+     "بيانات الاتصال",
+     "العنوان والهاتف والبريد وروابط التواصل بحاجة إلى تأكيد."
+    ],
+    [
+     "الملحق الإحصائي 2023",
+     "الأرقام التفصيلية غير متسقة داخليًا، والمستند نفسه يطلب التحقق منها مقابل الأصل. ولم يُنشر سوى المجاميع المتسقة."
+    ],
+    [
+     "نساء قادرات 2024 — النص الإنجليزي",
+     "القسم الإنجليزي في ملف 2024 يحتوي نص الحق في التعليم؛ ومرحلة 2024 الإنجليزية مترجمة عن العربية."
+    ],
+    [
+     "صور أعوام 2022 و2023 و2025",
+     "لم تُزوَّد صور برامجية إلا مع دفعة عام 2024."
+    ],
+    [
+     "ممولو كل مرحلة من المشاريع",
+     "لا يسجّل أي مستند أي ممول موّل أي مشروع في أي عام."
+    ],
+    [
+     "التبرعات الإلكترونية",
+     "لا يوجد قرار مسجّل بشأن قبول الموقع للتبرعات."
+    ]
+   ]
+  },
+  "HERO_PHOTOS": {
+   "about": "al-bireh",
+   "work": "westbank-satellite",
+   "area-health": "hospital-turmusayya",
+   "area-education": "ramallah-oldcity",
+   "area-women": "women-able-group",
+   "area-youth": "youth-training",
+   "area-research": "closures-map",
+   "projects": "women-able-session",
+   "project-right-to-education": "checkpoint",
+   "project-women-able": "conference-closing",
+   "project-women-leaders": "women-leaders-training",
+   "project-youth-leadership": "ramallah-market",
+   "reports": "ramallah-oldcity",
+   "report-2022": "olives-nablus",
+   "report-2023": "olive-planting",
+   "report-2024": "women-workplace",
+   "report-2025": "women-leaders-training",
+   "news": "conference-hall",
+   "contact": "ramallah-hills",
+   "credits": "ramallah-city"
+  },
+  "HERO_SLIDES": [
+   "ramallah-city",
+   "youth-training",
+   "olives-nablus",
+   "hospital-turmusayya",
+   "checkpoint",
+   "women-workplace"
+  ],
+  "IMPACT": {
+   "2025": [
+    {
+     "num": "11,500+",
+     "en": "direct beneficiaries across all programmes",
+     "ar": "مستفيدًا مباشرًا من مجمل البرامج"
+    },
+    {
+     "num": "1,460",
+     "en": "students trained in first aid across 73 courses",
+     "ar": "طالبًا وطالبة في 73 دورة إسعاف أولي"
+    },
+    {
+     "num": "3,216",
+     "en": "students in intensive remedial classes in Gaza",
+     "ar": "طالبًا في دورات تعويضية مكثفة في غزة"
+    },
+    {
+     "num": "181",
+     "en": "employment opportunities created",
+     "ar": "فرصة عمل تم إيجادها"
+    }
+   ],
+   "2024": [
+    {
+     "num": "8,321",
+     "en": "participants in the Right to Education Project, 61% female",
+     "ar": "مستفيدًا في مشروع الحق في التعليم، 61% إناث"
+    },
+    {
+     "num": "345",
+     "en": "activities delivered across eight governorates",
+     "ar": "نشاطًا في ثماني محافظات"
+    },
+    {
+     "num": "1,700",
+     "en": "students trained in first aid across 85 courses",
+     "ar": "طالبًا وطالبة في 85 دورة إسعاف أولي"
+    },
+    {
+     "num": "355",
+     "en": "participants with disabilities included",
+     "ar": "مشاركًا من ذوي الإعاقة"
+    }
+   ],
+   "2023": [
+    {
+     "num": "2,130",
+     "en": "students reached across 78 education activities",
+     "ar": "طالبًا في 78 نشاطًا تعليميًا"
+    },
+    {
+     "num": "2,000",
+     "en": "participants in 222 health awareness workshops",
+     "ar": "مشاركًا في 222 ورشة توعية صحية"
+    },
+    {
+     "num": "200",
+     "en": "people trained to deliver health education in their own communities",
+     "ar": "شخصًا تدربوا على التثقيف الصحي في مجتمعاتهم"
+    },
+    {
+     "num": "7",
+     "en": "universities in the Student in Need Fund campaign",
+     "ar": "جامعات في حملة صندوق الطالب المحتاج"
+    }
+   ],
+   "2022": [
+    {
+     "num": "40,200",
+     "en": "books across eight community knowledge libraries",
+     "ar": "كتابًا في ثماني مكتبات مجتمعية"
+    },
+    {
+     "num": "1,920",
+     "en": "students reached through 230 training courses",
+     "ar": "طالبًا عبر 230 دورة تدريبية"
+    },
+    {
+     "num": "43",
+     "en": "graduation projects and theses supported",
+     "ar": "مشروع تخرج ورسالة ماجستير بدعم من المكتبات"
+    },
+    {
+     "num": "80",
+     "en": "student volunteers running the libraries",
+     "ar": "متطوعًا جامعيًا يديرون المكتبات"
+    }
+   ]
+  },
+  "LIBRARIES": {
+   "en": {
+    "title": "Community research and knowledge libraries",
+    "lead": "A continuation of the Supporting Libraries Project in the West Bank and Gaza Strip, providing academic assistance to students — particularly students in need and students with disabilities.",
+    "body": [
+     "HDIP established eight libraries holding approximately 15,000 books. The collections were later updated and expanded to roughly 40,200 books, including cultural and scientific books, references, periodicals, academic textbooks adopted by local universities, and encyclopaedias across scientific, cultural, social, political, literary and legal fields.",
+     "The libraries are managed by a team of eight trained librarians, supported by approximately 80 university student volunteers who classify and organise books, lend to users, and coordinate training courses and other activities. They are located across eight Palestinian governorates."
+    ],
+    "facilities_title": "Facilities",
+    "facilities": [
+     "An electronic research room with computers connected to the internet.",
+     "Training rooms used for educational activities and documentary screenings.",
+     "A systematically and electronically catalogued collection.",
+     "Dedicated spaces for reading and research."
+    ],
+    "services_title": "Services",
+    "services": [
+     [
+      "Academic and cultural book lending",
+      "Reducing the financial burden of purchasing textbooks."
+     ],
+     [
+      "Computer and internet access",
+      "Laboratories for educational and research use."
+     ],
+     [
+      "Printing and photocopying",
+      "Available to all students."
+     ],
+     [
+      "Specialised academic and skills courses",
+      "Including empowerment and personal skills development, supporting access to employment after graduation."
+     ]
+    ],
+    "figures": [
+     [
+      "8",
+      "libraries across eight governorates"
+     ],
+     [
+      "40,200",
+      "books"
+     ],
+     [
+      "230",
+      "training courses for ~1,920 students"
+     ],
+     [
+      "43",
+      "graduation projects supported"
+     ]
+    ],
+    "workshops_title": "Workshops run through the libraries",
+    "workshops": [
+     "Inclusion and integration of persons with disabilities.",
+     "Educational policies in Palestine.",
+     "The importance of scientific research.",
+     "Development of information systems.",
+     "Raising awareness about education.",
+     "The status and quality of higher education in Palestine.",
+     "The role of civil society organisations in educational policies.",
+     "Freedom of movement and accessibility of educational institutions for persons with disabilities."
+    ]
+   },
+   "ar": {
+    "title": "مكتبات البحث والمعرفة المجتمعية",
+    "lead": "استكمالًا لمشروع دعم المكتبات في الضفة الغربية وقطاع غزة، الذي يقدّم المساعدة الأكاديمية للطلبة، وخاصة الطلبة المحتاجين والطلبة ذوي الإعاقة.",
+    "body": [
+     "أنشأ البرنامج ثماني مكتبات تضم نحو 15,000 كتاب، ثم جرى تحديث المقتنيات وتوسيعها لتبلغ نحو 40,200 كتاب، تشمل كتبًا ثقافية وعلمية ومراجع ودوريات وكتبًا أكاديمية معتمدة في الجامعات المحلية، إضافة إلى موسوعات علمية وثقافية واجتماعية وسياسية وأدبية وقانونية.",
+     "يدير المكتبات فريق من ثمانية أمناء مكتبات مدرَّبين، يدعمهم نحو 80 متطوعًا من طلبة الجامعات يساعدون في تصنيف الكتب وتنظيمها وإعارتها وتنسيق الدورات التدريبية وغيرها من الأنشطة. وتنتشر المكتبات في ثماني محافظات فلسطينية."
+    ],
+    "facilities_title": "المرافق",
+    "facilities": [
+     "غرفة بحث إلكتروني مزودة بحواسيب متصلة بالإنترنت.",
+     "غرف تدريب تُستخدم للأنشطة التعليمية وعرض الأفلام الوثائقية.",
+     "مقتنيات مفهرسة منهجيًا وإلكترونيًا.",
+     "مساحات مخصصة للقراءة والبحث."
+    ],
+    "services_title": "الخدمات",
+    "services": [
+     [
+      "إعارة الكتب الأكاديمية والثقافية",
+      "تخفيف العبء المالي لشراء الكتب الدراسية."
+     ],
+     [
+      "الحواسيب والإنترنت",
+      "مختبرات للاستخدام التعليمي والبحثي."
+     ],
+     [
+      "الطباعة والتصوير",
+      "متاحة لجميع الطلبة."
+     ],
+     [
+      "دورات أكاديمية ومهارية متخصصة",
+      "تشمل التمكين وتطوير المهارات الشخصية بما يدعم الوصول إلى فرص العمل بعد التخرج."
+     ]
+    ],
+    "figures": [
+     [
+      "8",
+      "مكتبات في ثماني محافظات"
+     ],
+     [
+      "40,200",
+      "كتاب"
+     ],
+     [
+      "230",
+      "دورة تدريبية لنحو 1,920 طالبًا"
+     ],
+     [
+      "43",
+      "مشروع تخرج مدعوم"
+     ]
+    ],
+    "workshops_title": "ورش تُنفَّذ عبر المكتبات",
+    "workshops": [
+     "دمج الأشخاص ذوي الإعاقة وإشراكهم.",
+     "السياسات التعليمية في فلسطين.",
+     "أهمية البحث العلمي.",
+     "تطوير نظم المعلومات.",
+     "التوعية بأهمية التعليم.",
+     "واقع التعليم العالي في فلسطين وجودته.",
+     "دور مؤسسات المجتمع المدني في السياسات التعليمية.",
+     "حرية الحركة وإتاحة المؤسسات التعليمية للأشخاص ذوي الإعاقة."
+    ]
+   }
+  },
+  "NEWS_2025": [
+   {
+    "slug": "research-ethics-campaign",
+    "photo": "youth-training",
+    "area": "research",
+    "project": "right-to-education",
+    "date": "2025",
+    "en": {
+     "title": "Research Ethics Campaign reaches 200 students across 8 universities",
+     "tag": "Research",
+     "date": "2025",
+     "summary": "A campaign on academic integrity, with a simplified guide to preparing scientific research distributed as a lasting reference.",
+     "body": [
+      "The Scientific Research Ethics Campaign reached 8 local universities and engaged 200 students (120 female, 80 male).",
+      "As part of the campaign, a simplified guide to scientific research preparation was distributed, giving students a sustainable reference tool to promote academic integrity and improve the quality of graduation and research projects.",
+      "An accompanying awareness campaign against plagiarism ran across several universities, with practical workshops in Hebron, Bethlehem, Nablus and Ramallah.",
+      "Alongside the campaign, 768 students (460 female, 308 male) took part in workshops on scientific research, technology and life skills, delivered across 144 training hours covering hypothesis formulation and results analysis, artificial intelligence, cybersecurity and programming, and communication, time management, critical thinking and teamwork."
+     ]
+    },
+    "ar": {
+     "title": "حملة أخلاقيات البحث العلمي تصل إلى 200 طالب في 8 جامعات",
+     "tag": "البحث",
+     "date": "2025",
+     "summary": "حملة حول النزاهة الأكاديمية، وُزّع خلالها دليل مبسّط لإعداد البحث العلمي كمرجع دائم.",
+     "body": [
+      "وصلت حملة أخلاقيات البحث العلمي إلى 8 جامعات محلية وشارك فيها 200 طالب وطالبة (120 من الإناث و80 من الذكور).",
+      "وضمن الحملة وُزّع دليل مبسّط لإعداد البحث العلمي، يوفّر للطلبة أداة مرجعية مستدامة لتعزيز النزاهة الأكاديمية وتحسين جودة مشاريع التخرج والبحوث.",
+      "ورافقت ذلك حملة توعوية لمكافحة الانتحال العلمي في عدة جامعات، تخللتها ورش عملية في الخليل وبيت لحم ونابلس ورام الله.",
+      "وإلى جانب الحملة، شارك 768 طالبًا (460 من الإناث و308 من الذكور) في ورش حول البحث العلمي والتكنولوجيا والمهارات الحياتية، نُفّذت عبر 144 ساعة تدريبية شملت صياغة الفرضيات وتحليل النتائج والذكاء الاصطناعي والأمن السيبراني والبرمجة والتواصل وإدارة الوقت والتفكير النقدي والعمل الجماعي."
+     ]
+    }
+   },
+   {
+    "slug": "camps-displaced-women",
+    "photo": "women-able-group",
+    "area": "women",
+    "project": "women-able",
+    "date": "2025",
+    "en": {
+     "title": "Fourteen displaced women run summer and winter camps for 380 children",
+     "tag": "Women's Empowerment",
+     "date": "2025",
+     "summary": "A response to displacement in Jenin and Tulkarm that paid displaced women to run children's camps — income for them, a safe space for the children.",
+     "body": [
+      "In response to the displacement affecting communities in Jenin and Tulkarm, the Women Able to Change Society project placed particular emphasis on creating employment to support displaced women and strengthen their resilience.",
+      "Fourteen displaced women were employed in a children's summer camp that reached 160 participants. The experience was then replicated through a winter camp reaching 220.",
+      "Together the two camps gave children a safe environment for artistic, recreational and group activities. At the same time, the employment gave displaced women income, strengthened their self-confidence and enabled them to develop new leadership and facilitation skills. Both interventions contributed to social cohesion and community solidarity in the targeted communities.",
+      "A three-day evaluation and psychosocial support workshop of 25 sessions, and a separate three-day winter mental health camp, together benefited 50 women, using mindfulness, reflective writing and drawing to help participants express emotion and manage the pressures of the prevailing circumstances."
+     ]
+    },
+    "ar": {
+     "title": "أربع عشرة امرأة نازحة يدرن مخيمين صيفي وشتوي لـ380 طفلًا",
+     "tag": "تمكين المرأة",
+     "date": "2025",
+     "summary": "استجابة لواقع النزوح في جنين وطولكرم، وفّر المشروع عملًا مأجورًا لنساء نازحات لإدارة مخيمات الأطفال — دخل لهن ومساحة آمنة للأطفال.",
+     "body": [
+      "استجابةً لواقع النزوح الذي يؤثر على المجتمعات في جنين وطولكرم، أولى مشروع نساء قادرات على تغيير المجتمع اهتمامًا خاصًا بإيجاد فرص عمل لدعم النساء النازحات وتعزيز صمودهن.",
+      "جرى تشغيل أربع عشرة امرأة نازحة في مخيم صيفي للأطفال استهدف 160 مشاركًا، ثم تكرّرت التجربة في مخيم شتوي استهدف 220.",
+      "ووفّر المخيمان للأطفال بيئة آمنة لأنشطة فنية وترفيهية وجماعية، فيما وفّر التشغيل للنساء النازحات دخلًا وعزّز ثقتهن بأنفسهن ومكّنهن من تطوير مهارات جديدة في القيادة والتيسير. وأسهم التدخلان في تعزيز التماسك الاجتماعي والتضامن المجتمعي.",
+      "كما استفادت 50 سيدة من ورشة تقييم ودعم نفسي اجتماعي على مدار ثلاثة أيام شملت 25 جلسة، ومن مخيم شتوي متخصص في الصحة النفسية لثلاثة أيام، استُخدمت فيهما اليقظة الذهنية والكتابة التأملية والرسم لمساعدة المشاركات على التعبير عن مشاعرهن وإدارة ضغوط الظروف القائمة."
+     ]
+    }
+   },
+   {
+    "slug": "scholarships-2025",
+    "photo": "conference-hall",
+    "area": "education",
+    "project": "right-to-education",
+    "date": "2025",
+    "en": {
+     "title": "130 scholarships and 181 jobs: the Right to Education Support Project 2",
+     "tag": "Education",
+     "date": "2025",
+     "summary": "Scholarships covering tuition for 130 students, an intensive remedial programme for 1,100 school students, and 181 employment opportunities created.",
+     "body": [
+      "Throughout 2025 the Right to Education Support Project 2 responded to the financial and academic barriers facing Palestinian students through four complementary areas: scholarships for low-income students, critical thinking and research skills, rights-based advocacy, and remedial teaching for school students.",
+      "Implementation rates for most targeted results ranged between 95% and 100%.",
+      "Scholarship coordinators were contracted, an updated selection protocol adopted and an electronic application form introduced to make screening fair and efficient. HDIP coordinated with four partner Palestinian universities, including Birzeit University and the Arab American University, to nominate eligible students. Scholarships covering tuition fees and educational costs went to 130 students — 96 female and 34 male.",
+      "An intensive remedial education programme was established across the North, Central and South regions, with 34 classes for students experiencing learning difficulties. 1,100 school students benefited from 3,129 actual teaching hours across Arabic, English, mathematics, science and life skills. Pre- and post-assessments showed noticeable improvement in academic performance and self-confidence.",
+      "Across its components the project created 181 permanent and temporary employment opportunities for qualified educational and administrative personnel."
+     ]
+    },
+    "ar": {
+     "title": "130 منحة دراسية و181 فرصة عمل: مشروع دعم الحق في التعليم 2",
+     "tag": "التعليم",
+     "date": "2025",
+     "summary": "منح تغطي الرسوم لـ130 طالبًا، وبرنامج تعويضي مكثف لـ1,100 طالب مدرسة، و181 فرصة عمل.",
+     "body": [
+      "خلال عام 2025 استجاب مشروع دعم الحق في التعليم 2 للعوائق المالية والأكاديمية التي تواجه الطلبة الفلسطينيين عبر أربعة مجالات متكاملة: المنح الدراسية للطلبة محدودي الدخل، وتنمية التفكير النقدي ومهارات البحث، والمناصرة الحقوقية، والتعليم التعويضي لطلبة المدارس.",
+      "وتراوحت نسب التنفيذ لمعظم النتائج المستهدفة بين 95% و100%.",
+      "جرى التعاقد مع منسقي منح، واعتُمد بروتوكول اختيار محدّث ونموذج تقديم إلكتروني لجعل الفرز عادلًا وفعّالًا. ونسّق البرنامج مع أربع جامعات فلسطينية شريكة، منها جامعة بيرزيت والجامعة العربية الأمريكية، لترشيح الطلبة المؤهلين. وذهبت المنح التي تغطي الرسوم والتكاليف التعليمية إلى 130 طالبًا — 96 من الإناث و34 من الذكور.",
+      "وأُنشئ برنامج تعليم تعويضي مكثف في المناطق الشمالية والوسطى والجنوبية، شمل 34 صفًا للطلبة الذين يواجهون صعوبات تعلّمية. واستفاد 1,100 طالب مدرسة من 3,129 ساعة تدريس فعلية في اللغة العربية والإنجليزية والرياضيات والعلوم والمهارات الحياتية. وأظهرت التقييمات القبلية والبعدية تحسنًا ملحوظًا في الأداء الأكاديمي والثقة بالنفس.",
+      "وعبر مكوّناته أوجد المشروع 181 فرصة عمل دائمة ومؤقتة للكوادر التعليمية والإدارية المؤهلة."
+     ]
+    }
+   }
+  ],
+  "PHASES": {
+   "right-to-education": {
+    "2025": {
+     "en": {
+      "headline": "Two complementary pathways: awareness against dropout, and academic capacity.",
+      "notes": [
+       "Despite complex field and political challenges the project maintained a high level of continuity and strong implementation rates, supported by the flexibility of project teams, the competence of trainers, and continuous cooperation with schools and universities.",
+       "A second strand, the Right to Education Support Project 2, responded to the financial and academic barriers facing students through scholarships, skills development, rights-based advocacy and remedial teaching. Implementation rates for most targeted results ranged between 95% and 100%."
+      ],
+      "results": [
+       "100 awareness-raising sessions, producing an 80% increase in participants' awareness of the importance of education.",
+       "3,300 students reached through the general training programme, delivered via 8 centres at 144 training hours per centre.",
+       "3,216 students in the Gaza Strip reached through intensive remedial courses across 67 classes in 3 locations.",
+       "768 students (460 female, 308 male) in workshops on scientific research, technology and life skills.",
+       "200 students from 8 local universities in the Scientific Research Ethics Campaign.",
+       "130 students (96 female, 34 male) received scholarships covering tuition and educational costs, at a 95% implementation rate.",
+       "170 students (45 female, 125 male) in rights-based workshops on the Right to Education.",
+       "1,100 school students in an intensive remedial programme across 34 classes, delivering 3,129 actual teaching hours.",
+       "181 permanent and temporary employment opportunities created for educational and administrative personnel."
+      ]
+     },
+     "ar": {
+      "headline": "مساران متكاملان: التوعية للحد من التسرب، وبناء القدرات الأكاديمية.",
+      "notes": [
+       "رغم التحديات الميدانية والسياسية المعقّدة، حافظ المشروع على مستوى عالٍ من الاستمرارية وحقق نسب تنفيذ مرتفعة، بفضل مرونة فرق العمل وكفاءة المدربين والتعاون المستمر مع المدارس والجامعات.",
+       "واستجاب مسار ثانٍ، مشروع دعم الحق في التعليم 2، للعوائق المالية والأكاديمية التي تواجه الطلبة عبر المنح وتنمية المهارات والمناصرة الحقوقية والتعليم التعويضي. وتراوحت نسب التنفيذ لمعظم النتائج المستهدفة بين 95% و100%."
+      ],
+      "results": [
+       "100 جلسة توعوية أسهمت في زيادة وعي المشاركين بأهمية التعليم بنسبة 80%.",
+       "3,300 طالب وطالبة عبر البرنامج التدريبي العام في 8 مراكز بواقع 144 ساعة تدريبية لكل مركز.",
+       "3,216 طالبًا في قطاع غزة عبر دورات تعويضية مكثفة في 67 صفًا و3 مواقع.",
+       "768 طالبًا (460 إناث و308 ذكور) في ورش البحث العلمي والتكنولوجيا والمهارات الحياتية.",
+       "200 طالب من 8 جامعات محلية في حملة أخلاقيات البحث العلمي.",
+       "130 طالبًا (96 إناث و34 ذكور) حصلوا على منح تغطي الرسوم والتكاليف التعليمية بنسبة تنفيذ 95%.",
+       "170 طالبًا (45 إناث و125 ذكور) في ورش حقوقية وتوعوية حول الحق في التعليم.",
+       "1,100 طالب مدرسة في برنامج تعويضي مكثف عبر 34 صفًا، بواقع 3,129 ساعة تدريس فعلية.",
+       "181 فرصة عمل دائمة ومؤقتة للكوادر التعليمية والإدارية."
+      ]
+     }
+    }
+   },
+   "women-able": {
+    "2025": {
+     "en": {
+      "headline": "Economic empowerment, employment for displaced women, and psychosocial support.",
+      "notes": [
+       "The 2025 phase added an economic strand, \"Skill and Idea\", and responded to displacement in Jenin and Tulkarm by creating paid work for displaced women running children's camps."
+      ],
+      "results": [
+       "100 participants trained in advanced beauty and personal care, digital marketing, photography and design, with workshops on advocacy, social justice and gender equality.",
+       "5 product marketing exhibitions involving 100 beneficiaries (70 women, 30 men), creating direct marketing opportunities and links to civil society and decision-makers.",
+       "14 displaced women employed across a summer camp reaching 160 participants and a winter camp reaching 220.",
+       "A three-day evaluation and psychosocial support workshop — 25 sessions for 25 women, using mindfulness, reflective writing and drawing.",
+       "A three-day winter mental health camp for 25 women from marginalised and displaced communities.",
+       "3 alliance-building activities with 20 local leaders, and 4 roundtables with 40 civil society representatives and decision-makers.",
+       "10 further alliance-building meetings reaching 30 participants, and a concluding training seminar in Ramallah for 52 participants."
+      ]
+     },
+     "ar": {
+      "headline": "التمكين الاقتصادي وتشغيل النساء النازحات والدعم النفسي الاجتماعي.",
+      "notes": [
+       "أضافت مرحلة 2025 مسارًا اقتصاديًا بعنوان «حِرفة وفكرة»، واستجابت لواقع النزوح في جنين وطولكرم بإيجاد فرص عمل مأجورة للنساء النازحات في مخيمات الأطفال."
+      ],
+      "results": [
+       "تدريب 100 مشارك ومشاركة على التجميل المتقدم والعناية الشخصية والتسويق الرقمي والتصوير والتصميم، مع ورش في المناصرة والعدالة الاجتماعية والمساواة الجندرية.",
+       "5 معارض لتسويق منتجات النساء بمشاركة 100 مستفيد (70 امرأة و30 رجلًا)، أتاحت فرص تسويق مباشرة وتشبيكًا مع المجتمع المدني وصانعي القرار.",
+       "تشغيل 14 امرأة نازحة في مخيم صيفي استهدف 160 مشاركًا ومخيم شتوي استهدف 220.",
+       "ورشة تقييم ودعم نفسي اجتماعي على مدار ثلاثة أيام — 25 جلسة لـ25 سيدة، باستخدام اليقظة الذهنية والكتابة التأملية والرسم.",
+       "مخيم شتوي متخصص في الصحة النفسية على مدار ثلاثة أيام لـ25 سيدة من المجتمعات المهمّشة والنازحة.",
+       "3 أنشطة لبناء التحالفات بمشاركة 20 قياديًا محليًا، و4 موائد مستديرة بمشاركة 40 من ممثلي المجتمع المدني وصانعي القرار.",
+       "10 لقاءات إضافية لبناء التحالفات استهدفت 30 مشاركًا، وندوة تدريبية ختامية في رام الله بمشاركة 52 شخصًا."
+      ]
+     }
+    }
+   },
+   "women-leaders": {
+    "2025": {
+     "en": {
+      "headline": "A 30-hour intensive structured around four components.",
+      "notes": [
+       "The training brought together women activists and women interested in running for office, from different geographic and marginalised areas."
+      ],
+      "results": [
+       "Political and knowledge component: the legal and institutional framework, and the mechanics of local elections under applicable Palestinian law.",
+       "Leadership and communication: tools for influence, leadership, effective communication and building cross-sectoral alliances.",
+       "Campaign management and planning: developing an electoral platform, managing resources and media messaging.",
+       "Experience-sharing and networking: direct meetings with former women leaders.",
+       "A noticeable improvement in participants' political and legal awareness and their capacity to analyse political issues.",
+       "A number of participants expressed their intention to run for leadership positions in their local councils."
+      ]
+     },
+     "ar": {
+      "headline": "تدريب مكثف من 30 ساعة مبني على أربعة مكوّنات.",
+      "notes": [
+       "جمع التدريب ناشطات ونساء مهتمات بالترشح للانتخابات من مناطق جغرافية مختلفة ومن مجتمعات مهمّشة."
+      ],
+      "results": [
+       "المكوّن السياسي والمعرفي: الإطار القانوني والمؤسسي وآليات الانتخابات المحلية وفق القوانين والأنظمة الفلسطينية السارية.",
+       "مكوّن القيادة والاتصال: أدوات التأثير والقيادة والتواصل الفعّال وبناء التحالفات المجتمعية والسياسية العابرة للقطاعات.",
+       "مكوّن إدارة الحملات والتخطيط: التطبيق العملي لإدارة الحملة الانتخابية من بناء البرنامج الانتخابي إلى إدارة الموارد والرسائل الإعلامية.",
+       "مكوّن تبادل الخبرات والتشبيك: لقاءات مباشرة مع قياديات سابقات لتبادل التجارب والدروس والاستراتيجيات العملية.",
+       "تحسّن ملحوظ في الوعي السياسي والقانوني لدى المشاركات وقدرتهن على تحليل القضايا السياسية.",
+       "عبّر عدد من المشاركات عن نيتهن الترشح لمواقع قيادية في مجالسهن المحلية."
+      ]
+     }
+    }
+   },
+   "youth-leadership": {
+    "2025": {
+     "en": {
+      "headline": "A 30-hour intensive across democratic leadership, human rights and advocacy.",
+      "notes": [
+       "Delivered over three consecutive days of focused programme activity."
+      ],
+      "results": [
+       "Democratic leadership: participatory approaches, collective leadership, and respect for diversity and pluralism.",
+       "Human rights and the international framework: fundamental rights, international instruments, and mechanisms for promoting and defending them.",
+       "Advocacy and campaigning: strategic planning skills and practical tools for designing and running campaigns.",
+       "Strengthened critical and analytical thinking, supporting more informed decision-making.",
+       "Increased self-confidence alongside noticeable improvement in academic engagement and performance.",
+       "Expanded social and professional networks across universities, overcoming geographic separation between campuses.",
+       "Improved employability skills — time management, leadership, communication, negotiation and teamwork."
+      ]
+     },
+     "ar": {
+      "headline": "تدريب مكثف من 30 ساعة في القيادة الديمقراطية وحقوق الإنسان والمناصرة.",
+      "notes": [
+       "نُفِّذ على مدار ثلاثة أيام متتالية من الأنشطة البرامجية المركّزة."
+      ],
+      "results": [
+       "القيادة الديمقراطية: المقاربات التشاركية وترسيخ مبادئ القيادة الجماعية واحترام التنوع والتعددية.",
+       "حقوق الإنسان والإطار الدولي: الحقوق الأساسية والمواثيق الدولية وآليات تعزيزها والدفاع عنها.",
+       "المناصرة والحملات: مهارات التخطيط الاستراتيجي وأدوات عملية لتصميم حملات المناصرة وتنفيذها.",
+       "تعزيز التفكير النقدي والتحليلي بما يدعم اتخاذ قرارات أكثر استنارة.",
+       "زيادة الثقة بالنفس مع تحسّن ملحوظ في الانخراط والأداء الأكاديمي.",
+       "توسيع الشبكات الاجتماعية والمهنية بين الجامعات وتجاوز الفصل الجغرافي بين الحرم الجامعية.",
+       "تحسين مهارات التوظيف — إدارة الوقت والقيادة والتواصل والتفاوض والعمل الجماعي."
+      ]
+     }
+    }
+   }
+  },
+  "REPORTS": {
+   "2025": {
+    "en": {
+     "year": "2025",
+     "title": "Annual Report 2025",
+     "lead": "Strategic directions, achievements, results and recommendations for 2025.",
+     "summary_title": "Strategic directions",
+     "summary": [
+      "Throughout 2025, our strategy focused on advancing community development by directing our efforts and resources toward unlocking the potential of groups most in need of support, particularly young people and women. These interventions reflected our firm belief that the progress and prosperity of Palestinian society are closely linked to empowering its vital pillars across four interconnected areas: health, education, empowerment and self-reliance."
+     ],
+     "pillars_title": "Four strategic directions",
+     "pillars": [
+      [
+       "A development vision for comprehensive community empowerment",
+       "HDIP positioned health education and awareness as a key pillar for improving public health and strengthening community awareness, delivering awareness and educational programmes through interactive sessions and discussion forums in academic institutions and schools, complemented by digital campaigns on social media.",
+       [
+        "Promoting mental health and community resilience.",
+        "Increasing awareness of reproductive health and family well-being.",
+        "Promoting healthy nutrition and healthy lifestyle practices.",
+        "Strengthening prevention and reducing the spread and impact of chronic diseases."
+       ]
+      ],
+      [
+       "Women's economic empowerment and vocational skills development",
+       "Recognising women's economic independence as a foundation for resilient communities, HDIP ran specialised workshops and courses in areas with growing demand in the local market, going beyond technical skill into small-business management, entrepreneurship and innovation.",
+       [
+        "Beauty and hairdressing — practical skills for small businesses or employment.",
+        "Photography and digital production — visual content skills opening freelance pathways.",
+        "Resin crafts and handicrafts — creativity combined with income generation."
+       ]
+      ],
+      [
+       "Strengthening scientific research and the academic environment",
+       "HDIP positioned scientific research as a pathway for strengthening education, leading specialised seminars, awareness lectures and interactive workshops.",
+       [
+        "Encouraging researchers and emerging academics to adopt sound research methodologies.",
+        "Strengthening community awareness of research as a tool for knowledge generation.",
+        "Supporting evidence-based learning and the addressing of strategic challenges."
+       ]
+      ],
+      [
+       "Advancing knowledge integration through the Right to Education projects",
+       "HDIP continued to implement and manage the Right to Education project as a practical model for integrating educational and awareness-raising interventions.",
+       [
+        "Addressing learning gaps resulting from exceptional and challenging circumstances.",
+        "Promoting critical thinking, problem-solving and positive community engagement.",
+        "Incorporating public health concepts into non-formal and extracurricular learning."
+       ]
+      ]
+     ],
+     "outputs_title": "Key achievements and results",
+     "outputs": [
+      [
+       "Health activities and programmes",
+       "73 first aid courses for 1,460 students; 8 women's mental health courses for 160 women; 6 health education workshops for 420 students — approximately 2,040 direct beneficiaries from the main health activities."
+      ],
+      [
+       "Women Able to Change Society",
+       "4 governorates through 16 local sites; 100 participants in \"Skill and Idea\" training; 5 product exhibitions with 100 beneficiaries; 14 displaced women employed across two children's camps reaching 380; 50 women in evaluation, psychosocial support and a winter mental health camp; 12 coordination meetings, 10 alliance-building meetings, 4 roundtables and a concluding seminar for 52."
+      ],
+      [
+       "Right to Education and its components",
+       "100 awareness sessions producing an 80% rise in awareness; 3,300 students through 8 centres; 3,216 students in Gaza through 67 remedial classes; 768 students in research, technology and life-skills workshops; 200 students from 8 universities in the research ethics campaign; 130 scholarships; 170 students in rights-based workshops; 1,100 school students across 34 remedial classes; 181 employment opportunities created."
+      ],
+      [
+       "Women Leaders in Local Councils",
+       "A 30-hour intensive for women activists and prospective candidates from diverse geographic and marginalised areas, after which a number expressed their intention to pursue candidacy."
+      ],
+      [
+       "Strengthening Young Leadership in Universities",
+       "A 30-hour intensive covering democratic leadership, human rights, advocacy and campaigning, with noticeable improvement in academic performance, self-confidence and inter-university networking."
+      ],
+      [
+       "Overall impact",
+       "More than 11,500 direct beneficiaries, 181 employment opportunities, and dozens of networking, coordination and awareness events strengthening cooperation with civil society, academic and community institutions."
+      ]
+     ],
+     "me_title": "Monitoring, evaluation and lessons learned",
+     "me": [
+      [
+       "Pre- and post-assessments",
+       "Used to measure improvements in participants' knowledge and skills, particularly in vocational and rights-based training."
+      ],
+      [
+       "Field reports and meeting minutes",
+       "Continuous documentation through trainers' reports, field coordinators' reports, meeting minutes and field visit records."
+      ],
+      [
+       "Focus group discussions",
+       "Collecting participants' experiences, testimonies and success stories, particularly from displaced women and children in the camps."
+      ],
+      [
+       "Flexibility in crisis management",
+       "Psychological first aid, emotional release and crisis management showed that psychosocial support and adaptability are essential to development work in unstable environments."
+      ],
+      [
+       "Linking skills with economic opportunity",
+       "Women's economic empowerment is a pathway to social and rights-based empowerment; greater financial independence strengthens capacity to participate."
+      ]
+     ],
+     "recs_title": "Recommendations",
+     "recs": [
+      [
+       "Expand career guidance programmes",
+       "Cover a wider range of fields and specialisations, with greater emphasis on practical training and hands-on learning."
+      ],
+      [
+       "Develop an online platform",
+       "Facilitate communication among students, trainers and parents, and the exchange of information, materials and resources."
+      ],
+      [
+       "Increase cultural and arts activities",
+       "Promote cultural awareness and strengthen recognition of the role of arts in community development."
+      ],
+      [
+       "Strengthen volunteer engagement",
+       "Foster social responsibility while developing leadership, teamwork and civic engagement skills."
+      ],
+      [
+       "Targeted training for women with disabilities and unemployed youth",
+       "With a particular focus on empowering marginalised and underserved groups."
+      ],
+      [
+       "Establish a permanent coordination mechanism",
+       "Between civil society and government institutions, with annual forums for knowledge and experience sharing."
+      ],
+      [
+       "Build a unified digital beneficiary database",
+       "To track beneficiaries' development pathways and support systematic measurement of longer-term outcomes."
+      ],
+      [
+       "Expand geographic coverage",
+       "Extend the three projects into Area C, refugee camps and the most marginalised communities."
+      ],
+      [
+       "Establish an HDIP Alumni Network",
+       "To sustain long-term networking and strengthen youth and women's networks nationally."
+      ]
+     ]
+    },
+    "ar": {
+     "year": "2025",
+     "title": "التقرير السنوي 2025",
+     "lead": "التوجهات الاستراتيجية والمخرجات والنتائج والتوصيات لعام 2025.",
+     "summary_title": "التوجهات الاستراتيجية",
+     "summary": [
+      "تمحورت استراتيجيتنا خلال عام 2025 حول دفع عجلة التنمية المجتمعية، إذ وجّهنا ثقل جهودنا ومواردنا نحو استنهاض الطاقات الكامنة لدى الفئات الأكثر احتياجًا للدعم، وفي مقدمتها الشباب والمرأة. وجاءت هذه الأنشطة تجسيدًا لقناعتنا الراسخة بأن رفعة المجتمع الفلسطيني وازدهاره يرتبطان ارتباطًا وثيقًا بتمكين ركائزه الحيوية في أربعة محاور متقاطعة: الصحة، والتعليم، والتمكين، والاعتماد على الذات."
+     ],
+     "pillars_title": "أربعة توجهات استراتيجية",
+     "pillars": [
+      [
+       "الرؤية التنموية والتمكين المجتمعي الشامل",
+       "تبنّى البرنامج التثقيف الصحي دعامة رئيسية للارتقاء بالصحة العامة وتحصين الوعي المجتمعي، وأطلق حزمة من البرامج التوعوية عبر لقاءات تفاعلية وحلقات نقاشية في الصروح الأكاديمية والمدرسية، إلى جانب حملات رقمية عبر وسائل التواصل الاجتماعي.",
+       [
+        "تعزيز الصحة النفسية والصلابة المجتمعية.",
+        "رفع الوعي بالصحة الإنجابية وبناء الأسرة.",
+        "نشر ثقافة التغذية السليمة وأنماط الحياة الصحية.",
+        "تعزيز آليات الوقاية والحد من انتشار الأمراض المزمنة."
+       ]
+      ],
+      [
+       "التمكين الاقتصادي والتدريب المهني للمرأة",
+       "انطلاقًا من أن الاستقلال الاقتصادي للمرأة أساس لبناء مجتمعات صامدة، نفّذ البرنامج ورشًا ودورات متخصصة في مجالات يتزايد الطلب عليها في السوق المحلي، تجاوزت المهارات التقنية إلى إدارة المشاريع الصغيرة وريادة الأعمال والابتكار.",
+       [
+        "التجميل والحلاقة — مهارات عملية لتأسيس مشاريع صغيرة أو للعمل.",
+        "التصوير والإنتاج الرقمي — مهارات المحتوى البصري وفرص العمل الحر.",
+        "أشغال الريزن والحرف اليدوية — الإبداع مقترنًا بتوليد الدخل."
+       ]
+      ],
+      [
+       "تعزيز البحث العلمي والبيئة الأكاديمية",
+       "اعتبر البرنامج البحث العلمي مسارًا لتعزيز العملية التعليمية، فقاد ندوات متخصصة ومحاضرات توعوية وورش عمل تفاعلية.",
+       [
+        "تشجيع الباحثين والأكاديميين الناشئين على اعتماد منهجيات بحثية سليمة.",
+        "تعزيز الوعي المجتمعي بالبحث العلمي كأداة لإنتاج المعرفة.",
+        "دعم التعلّم القائم على الأدلة ومعالجة التحديات الاستراتيجية."
+       ]
+      ],
+      [
+       "تكامل المعرفة عبر مشاريع الحق في التعليم",
+       "واصل البرنامج تنفيذ وإدارة مشروع الحق في التعليم بوصفه نموذجًا عمليًا لدمج التدخلات التعليمية والتوعوية.",
+       [
+        "معالجة الفجوات التعليمية الناجمة عن الظروف الاستثنائية والصعبة.",
+        "تعزيز التفكير النقدي وحل المشكلات والانخراط المجتمعي الإيجابي.",
+        "دمج مفاهيم الصحة العامة في التعليم غير الرسمي والأنشطة اللامنهجية."
+       ]
+      ]
+     ],
+     "outputs_title": "أبرز المخرجات والنتائج",
+     "outputs": [
+      [
+       "الأنشطة والبرامج الصحية",
+       "73 دورة إسعاف أولي لـ1,460 طالبًا؛ 8 دورات في الصحة النفسية للمرأة لـ160 سيدة؛ 6 ورشات تثقيف صحي لـ420 طالبًا — بإجمالي نحو 2,040 مستفيدًا من الأنشطة الصحية الرئيسية."
+      ],
+      [
+       "نساء قادرات على تغيير المجتمع",
+       "4 محافظات عبر 16 موقعًا محليًا؛ 100 مشارك في تدريب «حِرفة وفكرة»؛ 5 معارض بمشاركة 100 مستفيد؛ تشغيل 14 امرأة نازحة في مخيمين للأطفال استهدفا 380؛ 50 سيدة في التقييم والدعم النفسي ومخيم الصحة النفسية الشتوي؛ 12 لقاء تنسيق و10 لقاءات تحالف و4 موائد مستديرة وندوة ختامية لـ52 مشاركًا."
+      ],
+      [
+       "الحق في التعليم ومكوّناته",
+       "100 جلسة توعوية رفعت الوعي بنسبة 80%؛ 3,300 طالب عبر 8 مراكز؛ 3,216 طالبًا في غزة عبر 67 صفًا تعويضيًا؛ 768 طالبًا في ورش البحث والتكنولوجيا والمهارات الحياتية؛ 200 طالب من 8 جامعات في حملة أخلاقيات البحث؛ 130 منحة دراسية؛ 170 طالبًا في ورش حقوقية؛ 1,100 طالب مدرسة في 34 صفًا تعويضيًا؛ 181 فرصة عمل."
+      ],
+      [
+       "نساء قياديات في المجالس المحلية",
+       "تدريب مكثف من 30 ساعة لناشطات ومرشحات محتملات من مناطق جغرافية متنوعة ومهمّشة، عبّر بعدها عدد منهن عن نيتهن الترشح."
+      ],
+      [
+       "تعزيز القيادات الشابة في الجامعات",
+       "تدريب مكثف من 30 ساعة في القيادة الديمقراطية وحقوق الإنسان والمناصرة والحملات، مع تحسّن ملحوظ في الأداء الأكاديمي والثقة بالنفس والتشبيك بين الجامعات."
+      ],
+      [
+       "الأثر الإجمالي",
+       "أكثر من 11,500 مستفيد مباشر، و181 فرصة عمل، وعشرات فعاليات التشبيك والتنسيق والتوعية التي عزّزت التعاون مع مؤسسات المجتمع المدني والأكاديمية والمجتمعية."
+      ]
+     ],
+     "me_title": "المتابعة والتقييم والدروس المستفادة",
+     "me": [
+      [
+       "التقييم القبلي والبعدي",
+       "لقياس التحسّن في معرفة المشاركين ومهاراتهم، خاصة في التدريب المهني والحقوقي."
+      ],
+      [
+       "التقارير الميدانية والمحاضر",
+       "توثيق مستمر عبر تقارير المدربين ومنسقي الميدان ومحاضر الاجتماعات وسجلات الزيارات الميدانية."
+      ],
+      [
+       "مجموعات النقاش المركّزة",
+       "لجمع تجارب المشاركين وشهاداتهم وقصص نجاحهم، خاصة من النساء النازحات والأطفال في المخيمات."
+      ],
+      [
+       "المرونة في إدارة الأزمات",
+       "أظهرت أنشطة الإسعاف النفسي والتفريغ الانفعالي وإدارة الأزمات أن الدعم النفسي الاجتماعي والقدرة على التكيّف مكوّنان أساسيان للعمل التنموي في البيئات غير المستقرة."
+      ],
+      [
+       "ربط المهارة بالفرصة الاقتصادية",
+       "التمكين الاقتصادي للمرأة مسار نحو التمكين الاجتماعي والحقوقي؛ فالاستقلال المالي يعزّز قدرتها على المشاركة."
+      ]
+     ],
+     "recs_title": "التوصيات",
+     "recs": [
+      [
+       "توسيع برامج التوجيه المهني",
+       "لتشمل مجالات وتخصصات أوسع، مع تركيز أكبر على التدريب العملي والتعلّم التطبيقي."
+      ],
+      [
+       "تطوير منصة إلكترونية",
+       "لتسهيل التواصل بين الطلبة والمدربين وأولياء الأمور وتبادل المعلومات والمواد والموارد."
+      ],
+      [
+       "زيادة الأنشطة الثقافية والفنية",
+       "لتعزيز الوعي الثقافي وترسيخ الاعتراف بدور الفنون في التنمية المجتمعية."
+      ],
+      [
+       "تعزيز فرص العمل التطوعي",
+       "لترسيخ روح المسؤولية الاجتماعية وتطوير مهارات القيادة والعمل الجماعي والانخراط المدني."
+      ],
+      [
+       "برامج تدريبية موجّهة للنساء ذوات الإعاقة والشباب العاطلين عن العمل",
+       "مع تركيز خاص على تمكين الفئات المهمّشة والأقل حظًا."
+      ],
+      [
+       "إنشاء آلية تنسيق دائمة",
+       "بين مؤسسات المجتمع المدني والمؤسسات الحكومية، مع منتديات سنوية لتبادل المعرفة والخبرات."
+      ],
+      [
+       "بناء قاعدة بيانات رقمية موحّدة للمستفيدين",
+       "لتتبّع مساراتهم التنموية ودعم القياس المنهجي للنتائج والأثر على المدى الأطول."
+      ],
+      [
+       "توسيع التغطية الجغرافية",
+       "لتشمل المشاريع الثلاثة مناطق «ج» والمخيمات والمجتمعات الأكثر تهميشًا."
+      ],
+      [
+       "إنشاء «شبكة خريجي البرنامج»",
+       "للحفاظ على التشبيك طويل الأمد وتقوية شبكات الشباب والنساء على المستوى الوطني."
+      ]
+     ]
+    }
+   },
+   "2023": {
+    "en": {
+     "year": "2023",
+     "title": "Annual Report 2023",
+     "lead": "Health, education and social and economic justice — the three areas HDIP focused on in 2023.",
+     "summary_title": "Programme directions",
+     "summary": [
+      "During 2023, HDIP focused on three main areas: health issues, education, and social, economic and development justice. These areas are particularly important because of their role in achieving genuine community development and building a society in which individuals' basic needs are met.",
+      "HDIP placed particular emphasis on youth and women, recognising that these groups are among those most in need of support and assistance, and that reaching them extends the programme's services to the widest possible segment of society."
+     ],
+     "pillars_title": "Health for All in 2023",
+     "pillars": [
+      [
+       "The right to health",
+       "The principle that underpins and is promoted throughout all HDIP programmes, as a fundamental human right. Every individual should have access to the healthcare services necessary to achieve and maintain good health.",
+       []
+      ],
+      [
+       "Reducing health gaps",
+       "Raising awareness of \"Health for All\" to reduce disparities arising from economic, social or geographical factors, ensuring services reach marginalised groups.",
+       []
+      ],
+      [
+       "Prevention and awareness",
+       "Training that emphasises prevention and health education; when individuals receive accurate information they become better able to make informed decisions.",
+       []
+      ],
+      [
+       "Community participation",
+       "Encouraging local community organisations to participate in health-related decision-making, strengthening programme effectiveness and health policy influence.",
+       []
+      ],
+      [
+       "Improving quality of life",
+       "Ensuring access to healthcare to improve quality of life and life expectancy, through inclusion, prevention and community participation.",
+       []
+      ]
+     ],
+     "outputs_title": "Activities delivered",
+     "outputs": [
+      [
+       "Health awareness workshops",
+       "222 workshops reaching approximately 2,000 participants across the West Bank and Gaza Strip, covering reproductive health, school health, personal hygiene, first aid, healthy nutrition, environmental health, psychological first aid and child health."
+      ],
+      [
+       "Training in health education skills",
+       "200 participants trained to deliver workshops in their own communities, with particular emphasis on marginalised and remote areas far from service centres."
+      ],
+      [
+       "Awareness and advocacy campaigns",
+       "Campaigns in marginalised areas advocating for the provision of healthcare and primary healthcare services."
+      ],
+      [
+       "Specific health trainings",
+       "Reproductive health (Bethlehem); smoking cessation (Jenin); stress management (Ramallah); child health (Hebron, Jenin, Tulkarm); three environmental health courses; healthy habits for adults; emergency first aid across eight areas; crisis crowd management; psychological first aid (Jenin, Tulkarm); first aid for children in war situations."
+      ],
+      [
+       "Women Capable of Changing Society",
+       "Implemented in Hebron, Jenin and Tulkarm, with 23 trainees per governorate across 20 villages or towns each. Training covered personal and life skills, social media marketing for handicrafts, income-generating small businesses, access to finance, local election awareness, personal financial planning, ICT and women's mental health."
+      ],
+      [
+       "Women Leaders in Local Councils",
+       "62 training hours covering women's political empowerment, women's role in the electoral process, local election campaign management and effective participation, plus two exchange visits between project locations which produced a working paper on key strategies."
+      ],
+      [
+       "Youth Leadership Development in Universities",
+       "62 hours of advanced capacity building covering social media, political parties, participation, campaigns, gender, advocacy and lobbying, non-violence, leadership, democracy, human rights and networking."
+      ],
+      [
+       "Student in Need Fund campaign",
+       "An awareness campaign launched at seven local universities — Al-Quds Open, An-Najah National, Birzeit, Hebron, Al-Ahliya, Arab American and Al-Quds University–Abu Dis — using posters, brochures, workshops, discussion sessions and social media, with materials developed by the beneficiary students themselves."
+      ],
+      [
+       "Right to Education",
+       "An electronic survey found 99% of participants considered education important; 31% because it helps them obtain suitable employment and 20% because it strengthens their leadership abilities. Awareness workshops, science and life-skills courses, and three career guidance meetings in Bethlehem, Nablus and Gaza followed."
+      ]
+     ],
+     "recs_title": "Overall totals",
+     "recs": [
+      [
+       "78 activities",
+       "Total education and awareness activities implemented during 2023."
+      ],
+      [
+       "≈2,130 students",
+       "Total beneficiaries — approximately 602 male and 1,528 female."
+      ],
+      [
+       "23 students with disabilities",
+       "Included across the education and awareness activities."
+      ],
+      [
+       "222 workshops / ≈2,000 participants",
+       "Health awareness workshops across the West Bank and Gaza Strip."
+      ]
+     ],
+     "caveat": "The 2023 source document carries a note from its translator stating that the Arabic original contains number-formatting errors, and that the statistical tables should be verified against the original before publication. The per-activity figures are indeed internally inconsistent — the narrative and the statistical annex disagree (23 vs 35 awareness sessions; 21 vs 43 school courses), and in two cases the male and female sub-totals do not sum to the stated total. Only the overall totals above reconcile, so only those are published here. The per-activity breakdown is withheld pending the original document."
+    },
+    "ar": {
+     "year": "2023",
+     "title": "التقرير السنوي 2023",
+     "lead": "الصحة والتعليم والعدالة الاجتماعية والاقتصادية — المجالات الثلاثة التي ركّز عليها البرنامج في 2023.",
+     "summary_title": "توجهات البرنامج",
+     "summary": [
+      "خلال عام 2023 ركّز البرنامج على ثلاثة مجالات رئيسية: القضايا الصحية، والتعليم، والعدالة الاجتماعية والاقتصادية والتنموية. وتكتسب هذه المجالات أهمية خاصة لدورها في تحقيق تنمية مجتمعية حقيقية وبناء مجتمع تُلبّى فيه الاحتياجات الأساسية للأفراد.",
+      "وأولى البرنامج اهتمامًا خاصًا بالشباب والنساء، باعتبارهم من أكثر الفئات حاجة إلى الدعم والمساندة، وبما يتيح إيصال الخدمات إلى أوسع شريحة ممكنة من المجتمع."
+     ],
+     "pillars_title": "الصحة للجميع في 2023",
+     "pillars": [
+      [
+       "الحق في الصحة",
+       "المبدأ الذي تقوم عليه كل برامجنا بوصفه حقًا أساسيًا من حقوق الإنسان. ينبغي أن يحصل كل فرد على الخدمات الصحية اللازمة لبلوغ الصحة الجيدة والحفاظ عليها.",
+       []
+      ],
+      [
+       "تقليص الفجوات الصحية",
+       "التوعية بمفهوم «الصحة للجميع» للحد من التفاوتات الناتجة عن عوامل اقتصادية أو اجتماعية أو جغرافية، وضمان وصول الخدمات إلى الفئات المهمّشة.",
+       []
+      ],
+      [
+       "الوقاية والتوعية",
+       "تدريبات تركّز على الوقاية والتثقيف الصحي؛ فحين يحصل الأفراد على معلومات دقيقة يصبحون أقدر على اتخاذ قرارات مستنيرة.",
+       []
+      ],
+      [
+       "المشاركة المجتمعية",
+       "تشجيع المؤسسات المجتمعية على المشاركة في صنع القرار الصحي، بما يعزّز فعالية البرامج والتأثير في السياسات الصحية.",
+       []
+      ],
+      [
+       "تحسين جودة الحياة",
+       "ضمان الوصول إلى الرعاية الصحية لتحسين جودة الحياة ومتوسط العمر، عبر الشمول والوقاية والمشاركة المجتمعية.",
+       []
+      ]
+     ],
+     "outputs_title": "الأنشطة المنفذة",
+     "outputs": [
+      [
+       "ورش التوعية الصحية",
+       "222 ورشة استهدفت نحو 2,000 مشارك في الضفة الغربية وقطاع غزة، تناولت الصحة الإنجابية والصحة المدرسية والنظافة الشخصية والإسعافات الأولية والتغذية السليمة والصحة البيئية والإسعاف النفسي وصحة الطفل."
+      ],
+      [
+       "التدريب على مهارات التثقيف الصحي",
+       "تدريب 200 مشارك على تنفيذ ورش في مجتمعاتهم، مع تركيز خاص على المناطق المهمّشة والنائية البعيدة عن مراكز الخدمات."
+      ],
+      [
+       "حملات التوعية والمناصرة",
+       "حملات في المناطق المهمّشة للمناصرة من أجل توفير الرعاية الصحية وخدمات الرعاية الصحية الأولية."
+      ],
+      [
+       "تدريبات صحية متخصصة",
+       "الصحة الإنجابية (بيت لحم)؛ الإقلاع عن التدخين (جنين)؛ إدارة الضغوط (رام الله)؛ صحة الطفل (الخليل وجنين وطولكرم)؛ ثلاث دورات في الصحة البيئية؛ العادات الصحية للبالغين؛ الإسعاف الأولي الطارئ في ثماني مناطق؛ إدارة الحشود في الأزمات؛ الإسعاف النفسي (جنين وطولكرم)؛ إسعاف الأطفال في حالات الحرب."
+      ],
+      [
+       "نساء قادرات على تغيير المجتمع",
+       "نُفّذ في الخليل وجنين وطولكرم، بواقع 23 متدربة في كل محافظة و20 قرية أو بلدة لكل منها. غطّى التدريب المهارات الشخصية والحياتية والتسويق عبر وسائل التواصل للمنتجات اليدوية والمشاريع الصغيرة المدرّة للدخل والحصول على التمويل والتوعية بالانتخابات المحلية والتخطيط المالي الشخصي وتكنولوجيا المعلومات والصحة النفسية للمرأة."
+      ],
+      [
+       "نساء قياديات في المجالس المحلية",
+       "62 ساعة تدريبية غطّت التمكين السياسي للمرأة ودورها في العملية الانتخابية وإدارة الحملات الانتخابية المحلية والمشاركة الفعّالة، إضافة إلى زيارتين تبادليتين بين مواقع المشروع أثمرتا ورقة عمل بأبرز الاستراتيجيات."
+      ],
+      [
+       "تطوير القيادات الشابة في الجامعات",
+       "62 ساعة من بناء القدرات المتقدم شملت وسائل التواصل والأحزاب السياسية والمشاركة والحملات والنوع الاجتماعي والمناصرة وكسب التأييد واللاعنف والقيادة والديمقراطية وحقوق الإنسان والتشبيك."
+      ],
+      [
+       "حملة صندوق الطالب المحتاج",
+       "حملة توعوية في سبع جامعات محلية — القدس المفتوحة والنجاح الوطنية وبيرزيت والخليل والأهلية والعربية الأمريكية وجامعة القدس–أبو ديس — باستخدام الملصقات والنشرات والورش وجلسات النقاش ووسائل التواصل، وقد شارك الطلبة المستفيدون أنفسهم في إعداد موادها."
+      ],
+      [
+       "الحق في التعليم",
+       "أظهر استبيان إلكتروني أن 99% من المشاركين يعتبرون التعليم مهمًا؛ 31% لأنه يساعدهم في الحصول على عمل مناسب و20% لأنه يقوّي شخصيتهم القيادية. وتلت ذلك ورش توعية ودورات في العلوم والمهارات الحياتية وثلاثة لقاءات إرشاد مهني في بيت لحم ونابلس وغزة."
+      ]
+     ],
+     "recs_title": "المجاميع الكلية",
+     "recs": [
+      [
+       "78 نشاطًا",
+       "إجمالي الأنشطة التعليمية والتوعوية المنفذة خلال 2023."
+      ],
+      [
+       "نحو 2,130 طالبًا",
+       "إجمالي المستفيدين — نحو 602 من الذكور و1,528 من الإناث."
+      ],
+      [
+       "23 طالبًا من ذوي الإعاقة",
+       "ضمن الأنشطة التعليمية والتوعوية."
+      ],
+      [
+       "222 ورشة / نحو 2,000 مشارك",
+       "ورش التوعية الصحية في الضفة الغربية وقطاع غزة."
+      ]
+     ],
+     "caveat": "يحمل مستند عام 2023 ملاحظة من مترجمه تفيد بأن الأصل العربي يحتوي أخطاء في تنسيق الأرقام، وأن الجداول الإحصائية ينبغي التحقق منها مقابل الأصل قبل النشر. والأرقام التفصيلية لكل نشاط غير متسقة داخليًا بالفعل — إذ يختلف السرد عن الملحق الإحصائي (23 مقابل 35 جلسة توعية؛ 21 مقابل 43 دورة مدرسية)، وفي حالتين لا يتطابق مجموع الذكور والإناث مع المجموع المذكور. وتتسق المجاميع الكلية أعلاه وحدها، لذا نُشرت وحدها، مع حجب التفصيل بانتظار المستند الأصلي."
+    }
+   },
+   "2022": {
+    "en": {
+     "year": "2022",
+     "title": "Annual Report 2022",
+     "lead": "Health, education and social and economic justice, delivered largely through the community knowledge libraries.",
+     "summary_title": "Programme directions",
+     "summary": [
+      "During 2022, HDIP focused its programmes on three main areas: health issues, education, and social and economic justice — areas considered essential to achieving genuine community development and building a society in which individuals' basic needs are met.",
+      "HDIP placed particular emphasis on youth and women, considering them the groups most in need of support, advocacy, assistance and empowerment. Women account for more than 50% of the population, while youth of both genders represent approximately 75%, giving the institute an opportunity to reach the broadest possible segment of society."
+     ],
+     "pillars_title": "Mechanism for implementing the objectives",
+     "pillars": [
+      [
+       "Publishing and conducting research and studies",
+       "Research, studies and scientific projects supporting statistical programmes and university students' specialised projects.",
+       [
+        "Preparing research projects and proposals on community topics.",
+        "Conducting studies and assisting in their publication and dissemination.",
+        "Training students, particularly persons with disabilities and women, in conducting research.",
+        "A comprehensive study on development needs in Area C."
+       ]
+      ],
+      [
+       "Adopting effective educational and health policies",
+       "Identifying priorities that require community attention and strengthening cooperation with governmental and civil society organisations.",
+       [
+        "Developing innovative models to follow up issues affecting youth and other groups.",
+        "Addressing health and education, media and social communication, poverty and unemployment.",
+        "Developing an integrated training programme supporting self-reliance in creating change."
+       ]
+      ],
+      [
+       "Raising awareness of education",
+       "Facilitating students' access to information and services, and organising training courses across a wide range of subjects.",
+       [
+        "First aid, health education, languages and calligraphy, personal development, computers.",
+        "Summer camps, the use of Braille, human resources, handicrafts, media, project management.",
+        "Books, references, periodicals, photocopying and printing, and computer laboratories.",
+        "Workshops on psychological support, health, leadership and access to employment."
+       ]
+      ],
+      [
+       "Working with marginalised areas",
+       "Workshops and campaigns in marginalised areas, coordinated with governmental bodies and civil society organisations. As a continuation of the Right to Higher Education Campaign, launched seven years earlier, awareness workshops were held for women, students and parents through municipal councils in 11 locations.",
+       [
+        "Joint activities with civil society organisations requiring field visits.",
+        "Courses on project development, literacy, working conditions and the role of women.",
+        "Raising awareness of the health environment in schools and marginalised communities.",
+        "Identifying the priorities and essential needs of marginalised communities."
+       ]
+      ]
+     ],
+     "outputs_title": "Community research and knowledge libraries",
+     "outputs": [
+      [
+       "Eight libraries, ~40,200 books",
+       "Established with approximately 15,000 books, later updated and expanded to roughly 40,200 — cultural and scientific books, references, periodicals, university textbooks and encyclopaedias across scientific, cultural, social, political, literary and legal fields."
+      ],
+      [
+       "Eight librarians and ~80 volunteers",
+       "A team of eight trained librarians supported by approximately 80 university student volunteers who classify and organise books, lend to users and coordinate training courses."
+      ],
+      [
+       "230 training courses, ~1,920 students",
+       "Covering computer skills, first aid, scientific courses, languages, engineering, design and drawing, human resources, psychosocial support, scientific research, media and public relations, translation, life skills, music and remedial courses."
+      ],
+      [
+       "43 graduation projects",
+       "University students supported in completing graduation projects, master's theses and scientific research studies."
+      ],
+      [
+       "Right to Higher Education workshops",
+       "Run through the libraries on inclusion of persons with disabilities, educational policies in Palestine, the importance of scientific research, development of information systems, the status and quality of higher education, the role of civil society in educational policies, and freedom of movement and accessibility for persons with disabilities."
+      ]
+     ],
+     "recs_title": "Library facilities and services",
+     "recs": [
+      [
+       "Electronic research room",
+       "Computers connected to the internet for educational and research use."
+      ],
+      [
+       "Training rooms",
+       "Used for educational activities and the screening of documentary films."
+      ],
+      [
+       "Catalogued collection",
+       "Systematically and electronically catalogued, with dedicated spaces for reading and research."
+      ],
+      [
+       "Lending, printing and courses",
+       "Academic and cultural book lending, printing and photocopying, and specialised academic and skills-development courses. Priority is given to students from low-income families."
+      ]
+     ]
+    },
+    "ar": {
+     "year": "2022",
+     "title": "التقرير السنوي 2022",
+     "lead": "الصحة والتعليم والعدالة الاجتماعية والاقتصادية، عبر مكتبات المعرفة المجتمعية بشكل أساسي.",
+     "summary_title": "توجهات البرنامج",
+     "summary": [
+      "خلال عام 2022 ركّز البرنامج على ثلاثة مجالات رئيسية: القضايا الصحية، والتعليم، والعدالة الاجتماعية والاقتصادية — وهي مجالات تُعدّ أساسية لتحقيق تنمية مجتمعية حقيقية وبناء مجتمع تُلبّى فيه الاحتياجات الأساسية للأفراد.",
+      "وأولى البرنامج اهتمامًا خاصًا بالشباب والنساء بوصفهم الفئات الأكثر حاجة إلى الدعم والمناصرة والتمكين. فالنساء يشكّلن أكثر من 50% من السكان، بينما يمثّل الشباب من الجنسين نحو 75%، مما يتيح للمعهد الوصول إلى أوسع شريحة ممكنة من المجتمع."
+     ],
+     "pillars_title": "آلية تنفيذ الأهداف",
+     "pillars": [
+      [
+       "نشر وإجراء البحوث والدراسات",
+       "بحوث ودراسات ومشاريع علمية تدعم البرامج الإحصائية ومشاريع طلبة الجامعات المتخصصة.",
+       [
+        "إعداد مشاريع ومقترحات بحثية في قضايا مجتمعية متنوعة.",
+        "إجراء الدراسات والمساعدة في نشرها وتعميمها.",
+        "تدريب الطلبة، وخاصة ذوي الإعاقة والنساء، على إجراء البحث العلمي.",
+        "دراسة شاملة حول الاحتياجات التنموية في مناطق «ج»."
+       ]
+      ],
+      [
+       "اعتماد سياسات تعليمية وصحية فعّالة",
+       "تحديد الأولويات التي تحتاج اهتمامًا مجتمعيًا وتعزيز التعاون مع المؤسسات الحكومية والأهلية.",
+       [
+        "تطوير نماذج مبتكرة لمتابعة القضايا التي تمس الشباب وفئات المجتمع الأخرى.",
+        "معالجة الصحة والتعليم والإعلام والتواصل الاجتماعي والفقر والبطالة.",
+        "تطوير برنامج تدريبي متكامل يدعم الاعتماد على الذات في إحداث التغيير."
+       ]
+      ],
+      [
+       "التوعية بأهمية التعليم",
+       "تسهيل وصول الطلبة إلى المعلومات والخدمات، وتنظيم دورات تدريبية في مجالات واسعة.",
+       [
+        "الإسعاف الأولي والتثقيف الصحي واللغات والخط والتطوير الشخصي والحاسوب.",
+        "المخيمات الصيفية واستخدام طريقة برايل والموارد البشرية والحرف اليدوية والإعلام وإدارة المشاريع.",
+        "الكتب والمراجع والدوريات وخدمات التصوير والطباعة ومختبرات الحاسوب.",
+        "ورش في الدعم النفسي والصحة والقيادة وآليات الوصول إلى فرص العمل."
+       ]
+      ],
+      [
+       "العمل مع المناطق المهمّشة",
+       "ورش وحملات في المناطق المهمّشة بالتنسيق مع الجهات الحكومية ومؤسسات المجتمع المدني. واستكمالًا لحملة الحق في التعليم العالي التي أُطلقت قبل سبع سنوات، نُفّذت ورش توعية للنساء والطلبة وأولياء الأمور عبر المجالس البلدية في 11 موقعًا.",
+       [
+        "أنشطة مشتركة مع مؤسسات المجتمع المدني تتطلب زيارات ميدانية.",
+        "دورات في تطوير المشاريع ومحو الأمية وتحسين ظروف العمل وتعزيز دور المرأة.",
+        "التوعية بأهمية تحسين البيئة الصحية في المدارس والمجتمعات المهمّشة.",
+        "تحديد أولويات وقضايا واحتياجات المجتمعات المهمّشة."
+       ]
+      ]
+     ],
+     "outputs_title": "مكتبات البحث والمعرفة المجتمعية",
+     "outputs": [
+      [
+       "ثماني مكتبات ونحو 40,200 كتاب",
+       "أُنشئت بنحو 15,000 كتاب ثم جرى تحديثها وتوسيعها إلى نحو 40,200 — كتب ثقافية وعلمية ومراجع ودوريات وكتب جامعية وموسوعات علمية وثقافية واجتماعية وسياسية وأدبية وقانونية."
+      ],
+      [
+       "ثمانية أمناء مكتبات ونحو 80 متطوعًا",
+       "فريق من ثمانية أمناء مدرَّبين يدعمهم نحو 80 متطوعًا من طلبة الجامعات يتولّون تصنيف الكتب وتنظيمها وإعارتها وتنسيق الدورات."
+      ],
+      [
+       "230 دورة تدريبية لنحو 1,920 طالبًا",
+       "شملت مهارات الحاسوب والإسعاف الأولي والدورات العلمية واللغات والهندسة والتصميم والرسم والموارد البشرية والدعم النفسي والبحث العلمي والإعلام والعلاقات العامة والترجمة والمهارات الحياتية والموسيقى والدورات التعويضية."
+      ],
+      [
+       "43 مشروع تخرج",
+       "دعم طلبة الجامعات في إنجاز مشاريع التخرج ورسائل الماجستير والدراسات البحثية."
+      ],
+      [
+       "ورش الحق في التعليم العالي",
+       "نُفِّذت عبر المكتبات حول دمج ذوي الإعاقة والسياسات التعليمية في فلسطين وأهمية البحث العلمي وتطوير نظم المعلومات وواقع التعليم العالي وجودته ودور المجتمع المدني في السياسات التعليمية وحرية الحركة وإتاحة المؤسسات التعليمية لذوي الإعاقة."
+      ]
+     ],
+     "recs_title": "مرافق المكتبات وخدماتها",
+     "recs": [
+      [
+       "غرفة البحث الإلكتروني",
+       "حواسيب متصلة بالإنترنت للاستخدام التعليمي والبحثي."
+      ],
+      [
+       "غرف التدريب",
+       "تُستخدم للأنشطة التعليمية وعرض الأفلام الوثائقية."
+      ],
+      [
+       "مقتنيات مفهرسة",
+       "مفهرسة منهجيًا وإلكترونيًا، مع مساحات مخصصة للقراءة والبحث."
+      ],
+      [
+       "الإعارة والطباعة والدورات",
+       "إعارة الكتب الأكاديمية والثقافية والطباعة والتصوير ودورات أكاديمية ومهارية متخصصة، مع إعطاء الأولوية لطلبة الأسر محدودة الدخل."
+      ]
+     ]
+    }
+   }
+  },
+  "SLIDESHOW_UI": {
+   "en": {
+    "label": "HDIP programme photography",
+    "pause": "Pause the slideshow",
+    "play": "Play the slideshow",
+    "choose": "Choose a photograph",
+    "slide": "Photograph {n} of {total}",
+    "prev": "Previous photograph",
+    "next": "Next photograph"
+   },
+   "ar": {
+    "label": "صور برامج البرنامج",
+    "pause": "إيقاف العرض",
+    "play": "تشغيل العرض",
+    "choose": "اختر صورة",
+    "slide": "الصورة {n} من {total}",
+    "prev": "الصورة السابقة",
+    "next": "الصورة التالية"
+   }
+  },
+  "SOURCES_EXTRA": {
+   "profile_en": "Health Development Information and Policy Institute.docx — English profile (EN)",
+   "narrative22": "HDIP Narative report 2022.docx — objectives, 2022 directions, libraries (EN)",
+   "program23": "Program During 2023.docx — 2023 directions, health, projects, statistics (EN)",
+   "directions25": "Our Strategic Directions in 2025.docx / توجهاتنا خلال عام 2025.docx",
+   "achievements25": "Key Achievements and Results in 2025.docx / أبرز مخرجات عام 2025.docx",
+   "health25": "Health Activities and Programs in 2025.docx / الأنشطة والبرامج الصحية في 2025.docx",
+   "recs25": "General Recommendations.docx / التوصيات العامة.docx",
+   "projects25": "Right to Education / Women Able / Women Leaders / Young Leadership (EN + AR)"
+  },
+  "YEARS": [
+   "2025",
+   "2024",
+   "2023",
+   "2022"
+  ]
+ }
+}
