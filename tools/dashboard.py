@@ -314,6 +314,14 @@ ol.slides>li.drag{opacity:.4}
 .imgpick img{width:62px;height:44px;object-fit:cover;border-radius:6px;border:1px solid var(--line);background:#fff;flex:none}
 .f--img{flex:1;margin:0}
 .hint{color:var(--mute);font-size:.8rem;margin:8px 0 0}
+.btn--quiet{color:var(--mute)}
+.btn--quiet:hover{color:var(--ink)}
+.login{max-width:380px;margin:12vh auto 0;background:var(--card);border:1px solid var(--line);
+border-radius:var(--r);padding:28px 26px}
+.login h1{font-size:1.25rem;margin:0 0 4px}
+.login .sub{margin:0 0 22px;font-size:.9rem}
+.login .btn{width:100%;justify-content:center;margin-top:6px}
+.login input{padding:10px 12px}
 .dead{display:inline-block;margin-inline-start:8px;padding:1px 7px;border-radius:999px;
 background:#FFF4E5;border:1px solid #F0D9B5;color:var(--warn);font-size:.68rem;
 font-weight:700;letter-spacing:.02em;vertical-align:1px}
@@ -383,27 +391,31 @@ function renumber(list){
 """
 
 
-def page(title, body, flash=None, bar=None):
+def page(title, body, flash=None, bar=None, chrome=True):
     thumbs = json.dumps({s: thumb(s) for s in manifest()})
     note = ""
     if flash:
         kind, msg = flash
         note = f'<div class="flash flash--{kind}">{esc(msg)}</div>'
     barhtml = f'<div class="bar"><div class="in">{bar}</div></div>' if bar else ""
+    head = ("""<header class="top"><div class="in">
+  <a class="brand" href="{PREFIX}">hdip control panel</a>
+  <nav>
+    <a class="btn" href="{PREFIX}">Content</a>
+    <a class="btn" href="{PREFIX}/images">Photos</a>
+    <a class="btn" href="/" target="_blank" rel="noopener">View site</a>
+    <form method="post" action="{PREFIX}/logout" style="display:contents">
+      <button class="btn btn--quiet" type="submit">Sign out</button>
+    </form>
+  </nav>
+</div></header>""" if chrome else "")
     doc = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>{esc(title)} — HDIP control panel</title><style>{CSS}</style></head>
 <body>
-<header class="top"><div class="in">
-  <a class="brand" href="{PREFIX}">hdip control panel</a>
-  <nav>
-    <a class="btn" href="{PREFIX}">Content</a>
-    <a class="btn" href="{PREFIX}/images">Photos</a>
-    <a class="btn" href="/" target="_blank" rel="noopener">View site</a>
-  </nav>
-</div></header>
+{head}
 <main class="wrap">{note}{body}</main>
 {barhtml}
 <script>window.__thumbs={thumbs};</script>
@@ -564,7 +576,9 @@ def parse_multipart(headers, rfile):
 import base64
 import hashlib
 import hmac
+import http.cookies
 import secrets
+import time
 
 PBKDF2_ROUNDS = 240_000
 
@@ -668,22 +682,88 @@ def current_credentials():
     return CREDS
 
 
-def check_auth(header):
-    """Constant-time check of an HTTP Basic header."""
+def verify_password(user, password):
+    """Constant-time check against the stored PBKDF2 hash."""
     creds = current_credentials()
-    if not creds or not header or not header.startswith("Basic "):
+    if not creds:
         return False
-    try:
-        raw = base64.b64decode(header[6:]).decode("utf-8")
-        user, _, password = raw.partition(":")
-    except Exception:
-        return False
-    ok_user = hmac.compare_digest(user, creds["user"])
     dk = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"),
                              creds["salt"].encode("ascii"),
                              creds.get("rounds", PBKDF2_ROUNDS))
-    ok_pass = hmac.compare_digest(dk.hex(), creds["hash"])
-    return ok_user and ok_pass
+    return (hmac.compare_digest(user, creds["user"])
+            and hmac.compare_digest(dk.hex(), creds["hash"]))
+
+
+# ---------------------------------------------------------------------------
+# Sessions
+# HTTP Basic has no logout: the browser replays the password on every request
+# and there is no standard way to make it stop. A cookie session gives a real
+# sign-out, and means the password crosses the wire once rather than with
+# every image on the photos screen.
+#
+# Sessions live in memory only, so restarting the server signs everyone out.
+# ---------------------------------------------------------------------------
+SESSION_COOKIE = "hdip_session"
+SESSION_HOURS = 12
+SESSIONS = {}
+
+
+def new_session(user):
+    token = secrets.token_urlsafe(32)
+    SESSIONS[token] = {"user": user, "expires": time.time() + SESSION_HOURS * 3600}
+    return token
+
+
+def session_user(cookie_header):
+    """The signed-in user for this request, or None."""
+    if not cookie_header:
+        return None
+    jar = http.cookies.SimpleCookie()
+    try:
+        jar.load(cookie_header)
+    except http.cookies.CookieError:
+        return None
+    morsel = jar.get(SESSION_COOKIE)
+    if not morsel:
+        return None
+    rec = SESSIONS.get(morsel.value)
+    if not rec:
+        return None
+    if rec["expires"] < time.time():
+        SESSIONS.pop(morsel.value, None)
+        return None
+    return rec["user"]
+
+
+def drop_session(cookie_header):
+    if not cookie_header:
+        return
+    jar = http.cookies.SimpleCookie()
+    try:
+        jar.load(cookie_header)
+    except http.cookies.CookieError:
+        return
+    morsel = jar.get(SESSION_COOKIE)
+    if morsel:
+        SESSIONS.pop(morsel.value, None)
+
+
+def view_login(message=None, nexturl=None):
+    note = (f'<div class="flash flash--err">{esc(message)}</div>' if message else "")
+    body = (
+        '<div class="login">'
+        f'{note}'
+        '<h1>Sign in</h1>'
+        '<p class="sub">The control panel for the HDIP website.</p>'
+        f'<form method="post" action="{PREFIX}/login">'
+        f'<input type="hidden" name="next" value="{esc(nexturl or PREFIX)}">'
+        '<div class="f"><label for="u">User</label>'
+        '<input id="u" name="user" type="text" autocomplete="username" autofocus required></div>'
+        '<div class="f"><label for="p">Password</label>'
+        '<input id="p" name="password" type="password" autocomplete="current-password" required></div>'
+        '<button class="btn btn--p" type="submit">Sign in</button>'
+        '</form></div>')
+    return page("Sign in", body, chrome=False)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -702,10 +782,27 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    def redirect(self, to):
+    def redirect(self, to, cookie=None):
         self.send_response(303)
         self.send_header("Location", to)
+        if cookie:
+            self.send_header("Set-Cookie", cookie)
+        self.send_header("Content-Length", "0")
         self.end_headers()
+
+    def session_cookie(self, token, clear=False):
+        """HttpOnly so script cannot read it; Strict so it is not sent
+        cross-site; Secure only over HTTPS, since a Secure cookie on plain
+        HTTP is simply dropped and sign-in would fail with no explanation."""
+        bits = [f"{SESSION_COOKIE}={'' if clear else token}",
+                f"Path={PREFIX}", "HttpOnly", "SameSite=Strict"]
+        if clear:
+            bits.append("Max-Age=0")
+        else:
+            bits.append(f"Max-Age={SESSION_HOURS * 3600}")
+        if self.headers.get("X-Forwarded-Proto") == "https":
+            bits.append("Secure")
+        return "; ".join(bits)
 
     def serve_file(self, path, ctype):
         if not os.path.isfile(path):
@@ -721,14 +818,14 @@ class Handler(BaseHTTPRequestHandler):
 
     # -- routes ----------------------------------------------------------
     # -- access ----------------------------------------------------------
-    def guard(self):
-        """Every /admin request must authenticate. Returns True to continue."""
-        if check_auth(self.headers.get("Authorization")):
+    def guard(self, full_path):
+        """Every /admin request needs a session. Returns True to continue."""
+        if session_user(self.headers.get("Cookie")):
             return True
-        self.send_response(401)
-        self.send_header("WWW-Authenticate", 'Basic realm="HDIP control panel"')
-        self.send_header("Content-Length", "0")
-        self.end_headers()
+        if self.command == "GET":
+            self.send_html(view_login(nexturl=full_path), 401)
+        else:
+            self.redirect(f"{PREFIX}/login")
         return False
 
     def admin_path(self, u):
@@ -770,7 +867,13 @@ class Handler(BaseHTTPRequestHandler):
         if p is None:
             self.serve_site(u)
             return
-        if not self.guard():
+        if p == "/login":
+            if session_user(self.headers.get("Cookie")):
+                self.redirect(PREFIX)
+            else:
+                self.send_html(view_login())
+            return
+        if not self.guard(self.path):
             return
 
         q = urllib.parse.parse_qs(u.query)
@@ -806,7 +909,31 @@ class Handler(BaseHTTPRequestHandler):
         if p is None:
             self.send_error(404)
             return
-        if not self.guard():
+
+        if p == "/login":
+            length = int(self.headers.get("Content-Length", "0"))
+            form = urllib.parse.parse_qs(self.rfile.read(length).decode("utf-8"))
+            user = form.get("user", [""])[0]
+            password = form.get("password", [""])[0]
+            nexturl = form.get("next", [PREFIX])[0]
+            # Only ever bounce back inside the panel.
+            if not nexturl.startswith(PREFIX):
+                nexturl = PREFIX
+            if verify_password(user, password):
+                self.redirect(nexturl,
+                              self.session_cookie(new_session(user)))
+            else:
+                self.send_html(view_login("That user and password did not match.",
+                                          nexturl), 401)
+            return
+
+        if p == "/logout":
+            drop_session(self.headers.get("Cookie"))
+            self.redirect(f"{PREFIX}/login",
+                          self.session_cookie(None, clear=True))
+            return
+
+        if not self.guard(self.path):
             return
         u = urllib.parse.urlparse(p)
 
