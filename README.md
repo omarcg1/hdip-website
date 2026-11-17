@@ -27,6 +27,13 @@ four coordinated entries rather than one.
 Every add and delete is tried against a real build first and rolled back if
 the site would not build, so the panel cannot leave the site broken.
 
+An article is written in one box: paragraphs separated by a blank line, and
+an optional **Key points** box, one per line, which renders as a bulleted
+list under the text. The same applies wherever the store holds a list of
+plain strings — a project's objectives and results, a report's principles —
+so they are typed as text rather than one input per line. The conversion is
+exact in both directions; no stored item contains a newline.
+
 ### Password
 
 Credentials live in `data/admin.local.json`, which is gitignored and never

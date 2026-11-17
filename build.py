@@ -1196,6 +1196,11 @@ def build_article(lang, n):
     u, d = C.UI[lang], n[lang]
     area = next(a for a in C.AREAS if a["slug"] == n["area"])
     body_html = "".join(f"<p>{p}</p>" for p in d["body"])
+    # Optional bullet points under the article text. Plain <ul>, so it takes
+    # the prose list styling rather than needing a component of its own.
+    points = [p for p in d.get("points", []) if p]
+    if points:
+        body_html += "<ul>" + "".join(f"<li>{p}</li>" for p in points) + "</ul>"
     others = [x for x in ALL_NEWS if x["slug"] != n["slug"]][:3]
     rel = "".join(f"""          <a class="news__item" href="news-{x['slug']}.html">
             <span class="news__date">{x[lang]['date']}</span>

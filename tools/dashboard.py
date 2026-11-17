@@ -252,8 +252,23 @@ def icon_names():
 
 # Fields whose value has to be one of a known set, or the generated page
 # would link somewhere that does not exist.
+#
+# Matched on the whole path, not the last word: content.UI.en.status is the
+# label "Status", not a project's state, and offering it a picker of
+# ongoing/completed silently rewrote it on the next save.
+CHOICE_PATHS = (
+    (re.compile(r"^(content\.NEWS|years\.NEWS_2025|content\.PROJECTS)\[\d+\]\.area$"),
+     "area"),
+    (re.compile(r"^(content\.NEWS|years\.NEWS_2025)\[\d+\]\.project$"), "project"),
+    (re.compile(r"^content\.PROJECTS\[\d+\]\.status$"), "status"),
+    (re.compile(r"^content\.AREAS\[\d+\]\.icon$"), "icon"),
+)
+
+
 def choices_for(path, value):
-    leaf = path.rsplit(".", 1)[-1]
+    leaf = next((k for rx, k in CHOICE_PATHS if rx.match(path)), None)
+    if leaf is None:
+        return None
     data = store.load()
     if leaf == "area":
         return [("", "— none —")] + [(a["slug"], a["en"]["name"])
@@ -270,6 +285,42 @@ def choices_for(path, value):
     return None
 
 
+# Lists of plain strings that read better as one box of text than as a stack
+# of separate inputs: the paragraphs of an article, and its bullet points.
+# The conversion is exact — no stored item contains a newline, so text and
+# list round-trip into each other without touching a word.
+TEXT_LISTS = {
+    "body": ("\n\n", "One paragraph per block — leave a blank line between them."),
+    "notes": ("\n\n", "One paragraph per block — leave a blank line between them."),
+    "points": ("\n", "One per line. They appear as a bulleted list under the "
+                     "article text. Leave it empty if there are none."),
+    "objectives": ("\n", "One per line."),
+    "results": ("\n", "One per line."),
+    "principles": ("\n", "One per line."),
+    "workshops": ("\n", "One per line."),
+    "facilities": ("\n", "One per line."),
+}
+
+
+def text_to_list(sep, text):
+    text = str(text).replace("\r\n", "\n").replace("\r", "\n")
+    parts = re.split(r"\n\s*\n", text) if sep == "\n\n" else text.split("\n")
+    return [p.strip() for p in parts if p.strip()]
+
+
+def as_text_list(path, value):
+    """The spec for this path, if it is a list this panel edits as text."""
+    leaf = path.rsplit(".", 1)[-1]
+    spec = TEXT_LISTS.get(leaf)
+    if spec is None or not isinstance(value, list):
+        return None
+    # A newline inside an item would not survive the round trip, so such a
+    # list keeps the one-input-per-item editor.
+    if not all(isinstance(v, str) and "\n" not in v for v in value):
+        return None
+    return spec
+
+
 def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
 
@@ -283,6 +334,7 @@ NICE = {
     "who": "Who we are", "who_title": "“Who we are” heading",
     "ui": "Labels", "pwd": "People with disabilities",
     "num": "Figure", "tag": "Label", "lead": "Lead paragraph",
+    "body": "Text", "points": "Key points",
     "alt": "Alt text (for screen readers)",
 }
 
@@ -450,6 +502,16 @@ def render(path, value, label=None, depth=0):
                 f'<h3>{esc(label)}</h3>{inner}</{tag}>')
 
     if isinstance(value, list):
+        spec = as_text_list(path, value)
+        if spec is not None:
+            sep, hint = spec
+            text = sep.join(value)
+            rows = min(26, max(4, text.count("\n") + len(text) // 80 + 2))
+            lid = esc(path)
+            return (f'<div class="f f--t">'
+                    f'<label for="{lid}">{esc(label or pretty(path.rsplit(".", 1)[-1]))}</label>'
+                    f'<textarea id="{lid}" name="{lid}" rows="{rows}">{esc(text)}</textarea>'
+                    f'<p class="hint">{esc(hint)}</p></div>')
         if not value:
             return f'<div class="f"><label>{esc(label or "")}</label><em>empty</em></div>'
         # A list of image slugs is the slideshow: order matters, so make it movable.
@@ -1114,6 +1176,14 @@ def save_fields(form):
         if not any(parts[:len(r)] == r for _, r in roots):
             continue
         value = vals[0]
+        # One box of text goes back to the list of paragraphs or points the
+        # templates read.
+        try:
+            spec = as_text_list(path, get_at(data, parts))
+        except (KeyError, IndexError, TypeError):
+            spec = None
+        if spec is not None:
+            value = text_to_list(spec[0], value)
         # build.py writes a page per slug, named after it, so a typed slug is
         # normalised rather than trusted: "New Project" would otherwise
         # generate "project-New Project.html" and link to it with a space.
