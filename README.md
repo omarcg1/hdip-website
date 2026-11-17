@@ -11,11 +11,21 @@ All content lives in `data/site.json` and is edited through the control panel.
 Nothing is edited in code any more.
 
 ```bash
-python3 tools/dashboard.py      # http://127.0.0.1:4620
+python3 tools/dashboard.py      # http://127.0.0.1:4610
 ```
 
 The site is at `/`, the panel at `/admin`. Edit a field, **Save**, then
 **Publish** — publishing reruns `build.py` and rewrites all 58 pages.
+
+One screen per part of the site. Records — articles, projects, programme
+areas, report years — are **collapsed**: the screen opens as a list of what is
+on it, and you open the one you want. Saving writes every field on the screen,
+open or shut. Articles, projects and programme areas have **Add** and
+**Delete**; annual reports have their own Add control, since a report year is
+four coordinated entries rather than one.
+
+Every add and delete is tried against a real build first and rolled back if
+the site would not build, so the panel cannot leave the site broken.
 
 ### Password
 
@@ -31,9 +41,10 @@ python3 tools/dashboard.py --set-password
 
 Delete the file and restart to be issued a fresh random password.
 
-`/admin` is bound to localhost. HTTP Basic sends the password in clear text,
-so put TLS in front of it before binding anywhere else — the server warns if
-you do.
+`/admin` is bound to localhost. The sign-in form posts the password in clear
+text, so put TLS in front of it before binding anywhere else — the server
+warns if you do. Signing in sets a session cookie; **Sign out** drops it, and
+restarting the panel signs everyone out.
 
 The panel covers every field on every page — copy in both languages, the
 figures per year, which photo heads each page, and the order of the hero

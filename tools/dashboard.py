@@ -8,7 +8,7 @@ The site stays static: this runs locally (or behind your own auth), you edit,
 you press Publish, and build.py rewrites the 58 pages. Nothing dynamic is
 exposed to the public site.
 
-    python3 tools/dashboard.py          # http://127.0.0.1:4620
+    python3 tools/dashboard.py          # http://127.0.0.1:4610
 
 Standard library only, matching the rest of the project — nothing to install.
 """
@@ -190,6 +190,7 @@ LISTS = {
     "content.NEWS": "article",
     "years.NEWS_2025": "article",
     "content.PROJECTS": "project",
+    "content.AREAS": "programme area",
 }
 
 
@@ -217,11 +218,36 @@ def slug_exists(slug):
     return False
 
 
+def slugify(text):
+    """A slug is a filename and a URL — keep it to what both can carry."""
+    out = re.sub(r"[^a-z0-9]+", "-", str(text).strip().lower()).strip("-")
+    return out
+
+
 def unique_slug(base="new-article"):
+    base = slugify(base) or "new-item"
     slug, n = base, 2
     while slug_exists(slug):
         slug, n = f"{base}-{n}", n + 1
     return slug
+
+
+ICON_NAMES = None
+
+
+def icon_names():
+    """The icons build.py can actually draw.
+
+    An unknown name is not an error there — icon() falls back to "doc" — so a
+    free-text field would silently draw the wrong glyph. Read from the source
+    rather than copied, so the picker cannot drift from the set.
+    """
+    global ICON_NAMES
+    if ICON_NAMES is None:
+        with open(os.path.join(ROOT, "build.py"), encoding="utf-8") as f:
+            m = re.search(r"^ICONS = \{(.*?)^\}", f.read(), re.S | re.M)
+        ICON_NAMES = re.findall(r'"([a-z-]+)":\s*_i', m.group(1)) if m else []
+    return ICON_NAMES
 
 
 # Fields whose value has to be one of a known set, or the generated page
@@ -235,6 +261,8 @@ def choices_for(path, value):
     if leaf == "project":
         return [("", "— none —")] + [(p["slug"], p["en"]["name"])
                                      for p in data["content"]["PROJECTS"]]
+    if leaf == "icon":
+        return [(n, n) for n in icon_names()]
     if leaf == "status":
         # Indexed straight into UI by the templates, so it cannot be free text.
         return [(k, data["content"]["UI"]["en"].get(k, k))
@@ -246,9 +274,39 @@ def esc(s):
     return html.escape(str(s if s is not None else ""), quote=True)
 
 
+NICE = {
+    "recs": "Recommendations", "recs_title": "Recommendations heading",
+    "me": "Monitoring and evaluation", "me_title": "Monitoring heading",
+    "glance": "At a glance", "table": "Data table",
+    "table_head": "Data table — column headings",
+    "what": "What we do", "what_title": "“What we do” heading",
+    "who": "Who we are", "who_title": "“Who we are” heading",
+    "ui": "Labels", "pwd": "People with disabilities",
+    "num": "Figure", "tag": "Label", "lead": "Lead paragraph",
+    "alt": "Alt text (for screen readers)",
+}
+
+# Dicts keyed by the slug of something named elsewhere. Showing the name is
+# the difference between "Youth-leadership" and "Young Leadership in
+# Universities" on a collapsed row.
+SLUG_KEYED = {"years.PHASES": "content.PROJECTS"}
+
+
 def pretty(key):
-    k = str(key).replace("_", " ").strip()
+    k = str(key)
+    if k.lower() in NICE:
+        return NICE[k.lower()]
+    k = k.replace("_", " ").strip()
     return k[:1].upper() + k[1:]
+
+
+def key_label(path, key):
+    src = SLUG_KEYED.get(path)
+    if src:
+        for item in get_at(store.load(), parse_path(src)):
+            if isinstance(item, dict) and item.get("slug") == key:
+                return item.get("en", {}).get("name") or pretty(key)
+    return pretty(key)
 
 
 LANG_NAME = {"en": "English", "ar": "العربية"}
@@ -278,30 +336,113 @@ def field(path, value, label=None):
         opts = "".join(
             f'<option value="{esc(v)}"{" selected" if v == (value or "") else ""}>'
             f'{esc(t)}</option>' for v, t in choices)
-        return f'<div class="f">{lab}<select id="{lid}" name="{lid}">{opts}</select></div>'
+        return (f'<div class="f f--s">{lab}'
+                f'<select id="{lid}" name="{lid}">{opts}</select></div>')
 
     text = "" if value is None else str(value)
     if len(text) > 85 or "\n" in text:
-        rows = min(14, max(3, text.count("\n") + len(text) // 70 + 1))
-        return (f'<div class="f">{lab}'
+        # Shallow by default: a textarea tall enough for every paragraph makes
+        # a screen unreadable, and it drags to any height.
+        rows = min(9, max(2, text.count("\n") + len(text) // 95 + 1))
+        return (f'<div class="f f--t">{lab}'
                 f'<textarea id="{lid}" name="{lid}" rows="{rows}">{esc(text)}</textarea></div>')
-    return (f'<div class="f">{lab}'
+    return (f'<div class="f f--s">{lab}'
             f'<input id="{lid}" name="{lid}" type="text" value="{esc(text)}"></div>')
+
+
+# A record with this many fields inside it is worth collapsing: a screen then
+# opens as a list of what is on it, not a wall of inputs. The fields are still
+# in the form while collapsed, so Save writes them either way.
+FOLD_MIN = 10
+TITLE_KEYS = ("title", "name", "headline", "year")
+
+
+def record_name(value):
+    """The English title of a record, for its collapsed summary line."""
+    if not isinstance(value, dict):
+        return ""
+    en = value.get("en") if isinstance(value.get("en"), dict) else value
+    for k in TITLE_KEYS:
+        v = en.get(k) if isinstance(en, dict) else None
+        if isinstance(v, str) and v.strip():
+            return v.strip()
+    return ""
+
+
+def record_chips(value):
+    """The short structural fields, shown without opening the record."""
+    if not isinstance(value, dict):
+        return []
+    out = []
+    for k in ("slug", "status", "area", "years", "date"):
+        v = value.get(k)
+        if isinstance(v, str) and v.strip():
+            out.append(v.strip())
+    return out
+
+
+def record_thumb(value):
+    if isinstance(value, dict) and is_image(value.get("photo")):
+        return thumb(value["photo"])
+    return ""
+
+
+def fold(title, inner, chips=(), meta="", image="", fid=""):
+    img = (f'<img class="fold__img" src="{esc(image)}" alt="" loading="lazy">'
+           if image else "")
+    cs = "".join(f'<span class="fold__c">{esc(c)}</span>' for c in chips if c)
+    return (f'<details class="fold" data-fold="{esc(fid)}">'
+            f'<summary>{img}<span class="fold__t">{esc(title)}</span>{cs}'
+            f'<span class="fold__n">{esc(meta)}</span></summary>'
+            f'<div class="fold__b">{inner}</div></details>')
+
+
+def fields_box(inner):
+    """Short inputs flow side by side; prose and sub-groups take the width."""
+    return f'<div class="fields">{inner}</div>'
+
+
+def is_leaf(v):
+    return not isinstance(v, (dict, list))
 
 
 def render(path, value, label=None, depth=0):
     """Recursive editor. The data's own shape decides the controls."""
     if isinstance(value, dict):
-        # A bilingual pair is the commonest shape — show the languages side by side.
-        if set(value) == {"en", "ar"}:
+        # A bilingual pair is the commonest shape — show the languages side by
+        # side. A record that carries its own fields as well (a project has a
+        # slug, an area, a photo) shows those first and the two languages
+        # beneath, rather than burying one language under the other.
+        langs = ""
+        if {"en", "ar"} <= set(value):
             cols = "".join(
                 f'<div class="lang" dir="{"rtl" if lg == "ar" else "ltr"}">'
                 f'<h4>{LANG_NAME[lg]}</h4>{render(f"{path}.{lg}", value[lg], None, depth + 1)}'
                 f'</div>' for lg in ("en", "ar"))
-            inner = f'<div class="langs">{cols}</div>'
+            langs = f'<div class="langs">{cols}</div>'
+        if set(value) == {"en", "ar"}:
+            inner = langs
         else:
-            inner = "".join(render(f"{path}.{k}", v, pretty(k), depth + 1)
-                            for k, v in value.items())
+            parts = []
+            for k, v in value.items():
+                if k in ("en", "ar") and langs:
+                    continue
+                sub = f"{path}.{k}"
+                n = count_fields(v)
+                name = key_label(path, k)
+                # A list is a repeated structure with its own heading, so it
+                # folds sooner than a dict of labelled fields does.
+                if isinstance(v, (dict, list)) and n >= (6 if isinstance(v, list)
+                                                         else FOLD_MIN):
+                    extra = record_name(v)
+                    chips = [extra] if extra and extra != name else []
+                    parts.append(fold(name,
+                                      render(sub, v, None, depth + 1),
+                                      chips=chips, meta=f"{n} fields",
+                                      image=record_thumb(v), fid=sub))
+                else:
+                    parts.append(render(sub, v, name, depth + 1))
+            inner = fields_box("".join(parts)) + langs
         if label is None:
             return inner
         tag = "section" if depth < 2 else "div"
@@ -322,27 +463,59 @@ def render(path, value, label=None, depth=0):
                     f'<ol class="slides" data-sortable>{items}</ol>'
                     f'<p class="hint">Drag to reorder. The order here is the order on the page.</p>'
                     f'</div>')
+
+        head = f'<h3>{esc(label)}</h3>' if label else ""
+
+        # Bullet lists and table rows are not records: one line each, no card.
+        if all(is_leaf(v) for v in value):
+            items = "".join(
+                f'<li><span class="n">{i + 1}</span>'
+                f'{field(f"{path}[{i}]", v, None)}</li>'
+                for i, v in enumerate(value))
+            return (f'<div class="grp grp--list">{head}'
+                    f'<ol class="flat">{items}</ol></div>')
+        if all(isinstance(v, list) and all(is_leaf(x) for x in v) for v in value):
+            items = ""
+            for i, v in enumerate(value):
+                cells = "".join(field(f"{path}[{i}][{j}]", x, None)
+                                for j, x in enumerate(v))
+                items += (f'<li><span class="n">{i + 1}</span>'
+                          f'<div class="cells" style="--n:{len(v)}">{cells}</div></li>')
+            return (f'<div class="grp grp--list">{head}'
+                    f'<ol class="flat flat--grid">{items}</ol></div>')
+
         noun = LISTS.get(path)
+
         def controls(i, item):
             if not noun:
                 return ""
-            name = ""
-            if isinstance(item, dict):
-                name = item.get("en", {}).get("title") or item.get("slug") or ""
+            name = record_name(item) or (item.get("slug", "")
+                                         if isinstance(item, dict) else "")
             # A button can only submit its own name and value, and a section
             # may hold more than one list, so the value carries both which
             # list and which row.
-            return (f'<button class="btn btn--del" type="submit" '
+            return (f'<p class="delrow"><button class="btn btn--del" type="submit" '
                     f'formaction="{{PREFIX}}/delitem" formmethod="post" '
                     f'formnovalidate name="item" value="{esc(path)}|{i}" '
                     f'data-confirm="Delete the {esc(noun)} &quot;{esc(name)}&quot;? '
-                    f'This cannot be undone.">Delete this {esc(noun)}</button>')
-        items = "".join(
-            f'<li><span class="n">{i + 1}</span>'
-            f'<div class="row">{render(f"{path}[{i}]", v, None, depth + 1)}'
-            f'{controls(i, v)}</div></li>'
-            for i, v in enumerate(value))
-        head = f'<h3>{esc(label)}</h3>' if label else ""
+                    f'This cannot be undone.">Delete this {esc(noun)}</button></p>')
+
+        # One record per row, collapsed — opening one is how you edit it. A
+        # list of small records stays open: a fold would hide less than it
+        # costs to open.
+        foldable = max(count_fields(v) for v in value) >= FOLD_MIN
+        items = ""
+        for i, v in enumerate(value):
+            body = render(f"{path}[{i}]", v, None, depth + 1) + controls(i, v)
+            if not foldable:
+                items += (f'<li class="rec"><span class="n">{i + 1}</span>'
+                          f'<div class="recb">{body}</div></li>')
+                continue
+            items += ("<li>" + fold(f"{i + 1}. " + (record_name(v) or "Untitled"),
+                                    body, chips=record_chips(v),
+                                    meta=f"{count_fields(v)} fields",
+                                    image=record_thumb(v),
+                                    fid=f"{path}[{i}]") + "</li>")
         add = ""
         if noun:
             add = (f'<p class="addrow"><button class="btn btn--add" type="submit" '
@@ -352,7 +525,7 @@ def render(path, value, label=None, depth=0):
                    f'<span class="hint">Saves what is on screen first, then adds '
                    f'a blank {esc(noun)} at the end.</span></p>')
         return (f'<div class="grp grp--list">{head}'
-                f'<ol class="rows">{items}</ol>{add}</div>')
+                f'<ol class="recs">{items}</ol>{add}</div>')
 
     return field(path, value, label)
 
@@ -478,6 +651,61 @@ font-family:ui-monospace,Menlo,monospace;font-size:.82rem}
 .imgs code{font-size:.74rem;color:var(--mute);word-break:break-all}
 .up{background:var(--card);border:1px dashed var(--line);border-radius:var(--r);
 padding:18px 20px;margin:0 0 20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+/* --- compact layout -------------------------------------------------------
+   Records are collapsed (details/summary) and short inputs flow side by side,
+   so a screen opens as a list of what is on it rather than a wall of fields.
+   The inputs exist in the form whether a record is open or shut, so Save and
+   Publish are unaffected by what happens to be expanded. */
+.block{padding:4px 18px 16px;margin:0 0 14px}
+.block__head{padding:13px 0 11px;margin:0 0 13px}
+section.grp{padding:14px 0 2px;margin-top:6px}
+.grp h3{margin:0 0 7px}
+.langs{gap:14px}
+.lang h4{margin:0 0 6px}
+.f{margin:0}
+.f label{margin:0 0 3px;font-size:.78rem}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));
+gap:9px 12px;align-items:start}
+.fields>.f--t,.fields>.grp,.fields>.fold,.fields>.langs,
+.fields>section{grid-column:1/-1}
+.fields>.f--img{grid-column:span 2}
+@media(max-width:700px){.fields>.f--img{grid-column:1/-1}}
+.fields input[type=text],.fields select,.fields textarea,
+.flat input[type=text],.flat select,.flat textarea{padding:7px 10px;border-radius:7px}
+.fold{border:1px solid var(--line);border-radius:10px;background:#FCFDFE}
+.fold>summary{display:flex;align-items:center;gap:9px;padding:9px 12px;cursor:pointer;
+list-style:none;font-size:.9rem}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::before{content:"▸";color:var(--mute);font-size:.75rem;flex:none;width:9px}
+.fold[open]>summary::before{content:"▾"}
+.fold>summary:hover{background:#F4F7FC}
+.fold[open]>summary{background:#F4F7FC;border-bottom:1px solid var(--line);
+border-radius:9px 9px 0 0}
+.fold__t{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fold__c{font-size:.71rem;color:var(--soft);background:var(--bg);border:1px solid var(--line);
+border-radius:999px;padding:1px 8px;white-space:nowrap;flex:none}
+.fold__n{margin-inline-start:auto;color:var(--mute);font-size:.73rem;white-space:nowrap;
+flex:none;direction:ltr;unicode-bidi:isolate}
+.fold__img{width:42px;height:29px;object-fit:cover;border-radius:5px;flex:none;
+border:1px solid var(--line);background:#fff}
+.fold__b{padding:12px 14px 14px}
+.fold .fold{background:#fff}
+.fold--hit{border-color:var(--brand);box-shadow:0 0 0 3px rgba(14,73,163,.12)}
+ol.recs{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ol.flat{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+ol.flat>li{display:grid;grid-template-columns:19px 1fr;gap:8px;align-items:start;
+border:0;padding:0;background:none}
+ol.flat>li .n{color:var(--mute);font-size:.73rem;font-weight:700;padding-top:9px}
+.cells{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:8px}
+@media(max-width:820px){.cells{grid-template-columns:1fr}}
+.delrow{margin:14px 0 0}
+.btn--del{margin-top:0}
+ol.recs>li.rec{display:grid;grid-template-columns:19px 1fr;gap:9px;
+border:1px solid var(--line);border-radius:9px;padding:10px 12px;background:#FCFDFE}
+ol.recs>li.rec .n{color:var(--mute);font-size:.73rem;font-weight:700;padding-top:3px}
+.tools{display:flex;gap:8px;align-items:center;margin:0 0 14px}
+.tools .hint{margin:0}
 """
 
 JS = """
@@ -538,6 +766,33 @@ function renumber(list){
   });
   dirty=true;setState('Unsaved changes');
 }
+
+// Records are collapsed by default, so give a way to see everything at once,
+// and open the one just added (or linked to) rather than leaving the editor
+// hunting for it at the bottom of the list.
+function allFolds(){return [...document.querySelectorAll('details.fold')];}
+const expandBtn=document.querySelector('[data-expand]');
+if(expandBtn){
+  expandBtn.addEventListener('click',()=>{
+    const open=allFolds().some(d=>!d.open);
+    allFolds().forEach(d=>{d.open=open;});
+    expandBtn.textContent=open?'Collapse all':'Expand all';
+  });
+}
+(function openRequested(){
+  const want=new URLSearchParams(location.search).get('open')||
+             decodeURIComponent(location.hash.slice(1));
+  if(!want)return;
+  const el=document.querySelector('details.fold[data-fold="'+
+    want.replace(/"/g,'\\"')+'"]');
+  if(!el)return;
+  let p=el;
+  while(p){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement;}
+  el.classList.add('fold--hit');
+  el.scrollIntoView({block:'center'});
+  const first=el.querySelector('input,textarea,select');
+  if(first)first.focus({preventScroll:true});
+})();
 """
 
 
@@ -649,6 +904,11 @@ def view_section(sid, flash=None):
             f'<h1>{esc(name)}</h1>'
             f'<p class="sub">{esc(where)}</p>'
             + (f'<nav class="jump">{jump}</nav>' if jump else "")
+            + '<div class="tools">'
+              '<button class="btn" type="button" data-expand>Expand all</button>'
+              '<span class="hint">Records are collapsed — open one to edit it. '
+              'Saving writes every field on the screen, open or not.</span>'
+              '</div>'
             + extra
             + f'<form class="edit" method="post" action="{PREFIX}/save">'
             f'<input type="hidden" name="__sid" value="{esc(sid)}">'
@@ -776,8 +1036,14 @@ def add_list_item(key):
                     if titleish in block:
                         block[titleish] = f"Untitled {noun}"
         lst.append(item)
-        return f"Added a blank {noun} at the end. Fill it in, then publish."
-    return apply_structural(change)
+        return f"Added a blank {noun}. Fill it in, then publish."
+
+    kind, msg = apply_structural(change)
+    anchor = ""
+    if kind == "ok":
+        lst = get_at(store.load(), parse_path(key))
+        anchor = f"{key}[{len(lst) - 1}]"
+    return kind, msg, anchor
 
 
 def delete_list_item(key, idx):
@@ -791,8 +1057,8 @@ def delete_list_item(key, idx):
             raise ValueError(f"The last {noun} cannot be deleted — "
                              "the templates need at least one to copy from.")
         gone = lst.pop(idx)
-        name = (gone.get("en", {}).get("title") or gone.get("slug", "")
-                if isinstance(gone, dict) else "")
+        name = record_name(gone) or (gone.get("slug", "")
+                                     if isinstance(gone, dict) else "")
         return f"Deleted the {noun} “{name}”. Publish to remove its page."
     return apply_structural(change)
 
@@ -847,8 +1113,14 @@ def save_fields(form):
         parts = parse_path(path)
         if not any(parts[:len(r)] == r for _, r in roots):
             continue
+        value = vals[0]
+        # build.py writes a page per slug, named after it, so a typed slug is
+        # normalised rather than trusted: "New Project" would otherwise
+        # generate "project-New Project.html" and link to it with a space.
+        if parts[-1] == "slug" and isinstance(value, str) and value.strip():
+            value = slugify(value) or value.strip()
         try:
-            set_at(data, parts, vals[0])
+            set_at(data, parts, value)
             count += 1
         except (KeyError, IndexError, TypeError):
             continue
@@ -1273,6 +1545,7 @@ class Handler(BaseHTTPRequestHandler):
             if p != "/addreport":
                 save_fields(form)
 
+            anchor = ""
             if p == "/addreport":
                 kind, msg = add_report(form.get("year", [""])[0].strip())
             else:
@@ -1281,7 +1554,7 @@ class Handler(BaseHTTPRequestHandler):
                     if key not in LISTS:
                         self.send_error(400, "Not an editable list")
                         return
-                    kind, msg = add_list_item(key)
+                    kind, msg, anchor = add_list_item(key)
                 else:
                     key, _, raw = form.get("item", [""])[0].rpartition("|")
                     if key not in LISTS:
@@ -1292,7 +1565,10 @@ class Handler(BaseHTTPRequestHandler):
                     except ValueError:
                         idx = -1
                     kind, msg = delete_list_item(key, idx)
-            self.redirect(f"{PREFIX}/s/{sid}?{kind}=" + urllib.parse.quote(msg))
+            to = f"{PREFIX}/s/{sid}?{kind}=" + urllib.parse.quote(msg)
+            if anchor:
+                to += "&open=" + urllib.parse.quote(anchor)
+            self.redirect(to)
             return
 
         if p == "/logout":
@@ -1354,8 +1630,8 @@ def main():
 
     if HOST not in ("127.0.0.1", "localhost", "::1"):
         print("\n  WARNING: binding to", HOST, "exposes /admin beyond this machine.")
-        print("  HTTP Basic sends the password in clear text, so put TLS in")
-        print("  front of it before doing that on a real network.\n")
+        print("  The sign-in form posts the password in clear text, so put")
+        print("  TLS in front of it before doing that on a real network.\n")
 
     srv = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"  site   http://{HOST}:{PORT}/")
