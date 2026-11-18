@@ -51,7 +51,7 @@ SECTIONS = [
         ("content.GOVERNORATES_AR", "Governorate names (Arabic)"),
     ]),
     ("about", "About", "about.html", [
-        ("content.ABOUT", "Vision, mission, objectives"),
+        ("content.ABOUT", "Vision, mission, objectives, partners"),
         ("years.ABOUT_EXTRA", "Areas, approach, donor principles"),
     ]),
     ("work", "Our work", "work.html and the five programme area pages", [

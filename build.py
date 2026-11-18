@@ -758,6 +758,7 @@ def build_about(lang):
         label = f'<a href="area-{slug}.html">{t}</a>' if slug else t
         return f"<li><b>{label}</b><span>{d}</span></li>"
     whatwedo = "".join(_wd(t, d, slug) for t, d, slug in x["whatwedo"])
+    partners = "".join(f"<li><b>{n}</b><span>{d}</span></li>" for n, d in a["partners"])
     body = page_hero(lang, C.NAV[lang][0][1], a["title"], a["lead"], Y.HERO_PHOTOS["about"]) + f"""
     <section class="section" id="who">
       <div class="wrap split">
@@ -797,6 +798,16 @@ def build_about(lang):
       <div class="wrap split">
         <div><h2>{x['approach_title']}</h2></div>
         <div class="prose">{approach}</div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="partners">
+      <div class="wrap">
+        <div class="section-head section-head--split">
+          <div><span class="rule"></span><h2>{a['partners_title']}</h2></div>
+          <p class="lead">{a['partners_lead']}</p>
+        </div>
+        <ul class="deflist deflist--wide" data-reveal>{partners}</ul>
       </div>
     </section>
 
@@ -1250,7 +1261,6 @@ def build_contact(lang):
         val = ar_v if lang == "ar" else en_v
         val = f'<a href="{href}">{val}</a>' if href else val
         rows += f'<li>{icon(ic)}<span><b>{label}</b>{val}</span></li>'
-    partners = "".join(f'<li>{icon("flag")}<span><b>{a}</b>{b}</span></li>' for a, b in c["partners"])
     body = page_hero(lang, u["contact"], c["title"], c["lead"], Y.HERO_PHOTOS["contact"]) + f"""
     <section class="section">
       <div class="wrap contact-grid">
@@ -1258,10 +1268,6 @@ def build_contact(lang):
           <h2>{u['org_short'].upper()}</h2>
           <ul class="info-list">{rows}</ul>
           <p class="note note--warn">{icon('alert')} {c['unverified']}</p>
-
-          <h3 style="margin-top:46px">{c['partners_title']}</h3>
-          <p>{c['partners_lead']}</p>
-          <ul class="info-list">{partners}</ul>
         </div>
         <div>
           <div class="hero__panel">

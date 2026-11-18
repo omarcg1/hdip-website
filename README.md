@@ -127,8 +127,8 @@ totals reconcile, so only those are published. The caveat is shown on the page.
 Rendered on the site as visible "content needed" blocks, and listed on `credits.html`:
 
 - **Team & Board** — names, roles, photographs
-- **Donors and partners** — no list or logos; only Friedrich-Ebert-Stiftung and Olof
-  Palme International Center are identifiable, from banners in the 2024 photographs
+- **Donors and partners** — four are named on About; no logos, and the list is
+  not complete
 - **Annual report PDFs** — none supplied, so report pages have no download
 - **Contact details** — carried over from the earlier published site, unverified
 - **Photography for 2022, 2023 and 2025** — only the 2024 batch included images

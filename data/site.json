@@ -36,6 +36,26 @@
     ],
     "approach_title": "Our approach",
     "partner_title": "Why partner with us",
+    "partners_title": "Partners",
+    "partners_lead": "HDIP works with local and international donors and partners. A complete list, with the logos we may display, has not yet been supplied.",
+    "partners": [
+     [
+      "Friedrich-Ebert-Stiftung",
+      "Young Leadership in Universities"
+     ],
+     [
+      "Olof Palme International Center",
+      "Women Able to Change Society"
+     ],
+     [
+      "Qatar Fund for Development",
+      "Right to Education — “Community Library Centers”"
+     ],
+     [
+      "Taawon",
+      "Right to Education"
+     ]
+    ],
     "team_title": "Team & board"
    },
    "ar": {
@@ -72,6 +92,26 @@
     ],
     "approach_title": "منهجيتنا",
     "partner_title": "لماذا الشراكة معنا",
+    "partners_title": "الشركاء",
+    "partners_lead": "يعمل البرنامج مع ممولين وشركاء محليين ودوليين. ولم تُزوَّد بعد قائمة كاملة أو شعارات مسموح بعرضها.",
+    "partners": [
+     [
+      "مؤسسة فريدريش إيبرت",
+      "تعزيز القيادات الشابة في الجامعات"
+     ],
+     [
+      "مركز أولوف بالمه الدولي",
+      "نساء قادرات على تغيير المجتمع"
+     ],
+     [
+      "صندوق قطر للتنمية",
+      "دعم مشروع الحق في التعليم “مراكز المكتبات المجتمعية”"
+     ],
+     [
+      "مؤسسة التعاون",
+      "الحق في التعليم"
+     ]
+    ],
     "team_title": "الفريق ومجلس الإدارة"
    }
   },
@@ -584,18 +624,6 @@
     "lead": "HDIP works with local and international partners on research, training, evaluation and community programmes. Write to us about a partnership, a consultation or access to our reporting.",
     "details_title": "Contact details",
     "unverified": "These details are carried over from HDIP's earlier published site and need confirmation.",
-    "partners_title": "Partners",
-    "partners_lead": "Two partners are identifiable from the 2024 programme photographs. A full donor and partner list, with logos we may display, has not been supplied.",
-    "partners": [
-     [
-      "Friedrich-Ebert-Stiftung",
-      "Young Leadership in Universities"
-     ],
-     [
-      "Olof Palme International Center",
-      "Women Able to Change Society"
-     ]
-    ],
     "direct_title": "Get in touch",
     "direct_lead": "Write to us directly and we will route your message to the right unit. For partnership and consultancy enquiries, please include the programme area and the timeframe you are working to.",
     "email_cta": "Email HDIP",
@@ -606,18 +634,6 @@
     "lead": "يعمل البرنامج مع شركاء محليين ودوليين في البحث والتدريب والتقييم والبرامج المجتمعية. راسلنا بشأن شراكة أو استشارة أو للاطلاع على تقاريرنا.",
     "details_title": "بيانات الاتصال",
     "unverified": "هذه البيانات منقولة عن الموقع المنشور سابقًا وبحاجة إلى تأكيد.",
-    "partners_title": "الشركاء",
-    "partners_lead": "يمكن تمييز شريكين من صور برامج عام 2024. ولم يتم تزويدنا بقائمة كاملة بالممولين والشركاء والشعارات المسموح بعرضها.",
-    "partners": [
-     [
-      "مؤسسة فريدريش إيبرت",
-      "تعزيز القيادات الشابة في الجامعات"
-     ],
-     [
-      "مركز أولوف بالمه الدولي",
-      "نساء قادرات على تغيير المجتمع"
-     ]
-    ],
     "direct_title": "تواصل معنا",
     "direct_lead": "راسلنا مباشرة وسنحوّل رسالتك إلى الوحدة المعنية. وللاستفسارات المتعلقة بالشراكة والاستشارات، يُرجى ذكر المجال البرامجي والإطار الزمني الذي تعملون ضمنه.",
     "email_cta": "راسلنا بالبريد",
@@ -2265,7 +2281,7 @@
     ],
     [
      "Donors and partners",
-     "No list or logos supplied. Only Friedrich-Ebert-Stiftung and Olof Palme International Center are identifiable, from banners in the 2024 photographs."
+     "No logos supplied, and still no complete list. Four partners are named on the About page; two of those were identified from banners in the 2024 photographs."
     ],
     [
      "Annual report PDFs",
@@ -2303,7 +2319,7 @@
     ],
     [
      "الممولون والشركاء",
-     "لم تُزوَّد قائمة أو شعارات. ولا يمكن تمييز سوى مؤسسة فريدريش إيبرت ومركز أولوف بالمه الدولي من لافتات في صور 2024."
+     "لم تُزوَّد شعارات ولا قائمة كاملة. وتُذكر أربع جهات في صفحة «عن البرنامج»، اثنتان منها مُيِّزتا من لافتات في صور 2024."
     ],
     [
      "ملفات التقارير السنوية PDF",
