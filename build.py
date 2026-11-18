@@ -12,11 +12,19 @@ import math
 import hashlib
 import json
 import os
+import sys
 
 import content as C
 import content_years as Y
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Where the pages are written. The default is the repo itself, which is how
+# this has always worked locally. `--out DIR` writes a self-contained copy of
+# the site instead — pages plus the assets they reference, and nothing else —
+# so a deployment can publish the built site without also publishing the
+# store, the build script and the panel's own source.
+OUT = ROOT
 LANGS = ("en", "ar")
 
 # Internal "content needed" placeholders. They are a signal for us, not content
@@ -279,7 +287,7 @@ def page(lang, filename, title, description, body, current=None, social=None):
         og = f'\n  <meta property="og:image" content="{base}/img/{social}-{best}.jpg">'
     else:
         og = ""
-    out_dir = os.path.join(ROOT, "ar") if lang == "ar" else ROOT
+    out_dir = os.path.join(OUT, "ar") if lang == "ar" else OUT
     os.makedirs(out_dir, exist_ok=True)
     html = f"""<!doctype html>
 <html lang="{u['code']}" dir="{u['dir']}">
@@ -1360,16 +1368,16 @@ def main():
     # Remove pages this build no longer generates. Without this, deleting an
     # article or a project leaves its page on disk and published — the content
     # is gone from the store but still reachable at its old URL.
-    kept = {os.path.normpath(os.path.join(ROOT, w)) for w in written}
+    kept = {os.path.normpath(os.path.join(OUT, w)) for w in written}
     removed = []
-    for d in (ROOT, os.path.join(ROOT, "ar")):
+    for d in (OUT, os.path.join(OUT, "ar")):
         for f in sorted(os.listdir(d)):
             if not f.endswith(".html"):
                 continue
             path = os.path.join(d, f)
             if path not in kept:
                 os.remove(path)
-                removed.append(os.path.relpath(path, ROOT))
+                removed.append(os.path.relpath(path, OUT))
     for r in removed:
         print("removed", r)
 
@@ -1377,5 +1385,24 @@ def main():
           + (f", {len(removed)} removed" if removed else ""))
 
 
+def copy_assets():
+    """Everything a page links to, beside the pages. Only when building
+    elsewhere — in the repo they are already where they belong."""
+    import shutil
+    for rel in ("assets", "favicon.svg", ".nojekyll"):
+        src = os.path.join(ROOT, rel)
+        dst = os.path.join(OUT, rel)
+        if os.path.isdir(src):
+            shutil.copytree(src, dst, dirs_exist_ok=True)
+        elif os.path.isfile(src):
+            shutil.copy2(src, dst)
+    print("copied assets")
+
+
 if __name__ == "__main__":
+    if "--out" in sys.argv:
+        OUT = os.path.abspath(sys.argv[sys.argv.index("--out") + 1])
+        os.makedirs(os.path.join(OUT, "ar"), exist_ok=True)
     main()
+    if OUT != ROOT and "--no-assets" not in sys.argv:
+        copy_assets()

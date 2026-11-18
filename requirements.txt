@@ -1,0 +1,3 @@
+# The site itself needs nothing. This is for the control panel: resizing an
+# uploaded photo into the tiers the pages' srcset expects.
+Pillow>=10,<13

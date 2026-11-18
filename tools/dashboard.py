@@ -24,7 +24,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-import store  # noqa: E402
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import backend  # noqa: E402
+
+# Where edits go: this checkout, or the repository when the panel is hosted.
+# Everything below is written against this one object and never against a
+# path on disk, because on a serverless host there is no disk worth writing.
+BACKEND = backend.choose()
 
 IMG_DIR = os.path.join(ROOT, "assets", "img")
 PORT = int(os.environ.get("HDIP_PORT", "4610"))
@@ -34,6 +40,11 @@ HOST = os.environ.get("HDIP_HOST", "127.0.0.1")
 # both: / is the site, /admin is the control panel. When the site is deployed
 # as static files, /admin is simply not among them and cannot ship by accident.
 PREFIX = "/admin"
+
+# Where a host mounts the function, when that differs from the address the
+# browser uses. Set it to the function's own route (for example /api/admin)
+# and the panel still answers as /admin.
+FUNCTION_PATH = os.environ.get("HDIP_FUNCTION_PATH", "").rstrip("/")
 AUTH_FILE = os.path.join(ROOT, "data", "admin.local.json")
 
 # ---------------------------------------------------------------------------
@@ -99,8 +110,11 @@ SECTION_OF = {k: sid for sid, _, _, items in SECTIONS for k, _ in items}
 
 
 def manifest():
-    with open(os.path.join(IMG_DIR, "manifest.json"), encoding="utf-8") as f:
-        return json.load(f)
+    """Through the backend, not the disk: a photo uploaded into the repo has
+    to appear in the picker straight away, long before the deploy that puts
+    it on the function's own filesystem."""
+    raw = BACKEND.read_bytes("assets/img/manifest.json")
+    return json.loads(raw.decode("utf-8")) if raw else {}
 
 
 def is_image(value):
@@ -210,7 +224,7 @@ def blank_like(value):
 
 
 def slug_exists(slug):
-    data = store.load()
+    data = BACKEND.load()
     for key in LISTS:
         for item in get_at(data, parse_path(key)):
             if isinstance(item, dict) and item.get("slug") == slug:
@@ -269,7 +283,7 @@ def choices_for(path, value):
     leaf = next((k for rx, k in CHOICE_PATHS if rx.match(path)), None)
     if leaf is None:
         return None
-    data = store.load()
+    data = BACKEND.load()
     if leaf == "area":
         return [("", "— none —")] + [(a["slug"], a["en"]["name"])
                                      for a in data["content"]["AREAS"]]
@@ -355,7 +369,7 @@ def pretty(key):
 def key_label(path, key):
     src = SLUG_KEYED.get(path)
     if src:
-        for item in get_at(store.load(), parse_path(src)):
+        for item in get_at(BACKEND.load(), parse_path(src)):
             if isinstance(item, dict) and item.get("slug") == key:
                 return item.get("en", {}).get("name") or pretty(key)
     return pretty(key)
@@ -903,7 +917,7 @@ def count_fields(value):
 
 
 def view_index(flash=None):
-    data = store.load()
+    data = BACKEND.load()
     cards = []
     for sid, name, where, items in SECTIONS:
         n = sum(count_fields(get_at(data, parse_path(k))) for k, _ in items)
@@ -920,7 +934,7 @@ def view_index(flash=None):
             f'<div class="scards">{"".join(cards)}</div>')
     bar = ('<form method="post" action="{PREFIX}/publish" style="display:contents">'
            '<button class="btn btn--p" type="submit">Publish to the site</button></form>'
-           '<span class="state">Publishing rebuilds all 58 pages</span>')
+           f'<span class="state">{esc(BACKEND.pending() or BACKEND.note)}</span>')
     return page("Content", body, flash, bar)
 
 
@@ -928,7 +942,7 @@ def view_section(sid, flash=None):
     if sid not in SECTION:
         return None
     name, where, items = SECTION[sid]
-    data = store.load()
+    data = BACKEND.load()
 
     # Reports are keyed by year rather than listed, so adding one means four
     # coordinated entries; it gets its own control rather than a generic Add.
@@ -1027,21 +1041,26 @@ def add_image(slug, raw, filename):
     w, h = im.size
     widths = [t for t in TIERS if t <= w] or [w]
     ext = "webp" if keep_alpha else "jpg"
+    # The tiers and the manifest that indexes them are handed over together:
+    # a manifest promising a tier that is not beside it is a broken srcset.
+    files = {}
     for t in widths:
         out = im.resize((t, round(h * t / w)), Image.LANCZOS)
-        p = os.path.join(IMG_DIR, f"{slug}-{t}.{ext}")
+        buf = io.BytesIO()
         if ext == "webp":
-            out.save(p, "WEBP", quality=86, method=6)
+            out.save(buf, "WEBP", quality=86, method=6)
         else:
-            out.save(p, "JPEG", quality=86, optimize=True, progressive=True)
+            out.save(buf, "JPEG", quality=86, optimize=True, progressive=True)
+        files[f"assets/img/{slug}-{t}.{ext}"] = buf.getvalue()
     m = manifest()
     entry = {"widths": widths, "w": widths[0],
              "h": round(h * widths[0] / w), "max": widths[-1]}
     if ext != "jpg":
         entry["ext"] = ext
     m[slug] = entry
-    with open(os.path.join(IMG_DIR, "manifest.json"), "w", encoding="utf-8") as f:
-        json.dump(m, f, indent=1, sort_keys=True)
+    files["assets/img/manifest.json"] = json.dumps(
+        m, indent=1, sort_keys=True).encode("utf-8")
+    BACKEND.add_files(files, f"Add photo {slug}")
     return None
 
 
@@ -1053,22 +1072,23 @@ def add_image(slug, raw, filename):
 # fails. The panel should never be able to leave the site unbuildable.
 # ---------------------------------------------------------------------------
 def apply_structural(change):
-    """Run `change(data)`, keep it only if the site still builds."""
-    before = store.load()
-    data = json.loads(json.dumps(before))
+    """Run `change(data)`, keep it only if the site still builds.
+
+    The candidate is built in a temp directory before anything is written,
+    so a change that would break the site is never stored in the first
+    place. The old order — write, build, put the old one back — left a
+    broken store on disk for as long as the build took, and depended on the
+    second write succeeding.
+    """
+    data = json.loads(json.dumps(BACKEND.load()))
     try:
         note = change(data)
     except ValueError as e:
         return ("err", str(e))
-    store.save(data)
-    r = subprocess.run([sys.executable, "build.py"], cwd=ROOT,
-                       capture_output=True, text=True)
-    if r.returncode != 0:
-        store.save(before)
-        subprocess.run([sys.executable, "build.py"], cwd=ROOT, capture_output=True)
-        detail = (r.stderr or r.stdout).strip().splitlines()[-1:] or [""]
-        return ("err", "Change rolled back — the site would not build.\n"
-                       + detail[0])
+    ok, detail = backend.validate(data)
+    if not ok:
+        return ("err", "Not applied — the site would not build.\n" + detail)
+    BACKEND.save(data, note.split(".")[0][:72] or "Structural change")
     return ("ok", note)
 
 
@@ -1103,7 +1123,7 @@ def add_list_item(key):
     kind, msg = apply_structural(change)
     anchor = ""
     if kind == "ok":
-        lst = get_at(store.load(), parse_path(key))
+        lst = get_at(BACKEND.load(), parse_path(key))
         anchor = f"{key}[{len(lst) - 1}]"
     return kind, msg, anchor
 
@@ -1166,7 +1186,7 @@ def save_fields(form):
     A section page posts several keys at once, so the guard is per field:
     a path is written only if it sits under one of the keys this panel owns.
     """
-    data = store.load()
+    data = BACKEND.load()
     roots = [(k, parse_path(k)) for k in LABELS]
     count = 0
     for path, vals in form.items():
@@ -1194,18 +1214,12 @@ def save_fields(form):
             count += 1
         except (KeyError, IndexError, TypeError):
             continue
-    store.save(data)
+    BACKEND.save(data, f"Edit {count} field{'s' if count != 1 else ''}")
     return count
 
 
 def publish():
-    r = subprocess.run([sys.executable, "build.py"], cwd=ROOT,
-                       capture_output=True, text=True)
-    if r.returncode != 0:
-        return ("err", (r.stderr or r.stdout).strip()[-1800:])
-    n = len([f for f in os.listdir(ROOT) if f.endswith(".html")])
-    n += len([f for f in os.listdir(os.path.join(ROOT, "ar")) if f.endswith(".html")])
-    return ("ok", f"Published. {n} pages rewritten.")
+    return BACKEND.publish()
 
 
 
@@ -1309,10 +1323,32 @@ def ensure_credentials():
     return rec
 
 
+def env_credentials():
+    """Credentials from the environment, for a host with no writable disk.
+
+    HDIP_ADMIN_HASH carries salt$rounds$hash — the same three values the
+    local file holds, and still no password. `--set-password --env` prints
+    the line to paste into the host's environment settings.
+    """
+    raw = os.environ.get("HDIP_ADMIN_HASH")
+    if not raw:
+        return None
+    try:
+        salt, rounds, digest = raw.split("$")
+        return {"user": os.environ.get("HDIP_ADMIN_USER", "hdip"),
+                "salt": salt, "rounds": int(rounds), "hash": digest}
+    except ValueError:
+        raise SystemExit("HDIP_ADMIN_HASH must be salt$rounds$hash — "
+                         "generate it with: python3 tools/dashboard.py "
+                         "--set-password --env")
+
+
 def set_password_interactively():
     """`--set-password`: prompt without echo, store the hash only."""
     import getpass
-    rec = ensure_credentials()
+    to_env = "--env" in sys.argv
+    rec = env_credentials() if to_env else ensure_credentials()
+    rec = rec or {"user": "hdip"}
     user = input(f"user [{rec['user']}]: ").strip() or rec["user"]
     first = getpass.getpass("new password: ")
     if len(first) < 10:
@@ -1321,8 +1357,13 @@ def set_password_interactively():
     if first != getpass.getpass("repeat: "):
         print("  They did not match; nothing changed.")
         return 1
-    new = {"_note": NOTE, "user": user, **hash_password(first)}
-    write_credentials(new)
+    h = hash_password(first)
+    if to_env:
+        print("\n  Set these on the host — neither contains the password:\n")
+        print(f"    HDIP_ADMIN_USER={user}")
+        print(f"    HDIP_ADMIN_HASH={h['salt']}${h['rounds']}${h['hash']}\n")
+        return 0
+    write_credentials({"_note": NOTE, "user": user, **h})
     print(f"  Updated {AUTH_FILE} — hash only, the password is not stored.")
     return 0
 
@@ -1332,7 +1373,9 @@ _CREDS_MTIME = None
 
 
 def current_credentials():
-    """Re-read the credentials file whenever it changes on disk.
+    """The environment wins where it is set; otherwise the local file.
+
+    Re-read the credentials file whenever it changes on disk.
 
     Loading once at startup meant editing the password appeared to do nothing
     until the server was restarted — with no error to explain it. Re-reading
@@ -1340,6 +1383,9 @@ def current_credentials():
     round that follows.
     """
     global CREDS, _CREDS_MTIME
+    from_env = env_credentials()
+    if from_env:
+        return from_env
     try:
         mtime = os.path.getmtime(AUTH_FILE)
     except OSError:
@@ -1369,17 +1415,29 @@ def verify_password(user, password):
 # sign-out, and means the password crosses the wire once rather than with
 # every image on the photos screen.
 #
-# Sessions live in memory only, so restarting the server signs everyone out.
+# The session is carried in the cookie itself, signed rather than looked up.
+# A table in memory only works while one process answers every request: a
+# hosted panel runs several short-lived instances, and a table would sign
+# people out at random as requests landed on an instance that had never seen
+# them. Signing moves the state to the client without trusting it.
+#
+# HDIP_SECRET keeps sessions alive across restarts. Without it the key is
+# random per process, so restarting signs everyone out — which is the local
+# behaviour, and the safer default for a machine with no secret set.
 # ---------------------------------------------------------------------------
 SESSION_COOKIE = "hdip_session"
 SESSION_HOURS = 12
-SESSIONS = {}
+SECRET = (os.environ.get("HDIP_SECRET") or secrets.token_hex(32)).encode("utf-8")
+
+
+def _sign(payload):
+    return hmac.new(SECRET, payload, hashlib.sha256).hexdigest()[:32]
 
 
 def new_session(user):
-    token = secrets.token_urlsafe(32)
-    SESSIONS[token] = {"user": user, "expires": time.time() + SESSION_HOURS * 3600}
-    return token
+    payload = f"{user}|{int(time.time()) + SESSION_HOURS * 3600}".encode("utf-8")
+    return (base64.urlsafe_b64encode(payload).decode("ascii").rstrip("=")
+            + "." + _sign(payload))
 
 
 def session_user(cookie_header):
@@ -1392,28 +1450,27 @@ def session_user(cookie_header):
     except http.cookies.CookieError:
         return None
     morsel = jar.get(SESSION_COOKIE)
-    if not morsel:
+    if not morsel or "." not in morsel.value:
         return None
-    rec = SESSIONS.get(morsel.value)
-    if not rec:
+    body, _, sig = morsel.value.rpartition(".")
+    try:
+        payload = base64.urlsafe_b64decode(body + "=" * (-len(body) % 4))
+        user, _, expires = payload.decode("utf-8").rpartition("|")
+        expires = int(expires)
+    except (ValueError, UnicodeDecodeError):
         return None
-    if rec["expires"] < time.time():
-        SESSIONS.pop(morsel.value, None)
+    if not hmac.compare_digest(sig, _sign(payload)):
         return None
-    return rec["user"]
+    if expires < time.time():
+        return None
+    return user
 
 
 def drop_session(cookie_header):
-    if not cookie_header:
-        return
-    jar = http.cookies.SimpleCookie()
-    try:
-        jar.load(cookie_header)
-    except http.cookies.CookieError:
-        return
-    morsel = jar.get(SESSION_COOKIE)
-    if morsel:
-        SESSIONS.pop(morsel.value, None)
+    """Nothing to forget on this side — signing out clears the cookie, and
+    the signature is what made it good. A signed cookie cannot be revoked
+    before it expires, which is the price of not keeping a table."""
+    return
 
 
 def view_login(message=None, nexturl=None):
@@ -1434,269 +1491,341 @@ def view_login(message=None, nexturl=None):
     return page("Sign in", body, chrome=False)
 
 
+# ---------------------------------------------------------------------------
+# Requests and responses
+# The routes are plain functions from a request to a response, so the same
+# panel runs behind two very different front doors: the local server below,
+# and a WSGI application on a host that gives each request its own
+# short-lived process. Nothing above this line knows which is serving.
+# ---------------------------------------------------------------------------
+class Request:
+    def __init__(self, method, path, headers, body=b"", secure=False):
+        self.method = method
+        self.path = path
+        self.headers = headers
+        self.body = body
+        self.secure = secure
+
+    @property
+    def cookie(self):
+        return self.headers.get("Cookie")
+
+    def form(self):
+        return urllib.parse.parse_qs(self.body.decode("utf-8", "replace"),
+                                     keep_blank_values=True)
+
+
+class Response:
+    def __init__(self, status=200, body=b"", ctype="text/html; charset=utf-8",
+                 headers=()):
+        self.status = status
+        self.body = body if isinstance(body, bytes) else body.encode("utf-8")
+        self.headers = [("Content-Type", ctype)] + list(headers)
+
+
+def html_page(body, status=200):
+    return Response(status, body, headers=[("Cache-Control", "no-store")])
+
+
+def redirect(to, cookie=None):
+    headers = [("Location", to)] + ([("Set-Cookie", cookie)] if cookie else [])
+    return Response(303, b"", headers=headers)
+
+
+def error(status, message=""):
+    return Response(status, f"<h1>{status}</h1><p>{esc(message)}</p>")
+
+
+CTYPES = {"html": "text/html; charset=utf-8", "css": "text/css; charset=utf-8",
+          "js": "text/javascript; charset=utf-8", "json": "application/json",
+          "jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+          "webp": "image/webp", "svg": "image/svg+xml", "ico": "image/x-icon"}
+
+
+def ctype_for(name):
+    return CTYPES.get(name.rsplit(".", 1)[-1].lower(), "application/octet-stream")
+
+
+def session_cookie(req, token, clear=False):
+    """HttpOnly so script cannot read it; Strict so it is not sent
+    cross-site; Secure only over HTTPS, since a Secure cookie on plain HTTP
+    is dropped and sign-in would fail with nothing on screen to explain it."""
+    bits = [f"{SESSION_COOKIE}={'' if clear else token}",
+            f"Path={PREFIX}", "HttpOnly", "SameSite=Strict"]
+    bits.append("Max-Age=0" if clear else f"Max-Age={SESSION_HOURS * 3600}")
+    if req.secure:
+        bits.append("Secure")
+    return "; ".join(bits)
+
+
+def admin_path(path):
+    """`/admin/edit` -> `/edit`; None when the request is not for the panel."""
+    if path == PREFIX:
+        return "/"
+    if path.startswith(PREFIX + "/"):
+        return path[len(PREFIX):]
+    return None
+
+
+def serve_site(path):
+    """The built static site, so one address serves site and panel.
+
+    Only the local server reaches this: a host serves the built pages itself
+    and sends the panel nothing but /admin.
+    """
+    rel = urllib.parse.unquote(path).lstrip("/") or "index.html"
+    full = os.path.normpath(os.path.join(ROOT, rel))
+    if not full.startswith(ROOT + os.sep) and full != ROOT:
+        return error(403, "Outside the site.")
+    if os.path.isdir(full):
+        full = os.path.join(full, "index.html")
+    blocked = (os.path.join(ROOT, "data"), os.path.join(ROOT, "tools"),
+               os.path.join(ROOT, ".git"))
+    if any(full.startswith(b + os.sep) for b in blocked):
+        return error(404, "Not found.")
+    if not os.path.isfile(full):
+        return error(404, "Not found.")
+    with open(full, "rb") as f:
+        return Response(200, f.read(), ctype_for(full))
+
+
+def guarded(req, full_path):
+    """Every /admin request needs a session. Returns a response to send
+    instead, or None to carry on."""
+    if session_user(req.cookie):
+        return None
+    if req.method == "GET":
+        return html_page(view_login(nexturl=full_path), 401)
+    return redirect(f"{PREFIX}/login")
+
+
+# ---------------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------------
+def route_get(req):
+    u = urllib.parse.urlparse(req.path)
+    p = admin_path(u.path)
+    if p is None:
+        return serve_site(u.path)
+    if p == "/login":
+        if session_user(req.cookie):
+            return redirect(PREFIX)
+        return html_page(view_login())
+    blocked = guarded(req, req.path)
+    if blocked:
+        return blocked
+
+    q = urllib.parse.parse_qs(u.query)
+    flash = None
+    if "ok" in q:
+        flash = ("ok", q["ok"][0])
+    elif "err" in q:
+        flash = ("err", q["err"][0])
+
+    if p == "/":
+        return html_page(view_index(flash))
+    if p.startswith("/s/"):
+        v = view_section(p[3:], flash)
+        return html_page(v) if v else error(404, "No such section.")
+    if p == "/edit":
+        # Old per-key links still work; send them to the section.
+        sid = SECTION_OF.get(q.get("k", [""])[0])
+        return redirect(f"{PREFIX}/s/{sid}" if sid else PREFIX)
+    if p == "/images":
+        return html_page(view_images(flash))
+    if p.startswith("/img/"):
+        # Through the backend, so a photo uploaded a moment ago is visible
+        # here before any deploy has put it on this machine.
+        name = os.path.basename(urllib.parse.unquote(p[5:]))
+        raw = BACKEND.read_bytes(f"assets/img/{name}")
+        if raw is None:
+            return error(404, "No such photo.")
+        return Response(200, raw, ctype_for(name))
+    return error(404, "Not found.")
+
+
+def route_post(req):
+    u = urllib.parse.urlparse(req.path)
+    p = admin_path(u.path)
+    if p is None:
+        return error(404, "Not found.")
+
+    if p == "/login":
+        form = req.form()
+        user = form.get("user", [""])[0]
+        password = form.get("password", [""])[0]
+        nexturl = form.get("next", [PREFIX])[0]
+        # Only ever bounce back inside the panel.
+        if not nexturl.startswith(PREFIX):
+            nexturl = PREFIX
+        if verify_password(user, password):
+            return redirect(nexturl,
+                            session_cookie(req, new_session(user)))
+        return html_page(
+            view_login("That user and password did not match.", nexturl), 401)
+
+    if p == "/logout":
+        return redirect(f"{PREFIX}/login",
+                        session_cookie(req, None, clear=True))
+
+    if p in ("/additem", "/delitem", "/addreport"):
+        form = req.form()
+        sid = form.get("__sid", form.get("sid", [""]))[0]
+        if sid not in SECTION:
+            return error(400, "Unknown section.")
+        if not session_user(req.cookie):
+            return redirect(f"{PREFIX}/login")
+        # Keep what is on screen before changing the shape, so edits in
+        # progress are not lost by pressing Add.
+        if p != "/addreport":
+            save_fields(form)
+
+        anchor = ""
+        if p == "/addreport":
+            kind, msg = add_report(form.get("year", [""])[0].strip())
+        elif p == "/additem":
+            key = form.get("listkey", [""])[0]
+            if key not in LISTS:
+                return error(400, "Not an editable list.")
+            kind, msg, anchor = add_list_item(key)
+        else:
+            key, _, raw = form.get("item", [""])[0].rpartition("|")
+            if key not in LISTS:
+                return error(400, "Not an editable list.")
+            try:
+                idx = int(raw)
+            except ValueError:
+                idx = -1
+            kind, msg = delete_list_item(key, idx)
+        to = f"{PREFIX}/s/{sid}?{kind}=" + urllib.parse.quote(msg)
+        if anchor:
+            to += "&open=" + urllib.parse.quote(anchor)
+        return redirect(to)
+
+    blocked = guarded(req, req.path)
+    if blocked:
+        return blocked
+
+    if p == "/publish":
+        kind, msg = publish()
+        return redirect(f"{PREFIX}?{kind}={urllib.parse.quote(msg)}")
+
+    if p == "/upload":
+        fields = parse_multipart(req.headers, io.BytesIO(req.body))
+        slug = str(fields.get("slug", "")).strip().lower()
+        item = fields.get("file")
+        if not re.fullmatch(r"[a-z0-9-]+", slug or ""):
+            return redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(
+                "Use lower-case letters, numbers and hyphens for the short name."))
+        if not isinstance(item, tuple) or not item[1]:
+            return redirect(f"{PREFIX}/images?err="
+                            + urllib.parse.quote("No file received."))
+        err = add_image(slug, item[1], item[0] or "")
+        if err:
+            return redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(err))
+        return redirect(f"{PREFIX}/images?ok=" + urllib.parse.quote(
+            f"Added “{slug}”. Pick it on a content screen, then publish."))
+
+    if p == "/save":
+        form = req.form()
+        sid = form.get("__sid", [""])[0]
+        if sid not in SECTION:
+            return error(400, "Unknown section.")
+        count = save_fields(form)
+        return redirect(f"{PREFIX}/s/{sid}?ok=" + urllib.parse.quote(
+            f"Saved {count} fields. Publish to put them live."))
+
+    return error(404, "Not found.")
+
+
+def route(req):
+    if req.method == "GET":
+        return route_get(req)
+    if req.method == "POST":
+        return route_post(req)
+    return error(405, "Method not allowed.")
+
+
+# ---------------------------------------------------------------------------
+# Front door 1: the local server
+# ---------------------------------------------------------------------------
 class Handler(BaseHTTPRequestHandler):
     server_version = "HDIPPanel/1.0"
 
     def log_message(self, fmt, *args):
         sys.stderr.write("  %s\n" % (fmt % args))
 
-    # -- helpers ---------------------------------------------------------
-    def send_html(self, body, code=200):
-        data = body.encode("utf-8")
-        self.send_response(code)
-        self.send_header("Content-Type", "text/html; charset=utf-8")
-        self.send_header("Content-Length", str(len(data)))
-        self.send_header("Cache-Control", "no-store")
+    def run(self):
+        length = int(self.headers.get("Content-Length", "0") or 0)
+        body = self.rfile.read(length) if length else b""
+        req = Request(self.command, self.path, self.headers, body,
+                      self.headers.get("X-Forwarded-Proto") == "https")
+        try:
+            res = route(req)
+        except Exception as e:  # noqa: BLE001 - the panel must say what broke
+            sys.stderr.write(f"  error: {e!r}\n")
+            res = error(500, f"{type(e).__name__}: {e}")
+        self.send_response(res.status)
+        for k, v in res.headers:
+            self.send_header(k, v)
+        self.send_header("Content-Length", str(len(res.body)))
         self.end_headers()
-        self.wfile.write(data)
+        self.wfile.write(res.body)
 
-    def redirect(self, to, cookie=None):
-        self.send_response(303)
-        self.send_header("Location", to)
-        if cookie:
-            self.send_header("Set-Cookie", cookie)
-        self.send_header("Content-Length", "0")
-        self.end_headers()
+    do_GET = run
+    do_POST = run
 
-    def session_cookie(self, token, clear=False):
-        """HttpOnly so script cannot read it; Strict so it is not sent
-        cross-site; Secure only over HTTPS, since a Secure cookie on plain
-        HTTP is simply dropped and sign-in would fail with no explanation."""
-        bits = [f"{SESSION_COOKIE}={'' if clear else token}",
-                f"Path={PREFIX}", "HttpOnly", "SameSite=Strict"]
-        if clear:
-            bits.append("Max-Age=0")
-        else:
-            bits.append(f"Max-Age={SESSION_HOURS * 3600}")
-        if self.headers.get("X-Forwarded-Proto") == "https":
-            bits.append("Secure")
-        return "; ".join(bits)
 
-    def serve_file(self, path, ctype):
-        if not os.path.isfile(path):
-            self.send_error(404)
-            return
-        with open(path, "rb") as f:
-            data = f.read()
-        self.send_response(200)
-        self.send_header("Content-Type", ctype)
-        self.send_header("Content-Length", str(len(data)))
-        self.end_headers()
-        self.wfile.write(data)
+# ---------------------------------------------------------------------------
+# Front door 2: WSGI, for a host that runs the panel as a function
+# ---------------------------------------------------------------------------
+def wsgi(environ, start_response):
+    body = b""
+    try:
+        length = int(environ.get("CONTENT_LENGTH") or 0)
+    except ValueError:
+        length = 0
+    if length:
+        body = environ["wsgi.input"].read(length)
 
-    # -- routes ----------------------------------------------------------
-    # -- access ----------------------------------------------------------
-    def guard(self, full_path):
-        """Every /admin request needs a session. Returns True to continue."""
-        if session_user(self.headers.get("Cookie")):
-            return True
-        if self.command == "GET":
-            self.send_html(view_login(nexturl=full_path), 401)
-        else:
-            self.redirect(f"{PREFIX}/login")
-        return False
+    headers = {}
+    for k, v in environ.items():
+        if k.startswith("HTTP_"):
+            headers[k[5:].replace("_", "-").title()] = v
+    if environ.get("CONTENT_TYPE"):
+        headers["Content-Type"] = environ["CONTENT_TYPE"]
+    headers["Content-Length"] = str(length)
 
-    def admin_path(self, u):
-        """`/admin/edit` -> `/edit`; None when the request is not for the panel."""
-        if u.path == PREFIX:
-            return "/"
-        if u.path.startswith(PREFIX + "/"):
-            return u.path[len(PREFIX):]
-        return None
+    path = environ.get("PATH_INFO", "/") or "/"
+    # A host may route /admin here under the function's own path instead of
+    # the one the browser asked for. Accept either, and work in terms of the
+    # public mount point, since that is what every link on every page says.
+    if FUNCTION_PATH and path.startswith(FUNCTION_PATH):
+        path = PREFIX + path[len(FUNCTION_PATH):]
+    if environ.get("QUERY_STRING"):
+        path += "?" + environ["QUERY_STRING"]
+    secure = (environ.get("wsgi.url_scheme") == "https"
+              or headers.get("X-Forwarded-Proto") == "https")
+    req = Request(environ.get("REQUEST_METHOD", "GET"), path, headers, body,
+                  secure)
+    try:
+        res = route(req)
+    except Exception as e:  # noqa: BLE001
+        res = error(500, f"{type(e).__name__}: {e}")
+    phrase = http.HTTPStatus(res.status).phrase
+    start_response(f"{res.status} {phrase}", res.headers
+                   + [("Content-Length", str(len(res.body)))])
+    return [res.body]
 
-    def serve_site(self, u):
-        """The built static site, so one address serves site and panel."""
-        rel = urllib.parse.unquote(u.path).lstrip("/") or "index.html"
-        path = os.path.normpath(os.path.join(ROOT, rel))
-        # Never serve outside the project, and never serve the panel's own
-        # files, the store, or the credentials.
-        if not path.startswith(ROOT + os.sep) and path != ROOT:
-            self.send_error(403)
-            return
-        if os.path.isdir(path):
-            path = os.path.join(path, "index.html")
-        blocked = (os.path.join(ROOT, "data"), os.path.join(ROOT, "tools"),
-                   os.path.join(ROOT, ".git"))
-        if any(path.startswith(b + os.sep) for b in blocked):
-            self.send_error(404)
-            return
-        ext = path.rsplit(".", 1)[-1].lower()
-        ctype = {"html": "text/html; charset=utf-8", "css": "text/css; charset=utf-8",
-                 "js": "text/javascript; charset=utf-8", "json": "application/json",
-                 "jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
-                 "webp": "image/webp", "svg": "image/svg+xml",
-                 "ico": "image/x-icon"}.get(ext, "application/octet-stream")
-        self.serve_file(path, ctype)
-
-    # -- routes ----------------------------------------------------------
-    def do_GET(self):
-        u = urllib.parse.urlparse(self.path)
-        p = self.admin_path(u)
-        if p is None:
-            self.serve_site(u)
-            return
-        if p == "/login":
-            if session_user(self.headers.get("Cookie")):
-                self.redirect(PREFIX)
-            else:
-                self.send_html(view_login())
-            return
-        if not self.guard(self.path):
-            return
-
-        q = urllib.parse.parse_qs(u.query)
-        flash = None
-        if "ok" in q:
-            flash = ("ok", q["ok"][0])
-        elif "err" in q:
-            flash = ("err", q["err"][0])
-
-        if p == "/":
-            self.send_html(view_index(flash))
-        elif p.startswith("/s/"):
-            v = view_section(p[3:], flash)
-            if v:
-                self.send_html(v)
-            else:
-                self.send_error(404, "No such section")
-        elif p == "/edit":
-            # Old per-key links still work; send them to the section.
-            sid = SECTION_OF.get(q.get("k", [""])[0])
-            self.redirect(f"{PREFIX}/s/{sid}" if sid else PREFIX)
-        elif p == "/images":
-            self.send_html(view_images(flash))
-        elif p.startswith("/img/"):
-            name = os.path.basename(urllib.parse.unquote(p[5:]))
-            ext = name.rsplit(".", 1)[-1].lower()
-            ctype = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
-                     "webp": "image/webp", "svg": "image/svg+xml"}.get(
-                         ext, "application/octet-stream")
-            self.serve_file(os.path.join(IMG_DIR, name), ctype)
-        else:
-            self.send_error(404)
-
-    def do_POST(self):
-        u = urllib.parse.urlparse(self.path)
-        p = self.admin_path(u)
-        if p is None:
-            self.send_error(404)
-            return
-
-        if p == "/login":
-            length = int(self.headers.get("Content-Length", "0"))
-            form = urllib.parse.parse_qs(self.rfile.read(length).decode("utf-8"))
-            user = form.get("user", [""])[0]
-            password = form.get("password", [""])[0]
-            nexturl = form.get("next", [PREFIX])[0]
-            # Only ever bounce back inside the panel.
-            if not nexturl.startswith(PREFIX):
-                nexturl = PREFIX
-            if verify_password(user, password):
-                self.redirect(nexturl,
-                              self.session_cookie(new_session(user)))
-            else:
-                self.send_html(view_login("That user and password did not match.",
-                                          nexturl), 401)
-            return
-
-        if p in ("/additem", "/delitem", "/addreport"):
-            length = int(self.headers.get("Content-Length", "0"))
-            form = urllib.parse.parse_qs(
-                self.rfile.read(length).decode("utf-8"), keep_blank_values=True)
-            sid = form.get("__sid", form.get("sid", [""]))[0]
-            if sid not in SECTION:
-                self.send_error(400, "Unknown section")
-                return
-            if not session_user(self.headers.get("Cookie")):
-                self.redirect(f"{PREFIX}/login")
-                return
-            # Keep what is on screen before changing the shape, so edits in
-            # progress are not lost by pressing Add.
-            if p != "/addreport":
-                save_fields(form)
-
-            anchor = ""
-            if p == "/addreport":
-                kind, msg = add_report(form.get("year", [""])[0].strip())
-            else:
-                if p == "/additem":
-                    key = form.get("listkey", [""])[0]
-                    if key not in LISTS:
-                        self.send_error(400, "Not an editable list")
-                        return
-                    kind, msg, anchor = add_list_item(key)
-                else:
-                    key, _, raw = form.get("item", [""])[0].rpartition("|")
-                    if key not in LISTS:
-                        self.send_error(400, "Not an editable list")
-                        return
-                    try:
-                        idx = int(raw)
-                    except ValueError:
-                        idx = -1
-                    kind, msg = delete_list_item(key, idx)
-            to = f"{PREFIX}/s/{sid}?{kind}=" + urllib.parse.quote(msg)
-            if anchor:
-                to += "&open=" + urllib.parse.quote(anchor)
-            self.redirect(to)
-            return
-
-        if p == "/logout":
-            drop_session(self.headers.get("Cookie"))
-            self.redirect(f"{PREFIX}/login",
-                          self.session_cookie(None, clear=True))
-            return
-
-        if not self.guard(self.path):
-            return
-        u = urllib.parse.urlparse(p)
-
-        if u.path == "/publish":
-            kind, msg = publish()
-            self.redirect(f"{PREFIX}?{kind}={urllib.parse.quote(msg)}")
-            return
-
-        if u.path == "/upload":
-            fields = parse_multipart(self.headers, self.rfile)
-            slug = str(fields.get("slug", "")).strip().lower()
-            item = fields.get("file")
-            if not re.fullmatch(r"[a-z0-9-]+", slug or ""):
-                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(
-                    "Use lower-case letters, numbers and hyphens for the short name."))
-                return
-            if not isinstance(item, tuple) or not item[1]:
-                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote("No file received."))
-                return
-            err = add_image(slug, item[1], item[0] or "")
-            if err:
-                self.redirect(f"{PREFIX}/images?err=" + urllib.parse.quote(err))
-            else:
-                self.redirect(f"{PREFIX}/images?ok=" + urllib.parse.quote(
-                    f"Added “{slug}”. Pick it on a content screen, then publish."))
-            return
-
-        if u.path == "/save":
-            length = int(self.headers.get("Content-Length", "0"))
-            body = self.rfile.read(length).decode("utf-8")
-            form = urllib.parse.parse_qs(body, keep_blank_values=True)
-            sid = form.get("__sid", [""])[0]
-            if sid not in SECTION:
-                self.send_error(400, "Unknown section")
-                return
-            count = save_fields(form)
-            self.redirect(f"{PREFIX}/s/{sid}&ok=".replace("&ok=", "?ok=")
-                          + urllib.parse.quote(
-                              f"Saved {count} fields. Publish to put them live."))
-            return
-
-        self.send_error(404)
 
 
 def main():
     global CREDS
     if "--set-password" in sys.argv:
         return set_password_interactively()
-    CREDS = ensure_credentials()
+    # A host that supplies credentials has no writable disk to keep them on,
+    # so do not try to create the local file there.
+    CREDS = env_credentials() or ensure_credentials()
 
     if HOST not in ("127.0.0.1", "localhost", "::1"):
         print("\n  WARNING: binding to", HOST, "exposes /admin beyond this machine.")
@@ -1706,7 +1835,7 @@ def main():
     srv = ThreadingHTTPServer((HOST, PORT), Handler)
     print(f"  site   http://{HOST}:{PORT}/")
     print(f"  panel  http://{HOST}:{PORT}{PREFIX}")
-    print(f"  store  data/site.json")
+    print(f"  store  {BACKEND.where}")
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

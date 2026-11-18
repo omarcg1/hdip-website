@@ -12,7 +12,12 @@ import json
 import os
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-STORE = os.path.join(ROOT, "data", "site.json")
+
+# Normally the store is the file in this repo. HDIP_STORE points the loaders
+# at a different copy, which is how the panel tries a candidate build before
+# committing it: write the candidate to a temp file, build against that, and
+# keep the real store untouched until the build has proved itself.
+STORE = os.environ.get("HDIP_STORE") or os.path.join(ROOT, "data", "site.json")
 
 
 def load():

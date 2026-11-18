@@ -15,7 +15,9 @@ python3 tools/dashboard.py      # http://127.0.0.1:4610
 ```
 
 The site is at `/`, the panel at `/admin`. Edit a field, **Save**, then
-**Publish** — publishing reruns `build.py` and rewrites all 58 pages.
+**Publish**. Locally, publishing reruns `build.py` and rewrites all 58
+pages; hosted, it puts the saved changes on the live branch and the site
+redeploys. See **Hosting the panel** below.
 
 One screen per part of the site. Records — articles, projects, programme
 areas, report years — are **collapsed**: the screen opens as a list of what is
@@ -34,6 +36,60 @@ plain strings — a project's objectives and results, a report's principles —
 so they are typed as text rather than one input per line. The conversion is
 exact in both directions; no stored item contains a newline.
 
+## Hosting the panel
+
+The same code runs two ways, and the environment decides which.
+
+Locally the panel owns the checkout: it writes `data/site.json`, runs
+`build.py`, and the pages change on disk.
+
+Hosted, there is no checkout to own — a serverless filesystem is read-only
+apart from `/tmp`, and `/tmp` is discarded between requests, so a panel
+that wrote files there would report "saved" and lose the save. The store
+therefore lives in this repository and an edit is a commit:
+
+- **Save** commits to the `panel-draft` branch. Not live. The host builds
+  that branch as a preview deployment, so there is something to look at
+  before committing to it.
+- **Publish** copies the changed files onto `main` and deletes the draft,
+  after checking that the store still builds. The deploy that follows is
+  what rewrites the 58 pages.
+
+Set `HDIP_GITHUB_REPO` and `HDIP_GITHUB_TOKEN` to use the repository; set
+neither to use the checkout. Setting one and not the other is an error
+rather than a quiet fall back to a disk that is about to disappear.
+
+### Deploying to Vercel
+
+`vercel.json` publishes the built site and routes `/admin` to the panel:
+
+| | |
+| --- | --- |
+| `buildCommand` | `python3 build.py --out dist` |
+| `outputDirectory` | `dist` |
+| `/admin` → | `api/admin.py` (a WSGI function) |
+
+Only `dist/` is served, so the store, the build script and the panel's own
+source are not on the public site — unlike GitHub Pages today, which serves
+the whole repository.
+
+Variables to set on the project:
+
+| Variable | What it is |
+| --- | --- |
+| `HDIP_GITHUB_REPO` | `owner/name` of this repository |
+| `HDIP_GITHUB_TOKEN` | a fine-grained token, Contents read and write, this repository only |
+| `HDIP_ADMIN_USER` | who signs in |
+| `HDIP_ADMIN_HASH` | from `python3 tools/dashboard.py --set-password --env` |
+| `HDIP_SECRET` | any long random string — it signs the session cookies |
+| `HDIP_FUNCTION_PATH` | `/api/admin` |
+
+`HDIP_SECRET` is what keeps people signed in across instances: without it
+each instance invents its own key and sign-ins stop working at random.
+
+If the build image turns out to have no `python3`, use `python` instead —
+nothing else about the build changes.
+
 ### Password
 
 Credentials live in `data/admin.local.json`, which is gitignored and never
@@ -50,7 +106,8 @@ Delete the file and restart to be issued a fresh random password.
 
 `/admin` is bound to localhost. The sign-in form posts the password in clear
 text, so put TLS in front of it before binding anywhere else — the server
-warns if you do. Signing in sets a session cookie; **Sign out** drops it, and
+warns if you do. A host that terminates TLS for you satisfies this, and the
+session cookie is marked Secure as soon as the request arrives over HTTPS. Signing in sets a session cookie; **Sign out** drops it, and
 restarting the panel signs everyone out.
 
 The panel covers every field on every page — copy in both languages, the

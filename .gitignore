@@ -9,3 +9,6 @@ venv/
 
 # Control panel credentials — never commit
 data/admin.local.json
+
+# Built site for deployment — generated, never committed.
+dist/
